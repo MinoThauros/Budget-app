@@ -3,9 +3,20 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AllExpenses from './screens/AllExpensesScreen';
-import RecentExpenses from './screens/RecentExpensesScree';
+import RecentExpenses from './screens/RecentExpensesScreen';
 import Profile from './screens/profile';
 import {Ionicons} from '@expo/vector-icons';
+import Components from './screens/components';
+
+/**
+ Gameplan:
+ 1) Build all components needed: 
+  * individual spending displayer
+  * group spending displayer
+  * profile page (add either drawer or a bottomTab)
+  * browse strategies
+2) Think about budgeting strategies, etc...
+ */
 
 const Tab = createBottomTabNavigator();
 
@@ -35,6 +46,16 @@ export default function App() {
           options={{
             tabBarIcon: ({color,size}:any)=>(<Ionicons name="person-outline" color={color} size={size}/>)
           }}/>
+
+<Tab.Screen 
+          name="Components"
+          component={Components}
+          options={{
+            tabBarIcon: ({color,size}:any)=>(<Ionicons name="baseball-sharp" color={color} size={size}/>)
+          }}/>
+        
+
+        
       </Tab.Navigator>
     </NavigationContainer>
   );
