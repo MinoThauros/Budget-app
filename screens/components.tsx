@@ -1,21 +1,26 @@
-import { Button, Text, View, StyleSheet } from "react-native";
+import { Button, Text, View, StyleSheet, Pressable } from "react-native";
 import { spending } from "../models/spending";
 
 const Components=({navigation,route}:any)=>{
 
     const button=()=>{
         navigation.navigate('Recent expenses');
-        
+    };
 
-    }
-
-    const PriceDisplayer=({title,price,category,date}:spending,navigation:any):JSX.Element=>{
+    const PriceDisplayer=({title,price,category,date,onPress}:any):JSX.Element=>{
+        /**
+         * Simple wrapper to diplay a spending; simply references back an onPress prop
+         */
         return (
-            <View style={styles.overallContainer}>
+
+            <Pressable 
+            style={({pressed})=>(pressed ? styles.pressed:null)}
+            onPress={onPress}>
+                <View style={styles.overallContainer}>
                 <View style={styles.DetailsContainer} >
                     <View style={styles.DetailsColumn}>
-                        <Text>{title}</Text>
-                        <Text>{date}</Text>
+                        <Text style={styles.DetailsName}>{title}</Text>
+                        <Text style={styles.DetailsDate}>{date}</Text>
                     </View>
                     <View style={styles.PriceContainer}>
                         <Text>
@@ -29,12 +34,15 @@ const Components=({navigation,route}:any)=>{
                     </Text>
         </View>*/}
             </View>
-        )
-    }
+            </Pressable>
+            
+        )};
+
+    
 
     return (
         <View>
-            <PriceDisplayer title={'Test'} price={24} category={'food'} date={'today'}/>
+            <PriceDisplayer title={'Test'} price={24} category={'food'} date={'today'} onPress={button}/>
             <Button title="navigate test" onPress={button}/>
         </View>
     )
@@ -43,10 +51,11 @@ const Components=({navigation,route}:any)=>{
 const styles=StyleSheet.create({
     overallContainer:{
         backgroundColor:"#521e87",
-        borderRadius:12,
+        borderRadius:6,
         padding:10,
         margin:20,
-        height:60
+        height:60,
+        justifyContent:'center'
     },
     DetailsContainer:{
         flexDirection:'row',
@@ -58,20 +67,33 @@ const styles=StyleSheet.create({
 
     },
     PriceContainer:{
-        borderRadius:6,
+        borderRadius:5,
         backgroundColor:'white',
-        height:'80%',
-        width:'20%',
+        height:40,
+        width:65,
         alignItems:'center',
-        paddingTop:5,
-        marginTop:4
-    },
-    DetailsText:{
+        paddingTop:6,
+        justifyContent:'center',
+        shadowRadius:4,
 
+    },
+    DetailsName:{
+        fontWeight:'bold',
+        color:'white'
+
+    },
+
+    DetailsDate:{
+        color:'white'
     },
     PriceTexy:{
 
-    }
+    },
+    pressed:{
+        opacity:0.5
+    },
+    //////////////////////////////
+    
 })
 
 export default Components;
