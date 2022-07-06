@@ -9,6 +9,7 @@ import {Ionicons} from '@expo/vector-icons';
 import Components from './screens/components';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
+import {HeaderButton} from './components/headerAddButton';
 /**
  Gameplan:
  1) Build all components needed: 
@@ -25,7 +26,11 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Tab.Navigator>
+        <Tab.Navigator screenOptions={{
+          headerRight:({color,size}:any)=> <HeaderButton size={30}/>
+          
+          
+        }}>
 
           
           <Tab.Screen 
@@ -75,3 +80,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+/**
+ * todo:
+ * + add plus button in order to add more spendings
+ * + style header
+ * + add background colors and themes (linear gradient maybe)
+ * + use overlay for form 
+ */
