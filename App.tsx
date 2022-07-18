@@ -10,6 +10,8 @@ import Components from './screens/components';
 import { Provider } from 'react-redux';
 import { store } from './states/redux/store';
 import {HeaderButton} from './components/headerAddButton';
+import OverlayToggleContextProvider from './states/context/InputOverlayContext';
+
 /**
  Gameplan:
  1) Build all components needed: 
@@ -24,6 +26,7 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
+    <OverlayToggleContextProvider>
     <Provider store={store}>
       <NavigationContainer>
         <Tab.Navigator screenOptions={{
@@ -68,7 +71,7 @@ export default function App() {
         </Tab.Navigator>
       </NavigationContainer>
     </Provider>
-    
+    </OverlayToggleContextProvider>
   );
 }
 
