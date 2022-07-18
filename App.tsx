@@ -8,7 +8,7 @@ import Profile from './screens/profile';
 import {Ionicons} from '@expo/vector-icons';
 import Components from './screens/components';
 import { Provider } from 'react-redux';
-import { store } from './redux/store';
+import { store } from './states/redux/store';
 import {HeaderButton} from './components/headerAddButton';
 /**
  Gameplan:
