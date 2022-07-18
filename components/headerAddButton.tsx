@@ -1,10 +1,18 @@
 import { View, StyleSheet,Pressable } from "react-native";
 import {Ionicons} from '@expo/vector-icons';
+import { useContext } from "react";
+import { OverlayContext } from '../states/context/InputOverlayContext';
 
 export const HeaderButton=({size}:any):JSX.Element=>{
 
+    const overlay=useContext(OverlayContext);
+
+    const pressed=()=>{
+        overlay.toogleOverlay()
+    }
+
     return(
-        <Pressable style={({pressed})=>(pressed ? styles.pressed:null)}>
+        <Pressable style={({pressed})=>(pressed ? styles.pressed:null)} onPress={pressed}>
               <View style={styles.container}>
         <View style={styles.iconTainer}>
             <Ionicons name="add" size={size}/>

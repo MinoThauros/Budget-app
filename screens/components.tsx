@@ -14,8 +14,8 @@ const Components=({navigation,route}:any)=>{
         return (
 
             <Pressable 
-            style={({pressed})=>(pressed ? styles.pressed:null)}
-            onPress={onPress}>
+                style={({pressed})=>(pressed ? styles.pressed:null)}
+                onPress={onPress}>
                 <View style={styles.overallContainer}>
                 <View style={styles.DetailsContainer} >
                     <View style={styles.DetailsColumn}>
@@ -43,7 +43,6 @@ const Components=({navigation,route}:any)=>{
     return (
         <View>
             <PriceDisplayer title={'Test'} price={24} category={'food'} date={'today'} onPress={button}/>
-            <Button title="navigate test" onPress={button}/>
         </View>
     )
 }

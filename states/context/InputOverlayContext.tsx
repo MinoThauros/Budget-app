@@ -18,7 +18,7 @@ const OverlayToggleContextProvider=({children}:any):JSX.Element=>{
         toogleOverlay:ToggleOverlay,
     };
     //the provider is accessed through the exported value
-    return <OverlayContext.Provider value={context}></OverlayContext.Provider>
+    return <OverlayContext.Provider value={context}>{children}</OverlayContext.Provider>
 };
 
 export default OverlayToggleContextProvider

@@ -27,50 +27,51 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   return (
     <OverlayToggleContextProvider>
-    <Provider store={store}>
-      <NavigationContainer>
-        <Tab.Navigator screenOptions={{
-          headerRight:({color,size}:any)=> <HeaderButton size={30}/>
-          
-          
-        }}>
-
-          
-          <Tab.Screen 
-            name="All Expenses" 
-            component={AllExpenses}
-            options={{
-              tabBarIcon: ({color,size}:any)=>(<Ionicons name="cash-outline" color={color} size={size}/>)
-            }}
+      
+      <Provider store={store}>
+        <NavigationContainer>
+          <Tab.Navigator screenOptions={{
+            headerRight:({color,size}:any)=> <HeaderButton size={30}/>
             
             
-            />
-          <Tab.Screen 
-            name="Recent expenses" 
-            component={RecentExpenses}
-            options={{
-              tabBarIcon: ({color,size}:any)=>(<Ionicons name="receipt-outline" color={color} size={size}/>)
-            }}
-            />
-          <Tab.Screen 
-            name="Profile"
-            component={Profile}
-            options={{
-              tabBarIcon: ({color,size}:any)=>(<Ionicons name="person-outline" color={color} size={size}/>)
-            }}/>
+          }}>
 
-          <Tab.Screen 
-            name="Components"
-            component={Components}
-            options={{
-              tabBarIcon: ({color,size}:any)=>(<Ionicons name="baseball-sharp" color={color} size={size}/>)
-            }}/>
-          
+            
+            <Tab.Screen 
+              name="All Expenses" 
+              component={AllExpenses}
+              options={{
+                tabBarIcon: ({color,size}:any)=>(<Ionicons name="cash-outline" color={color} size={size}/>)
+              }}
+              
+              
+              />
+            <Tab.Screen 
+              name="Recent expenses" 
+              component={RecentExpenses}
+              options={{
+                tabBarIcon: ({color,size}:any)=>(<Ionicons name="receipt-outline" color={color} size={size}/>)
+              }}
+              />
+            <Tab.Screen 
+              name="Profile"
+              component={Profile}
+              options={{
+                tabBarIcon: ({color,size}:any)=>(<Ionicons name="person-outline" color={color} size={size}/>)
+              }}/>
 
-          
-        </Tab.Navigator>
-      </NavigationContainer>
-    </Provider>
+            <Tab.Screen 
+              name="Components"
+              component={Components}
+              options={{
+                tabBarIcon: ({color,size}:any)=>(<Ionicons name="baseball-sharp" color={color} size={size}/>)
+              }}/>
+            
+
+            
+          </Tab.Navigator>
+        </NavigationContainer>
+      </Provider>
     </OverlayToggleContextProvider>
   );
 }
