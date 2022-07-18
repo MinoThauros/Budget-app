@@ -6,9 +6,11 @@ import { OverlayContext } from '../states/context/InputOverlayContext';
 export const HeaderButton=({size}:any):JSX.Element=>{
 
     const overlay=useContext(OverlayContext);
+    const toggle=overlay.visible;
 
     const pressed=()=>{
-        overlay.toogleOverlay()
+        overlay.toogleOverlay();
+        console.log('button clicked', {toggle});
     }
 
     return(

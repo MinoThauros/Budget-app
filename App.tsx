@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Modal, Alert, Button, SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AllExpenses from './screens/AllExpensesScreen';
@@ -11,7 +11,8 @@ import { Provider } from 'react-redux';
 import { store } from './states/redux/store';
 import {HeaderButton} from './components/headerAddButton';
 import OverlayToggleContextProvider from './states/context/InputOverlayContext';
-
+import { useContext } from "react";
+import { OverlayContext } from './states/context/InputOverlayContext';
 /**
  Gameplan:
  1) Build all components needed: 
@@ -24,10 +25,21 @@ import OverlayToggleContextProvider from './states/context/InputOverlayContext';
 
 const Tab = createBottomTabNavigator();
 
+
 export default function App() {
+
+
+  
+  const Overlay=useContext(OverlayContext);
+  const {visible}:any=Overlay.visible;
+
+  const pressed=()=>{
+    Overlay.toogleOverlay();
+}
+  
   return (
+
     <OverlayToggleContextProvider>
-      
       <Provider store={store}>
         <NavigationContainer>
           <Tab.Navigator screenOptions={{
@@ -83,6 +95,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
+  overlay:{
+    alignItems:'center',
+    justifyContent:'center',
+    flex:1,
+    flexDirection:'column-reverse'
+  }
 });
 
 /**

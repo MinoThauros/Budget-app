@@ -2,16 +2,16 @@ import { createContext, useState } from "react";
 
 export const OverlayContext=createContext({
     visible:false as boolean,
-    toogleOverlay:()=>{}
+    toogleOverlay:():void=>{}
 })
 
 const OverlayToggleContextProvider=({children}:any):JSX.Element=>{
-    const [overlayVisibility,setOverlayVisiblity]=useState(false);
+    const [overlayVisibility,setOverlayVisiblity]=useState(false as boolean);
 
     //binding the function
     const ToggleOverlay=():void=>{
         setOverlayVisiblity(!overlayVisibility);
-        console.log('toggled Overlay')
+        console.log('toggled overlay')
     };
     const context={
         visible:overlayVisibility,
