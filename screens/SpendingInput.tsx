@@ -1,12 +1,23 @@
-import { Text, View,StyleSheet, Modal } from "react-native";
+import { Text, View, StyleSheet, Modal, Button } from 'react-native';
 import { useLayoutEffect } from "react";
+import SpendingCard from "../components/SpendingCard";
+import { useState } from 'react';
 
 const SpendingInput=({navigation,route}:any)=>{
+    const [overlayVisibility,setOverlayVisiblity]=useState(true as boolean);
+    
+    const button=()=>{
+        navigation.navigate('Components');
+        console.log('movin')
+        setOverlayVisiblity(!overlayVisibility)
+    };
+
     return (
-        <Modal style={styles.overallView}>
+        <Modal style={styles.overallView} visible={overlayVisibility}>
             <View style={styles.overallView}>
-            <Text>Spending input</Text>
-        </View>
+                <SpendingCard onPress={button}/>
+            </View>
+
         </Modal>
         
     )

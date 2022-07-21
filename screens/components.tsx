@@ -1,7 +1,7 @@
 import { Button, Text, View, StyleSheet, Pressable } from "react-native";
 import { spending } from "../models/spending";
 import PriceDisplayer from "../components/ PriceDisplayer";
-import SpendingInput from "../components/SpendingInput";
+import SpendingCard from "../components/SpendingCard";
 
 const Components=({navigation,route}:any)=>{
 
@@ -16,7 +16,7 @@ const Components=({navigation,route}:any)=>{
         <View>
             <PriceDisplayer title={'Test'} price={24} category={'food'} date={'today'} onPress={button}/>
         
-            <SpendingInput/>
+            <SpendingCard onPress={button}/>
         </View>
     )
 }

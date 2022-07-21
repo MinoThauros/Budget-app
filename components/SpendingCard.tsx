@@ -2,11 +2,12 @@ import { Button, Text, View, StyleSheet, TextInput } from "react-native";
 import { spending } from "../models/spending";
 
 
-const SpendingInput=({title,price,category,date,onPress}:any):JSX.Element=>{
-    /**
-     * Simple wrapper to diplay a spending; simply references back an onPress prop
-     */
-     return (
+const SpendingCard=({onPress}:any):JSX.Element=>{
+
+
+
+
+    return (
         <View style={styles.overallContainer}>
             <View>
                 <View>
@@ -22,7 +23,7 @@ const SpendingInput=({title,price,category,date,onPress}:any):JSX.Element=>{
                     <TextInput style={styles.textInputA}></TextInput>
                 </View>
                 <View>
-                    {/*<Button onPress={()=>{}}/>*/}
+                    <Button title='go back' onPress={onPress}/>
                 </View>
             </View>
         </View>)
@@ -35,7 +36,8 @@ const styles=StyleSheet.create({
         borderRadius:18,
         padding:10,
         margin:20,
-        height:'75%',
+        height:'50%',
+        width:'75%',
         justifyContent:'center'
     },
 
@@ -57,4 +59,4 @@ const styles=StyleSheet.create({
 })
 
 
-export default SpendingInput
+export default SpendingCard
