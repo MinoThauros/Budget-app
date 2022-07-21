@@ -1,5 +1,7 @@
 import { Button, Text, View, StyleSheet, Pressable } from "react-native";
 import { spending } from "../models/spending";
+import PriceDisplayer from "../components/ PriceDisplayer";
+import SpendingInput from "../components/SpendingInput";
 
 const Components=({navigation,route}:any)=>{
 
@@ -7,42 +9,14 @@ const Components=({navigation,route}:any)=>{
         navigation.navigate('Recent expenses');
     };
 
-    const PriceDisplayer=({title,price,category,date,onPress}:any):JSX.Element=>{
-        /**
-         * Simple wrapper to diplay a spending; simply references back an onPress prop
-         */
-        return (
-
-            <Pressable 
-                style={({pressed})=>(pressed ? styles.pressed:null)}
-                onPress={onPress}>
-                <View style={styles.overallContainer}>
-                <View style={styles.DetailsContainer} >
-                    <View style={styles.DetailsColumn}>
-                        <Text style={styles.DetailsName}>{title}</Text>
-                        <Text style={styles.DetailsDate}>{date}</Text>
-                    </View>
-                    <View style={styles.PriceContainer}>
-                        <Text>
-                            {price}
-                        </Text>
-                    </View>
-                </View>
-{/*                <View>
-                    <Text>
-                        {category}
-                    </Text>
-        </View>*/}
-            </View>
-            </Pressable>
-            
-        )};
 
     
 
     return (
         <View>
             <PriceDisplayer title={'Test'} price={24} category={'food'} date={'today'} onPress={button}/>
+        
+            <SpendingInput/>
         </View>
     )
 }
@@ -92,6 +66,8 @@ const styles=StyleSheet.create({
         opacity:0.5
     },
     //////////////////////////////
+
+
     
 })
 

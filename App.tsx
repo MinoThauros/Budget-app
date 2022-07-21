@@ -13,6 +13,7 @@ import {HeaderButton} from './components/headerAddButton';
 import OverlayToggleContextProvider from './states/context/InputOverlayContext';
 import { useContext } from "react";
 import { OverlayContext } from './states/context/InputOverlayContext';
+import SpendingInput from './screens/SpendingInput'; 
 /**
  Gameplan:
  1) Build all components needed: 
@@ -78,6 +79,13 @@ export default function App() {
               options={{
                 tabBarIcon: ({color,size}:any)=>(<Ionicons name="baseball-sharp" color={color} size={size}/>)
               }}/>
+
+            <Tab.Screen 
+              name="SpendingInput"
+              component={SpendingInput}
+              options={{
+                tabBarIcon: ({color,size}:any)=>(<Ionicons name="speedometer" color={color} size={size}/>)
+              }}/>
             
 
             
@@ -106,8 +114,8 @@ const styles = StyleSheet.create({
 
 /**
  * todo:
- * + add plus button in order to add more spendings
- * + style header
- * + add background colors and themes (linear gradient maybe)
- * + use overlay for form 
+ * + build overlay into spending input
+ * + hide button on the nav bar
+ * + trigger navigation from add button
+ * + from within component 
  */
