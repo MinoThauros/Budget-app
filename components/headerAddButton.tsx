@@ -10,7 +10,6 @@ export const HeaderButton=({size}:any):JSX.Element=>{
 
     const pressed=()=>{
         overlay.toogleOverlay();
-        console.log('button clicked', {toggle});
     }
 
     return(

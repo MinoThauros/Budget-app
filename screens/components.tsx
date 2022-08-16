@@ -15,8 +15,6 @@ const Components=({navigation,route}:any)=>{
     return (
         <View>
             <PriceDisplayer title={'Test'} price={24} category={'food'} date={'today'} onPress={button}/>
-        
-            <SpendingCard onPress={button}/>
         </View>
     )
 }

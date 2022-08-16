@@ -43,7 +43,7 @@ export default function App() {
 
     <OverlayToggleContextProvider>
       <Provider store={store}>
-      <SpendingInput />
+      <SpendingInput/>
         <NavigationContainer>
           <Tab.Navigator screenOptions={{
             headerRight:({color,size}:any)=> <HeaderButton size={30}/>
@@ -82,12 +82,6 @@ export default function App() {
                 tabBarIcon: ({color,size}:any)=>(<Ionicons name="baseball-sharp" color={color} size={size}/>)
               }}/>
 
-            <Tab.Screen //delete after component can be invoqued correcly
-              name="SpendingInput"
-              component={SpendingInput}
-              options={{
-                tabBarIcon: ({color,size}:any)=>(<Ionicons name="speedometer" color={color} size={size}/>)
-              }}/>
             
 
             
@@ -115,9 +109,17 @@ const styles = StyleSheet.create({
 });
 
 /**
- * todo:
- * + build overlay into spending input
- * + hide button on the nav bar
- * + trigger navigation from add button
- * + from within component 
+ * todo: 
+ * A) hook up form to redux
+ * => create add button on SpendingInput component
+ * => push newly added spending on redux
+ * 
+ * B) Improve UX
+ * => create validation on form along with improved functionalities (dropdown, etc...)
+ * => add placeholders for each page (element displayers)
+ * => rework styling and colors
+ * 
+ * C) think about a recap and insight page
+ * 
+ * 
  */

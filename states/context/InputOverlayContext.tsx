@@ -11,7 +11,7 @@ const OverlayToggleContextProvider=({children}:any):JSX.Element=>{
     //binding the function
     const ToggleOverlay=():void=>{
         setOverlayVisiblity(!overlayVisibility);
-        console.log('toggled overlay')
+
     };
     const context={
         visible:overlayVisibility,
