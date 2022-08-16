@@ -32,16 +32,18 @@ export default function App() {
 
   
   const Overlay=useContext(OverlayContext);
-  const {visible}:any=Overlay.visible;
+  const visible:boolean=Overlay.visible;//binding the state to local variables
 
   const pressed=()=>{
     Overlay.toogleOverlay();
 }
+//this context needs to work in tandem with add button
   
   return (
 
     <OverlayToggleContextProvider>
       <Provider store={store}>
+      <SpendingInput />
         <NavigationContainer>
           <Tab.Navigator screenOptions={{
             headerRight:({color,size}:any)=> <HeaderButton size={30}/>
@@ -80,7 +82,7 @@ export default function App() {
                 tabBarIcon: ({color,size}:any)=>(<Ionicons name="baseball-sharp" color={color} size={size}/>)
               }}/>
 
-            <Tab.Screen 
+            <Tab.Screen //delete after component can be invoqued correcly
               name="SpendingInput"
               component={SpendingInput}
               options={{
