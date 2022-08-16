@@ -12,10 +12,10 @@ const expensesSlice=createSlice({
 
     reducers:{
         addSpending:(state,action)=>{
-            state.expenses.push(action.payload.id)
+            state.expenses.push(action.payload.element)
         },
         deleteSpending:(state,action)=>{
-            state.expenses.splice(action.payload.id)
+            state.expenses.splice(action.payload.element)
         },
         retrieveLatest:(state,action)=>{
             state.expenses.slice(5)
@@ -24,7 +24,7 @@ const expensesSlice=createSlice({
 });
 
 export default expensesSlice.reducer;
-export const addSpending=expensesSlice.actions.addSpending;
-export const deleteSpending=expensesSlice.actions.deleteSpending;
-export const retrieveLatest=expensesSlice.actions.retrieveLatest;
+export const AddSpending=expensesSlice.actions.addSpending;
+export const DeleteSpending=expensesSlice.actions.deleteSpending;
+export const RetrieveLatest=expensesSlice.actions.retrieveLatest;
 

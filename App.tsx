@@ -110,9 +110,11 @@ const styles = StyleSheet.create({
 
 /**
  * todo: 
- * A) hook up form to redux
+ * A) hook up form to redux <<DONE>>
  * => create add button on SpendingInput component
  * => push newly added spending on redux
+ * 
+ * B) display all added items
  * 
  * B) Improve UX
  * => create validation on form along with improved functionalities (dropdown, etc...)

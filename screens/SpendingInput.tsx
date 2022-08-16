@@ -3,6 +3,9 @@ import { useState } from 'react';
 import { OverlayContext } from '../states/context/InputOverlayContext';
 import { useContext } from "react";
 import { spending } from '../models/spending';
+import { useSelector,useDispatch } from "react-redux";
+import { AddSpending, DeleteSpending, RetrieveLatest } from '../states/redux/expenses';
+
 
 const SpendingInput=()=>{
     //const [overlayVisibility,setOverlayVisiblity]=useState(true as boolean);
@@ -12,6 +15,14 @@ const SpendingInput=()=>{
     const pressed=()=>{
       Overlay.toogleOverlay();};
   //this context needs to work in tandem with add button
+
+  //fecthing the state
+  const spendings=useSelector((states:any)=>states.ExpenseReducer.expenses);
+  const dispatch=useDispatch();
+
+  const addSpending=(newSpending:spending)=>{
+    dispatch(AddSpending({element:newSpending}))
+  }
 
 
 
@@ -28,7 +39,10 @@ const SpendingInput=()=>{
     
     const submitButton=()=>{
         let enteredData:spending=new spending(amount,category,date)
-        console.log(enteredData)
+        addSpending(enteredData)
+        console.log({...spendings})
+        console.log('length is now',spendings.length)
+        //addSpending(enteredData)
 
         pressed()
     } 
