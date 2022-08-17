@@ -2,7 +2,7 @@ import { Button, Text, View, StyleSheet, Pressable } from "react-native";
 import { spending } from "../models/spending";
 
 
-const PriceDisplayer=({title,price,category,date,onPress}:any):JSX.Element=>{
+const PriceDisplayer=({title,price,date,onPress}:any):JSX.Element=>{
     /**
      * Simple wrapper to diplay a spending; simply references back an onPress prop
      */

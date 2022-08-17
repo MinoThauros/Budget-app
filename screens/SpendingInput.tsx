@@ -32,13 +32,14 @@ const SpendingInput=()=>{
     const [amount,setAmount]=useState('');
     const [category,setCategory]=useState('');
     const [date, setDate]=useState('');
+    const [title,setTitle]=useState('');
 
     //keyboard was dismissed everytime due to state change
     //we only allow the function to rerender so keyboard doesnt get dismissed
     //so keeping the states local
     
     const submitButton=()=>{
-        let enteredData:spending=new spending(amount,category,date)
+        let enteredData:spending=new spending(amount,category,date,title)
         addSpending(enteredData)
         console.log({...spendings})
         console.log('length is now',spendings.length)
@@ -50,21 +51,26 @@ const SpendingInput=()=>{
         <View style={styles.overallContainer}>
             <View>
                 <View>
+                    <Text style={styles.titles}>Title: </Text>
+                    <TextInput 
+                        style={styles.textInputA}
+                        onChangeText={newText=>setTitle(newText)}
+                        defaultValue={title}/>
+                </View>
+                <View>
                     <Text style={styles.titles}>Amount: </Text>
                     <TextInput 
                         style={styles.textInputA}
                         onChangeText={newText=>setAmount(newText)}
                         defaultValue={amount}
-                        keyboardType='numeric'
-                        autoCorrect={false}/>
-
+                        keyboardType='numeric'/>
                 </View>
                 <View>
                     <Text style={styles.titles}>Category: </Text>
                     <TextInput
                         onChangeText={setCategory} 
                         style={styles.textInputA}
-                        autoCorrect={false}/>
+                        value={category}/>
                 </View>
                 <View>
                     <Text style={styles.titles}>Date: </Text>
