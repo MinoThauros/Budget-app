@@ -22,9 +22,7 @@ const AllExpenses=({navigation,route}:any)=>{
     }
 
     return (
-        <View>
-            <Text>All expenses</Text>
-            <Button title="navigate test" onPress={button}/>
+        <View style={{flex:1}}>
             <FlatList data={spendings} keyExtractor={(element:spending)=>spendings.indexOf(element)} renderItem={MealsDisplayer}/>
 
         </View>

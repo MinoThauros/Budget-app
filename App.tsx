@@ -6,7 +6,6 @@ import AllExpenses from './screens/AllExpensesScreen';
 import RecentExpenses from './screens/RecentExpensesScreen';
 import Profile from './screens/profile';
 import {Ionicons} from '@expo/vector-icons';
-import Components from './screens/components';
 import { Provider } from 'react-redux';
 import { store } from './states/redux/store';
 import {HeaderButton} from './components/headerAddButton';
@@ -75,12 +74,6 @@ export default function App() {
                 tabBarIcon: ({color,size}:any)=>(<Ionicons name="person-outline" color={color} size={size}/>)
               }}/>
 
-            <Tab.Screen 
-              name="Components"
-              component={Components}
-              options={{
-                tabBarIcon: ({color,size}:any)=>(<Ionicons name="baseball-sharp" color={color} size={size}/>)
-              }}/>
 
             
 

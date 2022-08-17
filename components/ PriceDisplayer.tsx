@@ -38,7 +38,8 @@ const styles=StyleSheet.create({
         backgroundColor:"#521e87",
         borderRadius:6,
         padding:10,
-        margin:20,
+        marginHorizontal:15,
+        marginVertical:5,
         height:60,
         justifyContent:'center'
     },
