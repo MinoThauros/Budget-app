@@ -2,7 +2,7 @@ import { Button, FlatList, Text, View } from "react-native";
 import { spending } from '../models/spending';
 import { useSelector,useDispatch } from "react-redux";
 import { AddSpending, DeleteSpending, RetrieveLatest } from '../states/redux/expenses';
-import PriceDisplayer from "../components/ PriceDisplayer";
+import SpendingsDisplayer from "../components/ SpendingsDisplayer";
 
 const AllExpenses=({navigation,route}:any)=>{
     //initializing the store from within the component
@@ -18,7 +18,7 @@ const AllExpenses=({navigation,route}:any)=>{
 
 
 
-        return <PriceDisplayer price={item.price} title={item.title} date={item.date} />
+        return <SpendingsDisplayer price={item.price} title={item.title} date={item.date} />
     }
 
     return (

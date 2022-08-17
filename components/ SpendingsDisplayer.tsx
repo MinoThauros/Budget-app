@@ -2,15 +2,13 @@ import { Button, Text, View, StyleSheet, Pressable } from "react-native";
 import { spending } from "../models/spending";
 
 
-const PriceDisplayer=({title,price,date,onPress}:any):JSX.Element=>{
+const SpendingsDisplayer=({title,price,date,onPress}:any):JSX.Element=>{
     /**
      * Simple wrapper to diplay a spending; simply references back an onPress prop
      */
-    return (
-
-        <Pressable 
-            style={({pressed})=>(pressed ? styles.pressed:null)}
-            onPress={onPress}>
+    const SingleSpendingDisplayer=({spendingInfo}:any):JSX.Element=>{
+        const {title, price, date}=spendingInfo;
+        return (
             <View style={styles.overallContainer}>
             <View style={styles.DetailsContainer} >
                 <View style={styles.DetailsColumn}>
@@ -23,12 +21,16 @@ const PriceDisplayer=({title,price,date,onPress}:any):JSX.Element=>{
                     </Text>
                 </View>
             </View>
-{/*                <View>
-                <Text>
-                    {category}
-                </Text>
-    </View>*/}
         </View>
+        )
+    }
+    
+    return (
+
+        <Pressable 
+            style={({pressed})=>(pressed ? styles.pressed:null)}
+            onPress={onPress}>
+            <SingleSpendingDisplayer spendingInfo={{title,price,date}} />
         </Pressable>
         
     )};
@@ -80,4 +82,4 @@ const styles=StyleSheet.create({
     },})
 
 
-export default PriceDisplayer
+export default SpendingsDisplayer
