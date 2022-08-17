@@ -107,14 +107,20 @@ const styles = StyleSheet.create({
  * => create add button on SpendingInput component
  * => push newly added spending on redux
  * 
- * B) display all added items
+ * B) display all added items <<DONE>>
  * 
- * B) Improve UX
+ * C) build recent expenses page
+ * 
+ * C) Improve UX (optional)
  * => create validation on form along with improved functionalities (dropdown, etc...)
+ *    +dropdown for category
+ *    +datepicker for date
  * => add placeholders for each page (element displayers)
  * => rework styling and colors
  * 
- * C) think about a recap and insight page
+ * 
+ * 
+ * D) think about a recap and insight page (optional)
  * 
  * 
  */

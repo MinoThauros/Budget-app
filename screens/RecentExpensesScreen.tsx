@@ -1,10 +1,33 @@
-import { Text, View } from "react-native";
-import { useLayoutEffect } from "react";
+import {FlatList,View } from "react-native";
+import { spending } from '../models/spending';
+import { useSelector} from "react-redux";
+import SpendingsDisplayer from "../components/ SpendingsDisplayer";
+import { useEffect, useLayoutEffect, useState } from 'react';
 
 const RecentExpenses=({navigation,route}:any)=>{
+    //initializing the store from within the component
+    const spendings=useSelector((states:any)=>states.ExpenseReducer.expenses);
+
+    const [currentList,setNextList]=useState(spendings)
+
+    let displayedSpendings:spending[]=[];
+    
+
+    useLayoutEffect(()=>{
+        setNextList(spendings.slice(0,5))},[navigation]);
+
+    const MealsDisplayer=(singleSpending:any):JSX.Element=>{
+        const item:spending={...singleSpending.item};//object deconstruction
+
+
+
+        return <SpendingsDisplayer price={item.price} title={item.title} date={item.date} />
+    }
+
     return (
-        <View>
-            <Text>Recent expenses</Text>
+        <View style={{flex:1}}>
+            <FlatList data={currentList} keyExtractor={(element:spending)=>spendings.indexOf(element)} renderItem={MealsDisplayer}/>
+
         </View>
     )
 }

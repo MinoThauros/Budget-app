@@ -3,9 +3,7 @@ import { spending } from "../models/spending";
 
 
 const SpendingsDisplayer=({title,price,date,onPress}:any):JSX.Element=>{
-    /**
-     * Simple wrapper to diplay a spending; simply references back an onPress prop
-     */
+    //upgrade function so it can handle a list of spendings
     const SingleSpendingDisplayer=({spendingInfo}:any):JSX.Element=>{
         const {title, price, date}=spendingInfo;
         return (

@@ -4,7 +4,7 @@ import { OverlayContext } from '../states/context/InputOverlayContext';
 import { useContext } from "react";
 import { spending } from '../models/spending';
 import { useSelector,useDispatch } from "react-redux";
-import { AddSpending, DeleteSpending, RetrieveLatest } from '../states/redux/expenses';
+import { AddSpending} from '../states/redux/expenses';
 
 
 const SpendingInput=()=>{
