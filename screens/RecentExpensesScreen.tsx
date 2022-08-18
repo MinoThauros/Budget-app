@@ -37,20 +37,15 @@ const RecentExpenses=({navigation,route}:any)=>{
     }
 
     return (
-        <View>
+        <View style={{flex:1}}>
             <View>
-
-                    <FlatList 
-                        data={currentList} 
-                        keyExtractor={(element:spending)=>spendings.indexOf(element)} 
-                        renderItem={MealsDisplayer}
-                        ListHeaderComponent={
-                            <View>
-                                <LastDaysTotal total={total}/>
-                            </View>
-                        }/>
-                
+                <LastDaysTotal total={total}/>
             </View>
+            <FlatList 
+                data={currentList} 
+                keyExtractor={(element:spending)=>spendings.indexOf(element)} 
+                renderItem={MealsDisplayer}
+                />
         </View>
         
     )

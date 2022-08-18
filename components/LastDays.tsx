@@ -13,11 +13,15 @@ const LastDaysTotal=({total}:{total:number}):JSX.Element=>{
 
     const LastDaysDisplay=():JSX.Element=>{
 
-        return <Text>sum is {total}</Text>
+        return <Text  style={styles.textColor}>sum is {total}</Text>
     }
 
     const ContentManager=()=>{
-        let content=<View><Text>You do not have any spending yet</Text></View>
+        let content=(
+            <View>
+                <Text style={styles.textColor}>You do not have any spending yet</Text>
+            </View>
+            )
         if (total!=0){
             content=(
             <View>
@@ -36,7 +40,18 @@ const LastDaysTotal=({total}:{total:number}):JSX.Element=>{
 
 const styles=StyleSheet.create({
     overallContainer:{
-        backgroundColor:'purple'
+        backgroundColor:"#8f34eb",
+        borderRadius:18,
+        padding:10,
+        marginHorizontal:8,
+        marginVertical:5,
+        marginTop:10,
+        height:40,
+        justifyContent:'center'
+    },
+    textColor:{
+        fontWeight:'bold',
+        color:'white'
     }
 
 
