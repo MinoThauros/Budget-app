@@ -109,9 +109,11 @@ const styles = StyleSheet.create({
  * 
  * B) display all added items <<DONE>>
  * 
- * C) build recent expenses page
+ * C) build recent expenses page <<done>>
  * 
- * C) Improve UX (optional)
+ * D) add recent spendings page
+ * 
+ * E) Improve UX (optional)
  * => create validation on form along with improved functionalities (dropdown, etc...)
  *    +dropdown for category
  *    +datepicker for date

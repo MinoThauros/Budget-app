@@ -1,10 +1,11 @@
-import {FlatList,View } from "react-native";
+import {FlatList,ScrollView,View } from "react-native";
 import { spending } from '../models/spending';
 import { useSelector} from "react-redux";
 import SpendingsDisplayer from "../components/ SpendingsDisplayer";
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useContext } from "react";
 import { OverlayContext } from '../states/context/InputOverlayContext';
+import LastDaysTotal from "../components/LastDays";
 
 const RecentExpenses=({navigation,route}:any)=>{
     //initializing the store from within the component
@@ -28,13 +29,23 @@ const RecentExpenses=({navigation,route}:any)=>{
     }
 
     return (
-        <View style={{flex:1}}>
-            <FlatList data={currentList} keyExtractor={(element:spending)=>spendings.indexOf(element)} renderItem={MealsDisplayer}/>
+        <View>
+            <View>
 
+                    <FlatList 
+                        data={currentList} 
+                        keyExtractor={(element:spending)=>spendings.indexOf(element)} 
+                        renderItem={MealsDisplayer}
+                        ListHeaderComponent={
+                            <View>
+                                <LastDaysTotal spendings={currentList}/>
+                            </View>
+                        }/>
+                
+            </View>
         </View>
+        
     )
 }
 
 export default RecentExpenses;
-
-//bug: cannot dynamically hook to redux changes in recent expensense
