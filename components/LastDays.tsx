@@ -1,18 +1,24 @@
 import { spending } from '../models/spending';
 import { View,Text } from "react-native"
+import { StyleSheet } from 'react-native';
 
-const LastDaysTotal=({spendings}:{spendings:spending[]}):JSX.Element=>{
+
+const LastDaysTotal=({total}:{total:number}):JSX.Element=>{
+    //have a total and display it
+
+    
+
 
     
 
     const LastDaysDisplay=():JSX.Element=>{
 
-        return <Text>Hi lol</Text>
+        return <Text>sum is {total}</Text>
     }
 
     const ContentManager=()=>{
         let content=<View><Text>You do not have any spending yet</Text></View>
-        if (spendings.length!=0){
+        if (total!=0){
             content=(
             <View>
                 <LastDaysDisplay/>
@@ -22,11 +28,18 @@ const LastDaysTotal=({spendings}:{spendings:spending[]}):JSX.Element=>{
         return content
 
     };
-
-    return <ContentManager/>
-    
-
-
+    return (
+        <View style={styles.overallContainer}>
+            <ContentManager/>
+        </View>)
 }
+
+const styles=StyleSheet.create({
+    overallContainer:{
+        backgroundColor:'purple'
+    }
+
+
+})
 
 export default  LastDaysTotal

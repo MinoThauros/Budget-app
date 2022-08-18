@@ -13,12 +13,20 @@ const RecentExpenses=({navigation,route}:any)=>{
     const Overlay=useContext(OverlayContext);
     const visible:boolean=Overlay.visible;//binding the state to local variables
     
-
-    const [currentList,setNextList]=useState(spendings)
-    
+    const [total,setTotal]=useState(0 as number);
+    const [currentList,setNextList]=useState(spendings);
+    const retrieveTotal=()=>{
+        let sum:number=0;//get the latest value of the state
+        for (var spending of spendings){//of returns the element; for...in the index
+            sum=Number(sum)+Number(spending.price)
+        };
+        return sum
+    }
 
     useLayoutEffect(()=>{
-        setNextList(spendings.slice(0,5))},[navigation,visible]);
+        setNextList(spendings.slice(0,5))
+        setTotal(()=>retrieveTotal())
+        },[navigation,visible]);
 
     const MealsDisplayer=(singleSpending:any):JSX.Element=>{
         const item:spending={...singleSpending.item};//object deconstruction
@@ -38,7 +46,7 @@ const RecentExpenses=({navigation,route}:any)=>{
                         renderItem={MealsDisplayer}
                         ListHeaderComponent={
                             <View>
-                                <LastDaysTotal spendings={currentList}/>
+                                <LastDaysTotal total={total}/>
                             </View>
                         }/>
                 
