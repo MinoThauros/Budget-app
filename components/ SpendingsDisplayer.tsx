@@ -14,7 +14,7 @@ const SpendingsDisplayer=({title,price,date,onPress}:any):JSX.Element=>{
                         <Text style={styles.DetailsDate}>{date}</Text>
                     </View>
                     <View style={styles.PriceContainer}>
-                        <Text>
+                        <Text style={{fontWeight:'bold'}}>
                             {price}
                         </Text>
                     </View>

@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
  * 
  * C) build recent expenses page <<done>>
  * 
- * D) add recent spendings page
+ * D) add recent spendings page <<DONE>>
  * 
  * E) Improve UX (optional)
  * => create validation on form along with improved functionalities (dropdown, etc...)
@@ -119,6 +119,8 @@ const styles = StyleSheet.create({
  *    +datepicker for date
  * => add placeholders for each page (element displayers)
  * => rework styling and colors
+ * 
+ * F) Option to delete spending
  * 
  * 
  * 

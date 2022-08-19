@@ -15,8 +15,8 @@ const LastDaysTotal=({total}:{total:number}):JSX.Element=>{
 
         return (
             <View style={styles.recapBox}>
-                <Text  style={styles.textColor}>You recently spent a total of</Text>
-                <Text style={{...styles.textColor, fontStyle:'italic'}}> ${total}</Text>
+                <Text  style={styles.textColor}>Last 7 days</Text>
+                <Text style={{...styles.textColor, fontStyle:'italic',fontWeight:'bold'}}> ${total}</Text>
             </View>
         
         )
@@ -56,7 +56,6 @@ const styles=StyleSheet.create({
         overflow:'hidden'
     },
     textColor:{
-        fontWeight:'bold',
         color:'white',
         textAlign:'center'
     },
