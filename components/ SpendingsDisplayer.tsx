@@ -8,18 +8,18 @@ const SpendingsDisplayer=({title,price,date,onPress}:any):JSX.Element=>{
         const {title, price, date}=spendingInfo;
         return (
             <View style={styles.overallContainer}>
-            <View style={styles.DetailsContainer} >
-                <View style={styles.DetailsColumn}>
-                    <Text style={styles.DetailsName}>{title}</Text>
-                    <Text style={styles.DetailsDate}>{date}</Text>
-                </View>
-                <View style={styles.PriceContainer}>
-                    <Text>
-                        {price}
-                    </Text>
+                <View style={styles.DetailsContainer} >
+                    <View style={styles.DetailsColumn}>
+                        <Text style={styles.DetailsName}>{title}</Text>
+                        <Text style={styles.DetailsDate}>{date}</Text>
+                    </View>
+                    <View style={styles.PriceContainer}>
+                        <Text>
+                            {price}
+                        </Text>
+                    </View>
                 </View>
             </View>
-        </View>
         )
     }
     
@@ -45,11 +45,11 @@ const styles=StyleSheet.create({
     },
     DetailsContainer:{
         flexDirection:'row',
-        justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        justifyContent:'space-between',
     },
     DetailsColumn:{
-        paddingEnd:220
+        //paddingEnd:220
 
     },
     PriceContainer:{

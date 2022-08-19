@@ -41,8 +41,6 @@ const SpendingInput=()=>{
     const submitButton=()=>{
         let enteredData:spending=new spending(amount,category,date,title)
         addSpending(enteredData)
-        console.log({...spendings})
-        console.log('length is now',spendings.length)
         //addSpending(enteredData)
 
         pressed()

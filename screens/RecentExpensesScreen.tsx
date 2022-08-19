@@ -21,8 +21,7 @@ const RecentExpenses=({navigation,route}:any)=>{
             sum=Number(sum)+Number(spending.price)
         };
         return sum
-    }
-
+    };
     useLayoutEffect(()=>{
         setNextList(spendings.slice(0,5))
         setTotal(()=>retrieveTotal())
@@ -44,8 +43,7 @@ const RecentExpenses=({navigation,route}:any)=>{
             <FlatList 
                 data={currentList} 
                 keyExtractor={(element:spending)=>spendings.indexOf(element)} 
-                renderItem={MealsDisplayer}
-                />
+                renderItem={MealsDisplayer}/>
         </View>
         
     )

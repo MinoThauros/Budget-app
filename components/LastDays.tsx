@@ -13,7 +13,13 @@ const LastDaysTotal=({total}:{total:number}):JSX.Element=>{
 
     const LastDaysDisplay=():JSX.Element=>{
 
-        return <Text  style={styles.textColor}>sum is {total}</Text>
+        return (
+            <View style={styles.recapBox}>
+                <Text  style={styles.textColor}>You recently spent a total of</Text>
+                <Text style={{...styles.textColor, fontStyle:'italic'}}> ${total}</Text>
+            </View>
+        
+        )
     }
 
     const ContentManager=()=>{
@@ -41,17 +47,22 @@ const LastDaysTotal=({total}:{total:number}):JSX.Element=>{
 const styles=StyleSheet.create({
     overallContainer:{
         backgroundColor:"#8f34eb",
-        borderRadius:18,
-        padding:10,
+        borderRadius:5,
+        padding:10,//marge dans l'element
         marginHorizontal:8,
-        marginVertical:5,
         marginTop:10,
         height:40,
-        justifyContent:'center'
+        justifyContent:'center',
+        overflow:'hidden'
     },
     textColor:{
         fontWeight:'bold',
-        color:'white'
+        color:'white',
+        textAlign:'center'
+    },
+    recapBox:{
+        flexDirection:'row',
+        justifyContent:'space-between',
     }
 
 
