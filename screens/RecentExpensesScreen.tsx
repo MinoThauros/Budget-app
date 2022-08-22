@@ -27,10 +27,8 @@ const RecentExpenses=({navigation,route}:any)=>{
         setTotal(()=>retrieveTotal())
         },[navigation,visible]);
 
-    const MealsDisplayer=(singleSpending:any):JSX.Element=>{
+    const SpendingInterface=(singleSpending:any):JSX.Element=>{
         const item:spending={...singleSpending.item};//object deconstruction
-
-
 
         return <SpendingsDisplayer price={item.price} title={item.title} date={item.date} />
     }
@@ -43,7 +41,7 @@ const RecentExpenses=({navigation,route}:any)=>{
             <FlatList 
                 data={currentList} 
                 keyExtractor={(element:spending)=>spendings.indexOf(element)} 
-                renderItem={MealsDisplayer}
+                renderItem={SpendingInterface}
                 />
         </View>
         

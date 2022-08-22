@@ -95,8 +95,8 @@ const SpendingInput=()=>{
             
             style={styles.overallView} 
             visible={visible} 
-            animationType={'slide'}
-            
+            animationType={'fade'}
+            transparent={true}
             >
             <View style={styles.overallView}>
                 <SpendingCard onPress={pressed}/>
@@ -112,9 +112,9 @@ export default SpendingInput;
 const styles=StyleSheet.create({
     overallView:{
         flex:1,
-        backgroundColor:'pink',
+        backgroundColor: 'rgba(0,0,0,0.7)',
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
     },
     overallContainer:{
         backgroundColor:"#521e87",
