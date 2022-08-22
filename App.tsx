@@ -13,15 +13,7 @@ import OverlayToggleContextProvider from './states/context/InputOverlayContext';
 import { useContext } from "react";
 import { OverlayContext } from './states/context/InputOverlayContext';
 import SpendingInput from './screens/SpendingInput'; 
-/**
- Gameplan:
- 1) Build all components needed: 
-  * individual spending displayer
-  * group spending displayer
-  * profile page (add either drawer or a bottomTab)
-  * browse strategies
-2) Think about budgeting strategies, etc...
- */
+
 
 const Tab = createBottomTabNavigator();
 
@@ -33,9 +25,7 @@ export default function App() {
   const Overlay=useContext(OverlayContext);
   const visible:boolean=Overlay.visible;//binding the state to local variables
 
-  const pressed=()=>{
-    Overlay.toogleOverlay();
-}
+
 //this context needs to work in tandem with add button
   
   return (
@@ -46,11 +36,7 @@ export default function App() {
         <NavigationContainer>
           <Tab.Navigator screenOptions={{
             headerRight:({color,size}:any)=> <HeaderButton size={30}/>
-            
-            
-          }}>
-
-            
+            }}>            
             <Tab.Screen 
               name="All Expenses" 
               component={AllExpenses}
@@ -73,10 +59,6 @@ export default function App() {
               options={{
                 tabBarIcon: ({color,size}:any)=>(<Ionicons name="person-outline" color={color} size={size}/>)
               }}/>
-
-
-            
-
             
           </Tab.Navigator>
         </NavigationContainer>
@@ -120,11 +102,11 @@ const styles = StyleSheet.create({
  * => add placeholders for each page (element displayers)
  * => rework styling and colors
  * 
- * F) Option to delete spending
+ * F) Option to delete spending; 
  * 
  * 
  * 
- * D) think about a recap and insight page (optional)
+ * G) think about a recap and insight page (optional)
  * 
  * 
  */

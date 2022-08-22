@@ -12,8 +12,8 @@ const expensesSlice=createSlice({
 
     reducers:{
         addSpending:(state,action)=>{
-            state.expenses.push(action.payload.element)
-        },
+            state.expenses.unshift(action.payload.element)
+        },//stack-like behavior
         deleteSpending:(state,action)=>{
             state.expenses.splice(action.payload.element)
         },

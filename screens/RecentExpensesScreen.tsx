@@ -43,7 +43,8 @@ const RecentExpenses=({navigation,route}:any)=>{
             <FlatList 
                 data={currentList} 
                 keyExtractor={(element:spending)=>spendings.indexOf(element)} 
-                renderItem={MealsDisplayer}/>
+                renderItem={MealsDisplayer}
+                />
         </View>
         
     )
