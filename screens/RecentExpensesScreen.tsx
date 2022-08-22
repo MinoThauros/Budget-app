@@ -17,7 +17,7 @@ const RecentExpenses=({navigation,route}:any)=>{
     const [currentList,setNextList]=useState(spendings);
     const retrieveTotal=()=>{
         let sum:number=0;//get the latest value of the state
-        for (var spending of spendings){//of returns the element; for...in the index
+        for (var spending of spendings.slice(0,5)){//of returns the element; for...in the index
             sum=Number(sum)+Number(spending.price)
         };
         return sum
