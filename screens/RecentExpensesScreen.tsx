@@ -27,11 +27,18 @@ const RecentExpenses=({navigation,route}:any)=>{
         setTotal(()=>retrieveTotal())
         },[navigation,visible]);
 
+    const goToDetails=()=>{
+        navigation.navigate('Details')
+        
+    }
+
     const SpendingInterface=(singleSpending:any):JSX.Element=>{
         const item:spending={...singleSpending.item};//object deconstruction
 
-        return <SpendingsDisplayer price={item.price} title={item.title} date={item.date} />
+        return <SpendingsDisplayer price={item.price} title={item.title} date={item.date} click={goToDetails} />
     }
+
+    
 
     return (
         <View style={{flex:1}}>

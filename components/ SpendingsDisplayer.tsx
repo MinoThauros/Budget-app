@@ -2,7 +2,7 @@ import { Button, Text, View, StyleSheet, Pressable } from "react-native";
 import { spending } from "../models/spending";
 
 
-const SpendingsDisplayer=({title,price,date,onPress}:any):JSX.Element=>{
+const SpendingsDisplayer=({title,price,date,click}:any):JSX.Element=>{
     //upgrade function so it can handle a list of spendings
     const SingleSpendingDisplayer=({spendingInfo}:any):JSX.Element=>{
         const {title, price, date}=spendingInfo;
@@ -27,7 +27,7 @@ const SpendingsDisplayer=({title,price,date,onPress}:any):JSX.Element=>{
 
         <Pressable 
             style={({pressed})=>(pressed ? styles.pressed:null)}
-            onPress={onPress}>
+            onPress={click}>
             <SingleSpendingDisplayer spendingInfo={{title,price,date}} />
         </Pressable>
         

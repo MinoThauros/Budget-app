@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Modal, Alert, Button, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, Modal, Alert, Button, SafeAreaView, ToastAndroid } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AllExpenses from './screens/AllExpensesScreen';
@@ -13,6 +13,7 @@ import OverlayToggleContextProvider from './states/context/InputOverlayContext';
 import { useContext } from "react";
 import { OverlayContext } from './states/context/InputOverlayContext';
 import SpendingInput from './screens/SpendingInput'; 
+import SpendingDetailsComponent from './screens/SpengingDetails';
 
 
 const Tab = createBottomTabNavigator();
@@ -59,6 +60,18 @@ export default function App() {
               options={{
                 tabBarIcon: ({color,size}:any)=>(<Ionicons name="person-outline" color={color} size={size}/>)
               }}/>
+
+            <Tab.Screen 
+              name="Details"
+              component={SpendingDetailsComponent}
+              options={{
+                tabBarButton: () => null
+              }}/>
+
+            
+
+            
+            
             
           </Tab.Navigator>
         </NavigationContainer>

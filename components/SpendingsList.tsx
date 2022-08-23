@@ -1,0 +1,1 @@
+//we'll create here a function who takes in a list of expenses and returns a flatlist of expenses
