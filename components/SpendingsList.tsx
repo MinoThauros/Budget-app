@@ -13,7 +13,6 @@ const DisplaySpendings=({spendings}:any)=>{
     const goToDetails=(id:number)=>{
         navigation.navigate('Details',{
             Spendingid:id})};
-
     const SpendingInterface=(singleSpending:any,id:number):JSX.Element=>{
         const item:spending={...singleSpending.item};//object deconstruction
 
@@ -24,9 +23,6 @@ const DisplaySpendings=({spendings}:any)=>{
             date={item.date} 
             click={()=>goToDetails(id)} />)//enables navigation with params
     };
-
-    
-
     return (
         <View style={{flex:1}}>
             <FlatList 

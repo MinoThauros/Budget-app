@@ -8,9 +8,8 @@ const SpendingDetailsComponent=({navigation,route}:any)=>{
 
     const spendings:spending[]=useSelector((states:any)=>states.ExpenseReducer.expenses);
     const {title,date,price,category}:any=spendings.find(
-        (singleSpending:any)=>singleSpending.id===route.params.spendingIndex);
-
-
+        (singleSpending:spending)=>spendings.indexOf(singleSpending)===route.params.Spendingid);
+        //need to attribute a particular id to each spending in case two spendings are the same
     
     return (
     <View>
@@ -19,5 +18,7 @@ const SpendingDetailsComponent=({navigation,route}:any)=>{
     )
 
 };
+
+
 
 export default SpendingDetailsComponent;

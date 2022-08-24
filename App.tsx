@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
  * F) Option to delete spending; 
  * =>create spending details page by passing spending id as a prop to the page
  *   through route params
- * =>give access to redux to spendingDetails
+ * =>give access to redux to spendingDetails <<done>>
  * =>from spendingDetails, fetch/delete the desired spending
  * =>from spendingDetails, edit the expense (push a new spending at the id)
  * 
@@ -110,5 +110,6 @@ const styles = StyleSheet.create({
  * 
  * G) think about a recap and insight page (optional)
  * 
- * 
+ * bugs:
+ * A) the  id passed to the details screen doesnt change dinamically
  */
