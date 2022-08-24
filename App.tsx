@@ -98,24 +98,13 @@ const styles = StyleSheet.create({
 
 /**
  * todo: 
- * A) hook up form to redux <<DONE>>
- * => create add button on SpendingInput component
- * => push newly added spending on redux
- * 
- * B) display all added items <<DONE>>
- * 
- * C) build recent expenses page <<done>>
- * 
- * D) add recent spendings page <<DONE>>
- * 
- * E) Improve UX (optional)
- * => create validation on form along with improved functionalities (dropdown, etc...)
- *    +dropdown for category
- *    +datepicker for date
- * => add placeholders for each page (element displayers)
- * => rework styling and colors
  * 
  * F) Option to delete spending; 
+ * =>create spending details page by passing spending id as a prop to the page
+ *   through route params
+ * =>give access to redux to spendingDetails
+ * =>from spendingDetails, fetch/delete the desired spending
+ * =>from spendingDetails, edit the expense (push a new spending at the id)
  * 
  * 
  * 

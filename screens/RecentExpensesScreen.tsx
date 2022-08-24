@@ -1,8 +1,8 @@
-import {FlatList,ScrollView,View } from "react-native";
+import {FlatList,View } from "react-native";
 import { spending } from '../models/spending';
 import { useSelector} from "react-redux";
 import SpendingsDisplayer from "../components/ SpendingsDisplayer";
-import { useEffect, useLayoutEffect, useState } from 'react';
+import {useLayoutEffect, useState } from 'react';
 import { useContext } from "react";
 import { OverlayContext } from '../states/context/InputOverlayContext';
 import LastDaysTotal from "../components/LastDays";
@@ -27,15 +27,22 @@ const RecentExpenses=({navigation,route}:any)=>{
         setTotal(()=>retrieveTotal())
         },[navigation,visible]);
 
-    const goToDetails=()=>{
-        navigation.navigate('Details')
+    const goToDetails=(id:number)=>{
+        navigation.navigate('Details',{
+            Spendingid:id})
+        console.log('go to details')
         
-    }
+    }//this element ought to find the clicked element
 
-    const SpendingInterface=(singleSpending:any):JSX.Element=>{
+    const SpendingInterface=(singleSpending:any,id:number):JSX.Element=>{
         const item:spending={...singleSpending.item};//object deconstruction
 
-        return <SpendingsDisplayer price={item.price} title={item.title} date={item.date} click={goToDetails} />
+        return (
+        <SpendingsDisplayer 
+            price={item.price} 
+            title={item.title} 
+            date={item.date} 
+            click={()=>goToDetails(id)} />)
     }
 
     
@@ -48,7 +55,7 @@ const RecentExpenses=({navigation,route}:any)=>{
             <FlatList 
                 data={currentList} 
                 keyExtractor={(element:spending)=>spendings.indexOf(element)} 
-                renderItem={SpendingInterface}
+                renderItem={(singleSpending)=>SpendingInterface(singleSpending,spendings.indexOf(singleSpending.item))}
                 />
         </View>
         
