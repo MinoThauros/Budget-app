@@ -15,8 +15,9 @@ const expensesSlice=createSlice({
             state.expenses.unshift(action.payload.element)
         },//stack-like behavior
         deleteSpending:(state,action)=>{
-            state.expenses.splice(action.payload.element)
+            state.expenses=state.expenses.filter(obj=>obj!==action.payload.element)//expects an object
         },
+
     }
 });
 
