@@ -30,7 +30,6 @@ const RecentExpenses=({navigation,route}:any)=>{
     const goToDetails=(id:number)=>{
         navigation.navigate('Details',{
             Spendingid:id})
-        console.log('go to details')
         
     }//this element ought to find the clicked element
 
@@ -42,7 +41,7 @@ const RecentExpenses=({navigation,route}:any)=>{
             price={item.price} 
             title={item.title} 
             date={item.date} 
-            click={()=>goToDetails(id)} />)
+            click={()=>goToDetails(id)} />)//enables navigation with params
     }
 
     

@@ -7,7 +7,8 @@ const SpendingDetailsComponent=({navigation,route}:any)=>{
     //displays the details of the spending including category
 
     const spendings:spending[]=useSelector((states:any)=>states.ExpenseReducer.expenses);
-    const {title,date,price,category}:any=spendings.find((singleSpending:any)=>singleSpending.id===route.params.spendingIndex);
+    const {title,date,price,category}:any=spendings.find(
+        (singleSpending:any)=>singleSpending.id===route.params.spendingIndex);
 
 
     
