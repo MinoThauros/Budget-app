@@ -17,14 +17,11 @@ const expensesSlice=createSlice({
         deleteSpending:(state,action)=>{
             state.expenses.splice(action.payload.element)
         },
-        retrieveLatest:(state,action)=>{
-            state.expenses.slice(0,6)
-        }
     }
 });
 
 export default expensesSlice.reducer;
 export const AddSpending=expensesSlice.actions.addSpending;
 export const DeleteSpending=expensesSlice.actions.deleteSpending;
-export const RetrieveLatest=expensesSlice.actions.retrieveLatest;
+
 
