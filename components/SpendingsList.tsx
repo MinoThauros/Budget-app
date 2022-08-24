@@ -7,7 +7,7 @@ import LastDaysTotal from "./LastDays";
 
 
 
-const DisplaySpendings=(spendings:any[])=>{
+const DisplaySpendings=({spendings}:any)=>{
     const navigation:any=useNavigation();
 
     const goToDetails=(id:number)=>{
@@ -23,7 +23,7 @@ const DisplaySpendings=(spendings:any[])=>{
             title={item.title} 
             date={item.date} 
             click={()=>goToDetails(id)} />)//enables navigation with params
-    }
+    };
 
     
 
