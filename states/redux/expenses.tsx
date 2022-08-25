@@ -28,5 +28,6 @@ const expensesSlice=createSlice({
 export default expensesSlice.reducer;
 export const AddSpending=expensesSlice.actions.addSpending;
 export const DeleteSpending=expensesSlice.actions.deleteSpending;
+export const EditSpending=expensesSlice.actions.editSpending;
 
 

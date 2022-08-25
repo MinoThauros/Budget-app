@@ -2,13 +2,15 @@ import { View, Button,Text } from "react-native";
 import { useSelector,useDispatch } from "react-redux";
 import { spending } from '../models/spending';
 import Spending from "../components/Spending";
-import { DeleteSpending } from "../states/redux/expenses";
+import { DeleteSpending,EditSpending } from "../states/redux/expenses";
+import { useState, useEffect } from 'react';
 
 
 
 const SpendingDetailsComponent=({navigation,route}:any)=>{
     //handle deletion of spending; keep the deletion function here
     const dispatch=useDispatch();
+    const [change,setChange]=useState(false);
     const spendings:spending[]=useSelector((states:any)=>states.ExpenseReducer.expenses);
     const spending:any=spendings.find(
         (singleSpending:spending)=>spendings.indexOf(singleSpending)===route.params.Spendingid);
@@ -16,22 +18,27 @@ const SpendingDetailsComponent=({navigation,route}:any)=>{
         
     const deleteSpending=()=>{
         dispatch(DeleteSpending({element:spending}))
+        navigation.goBack()
     };
+
+    useEffect(()=>{
+        setChange(true)
+    },[spending])
+
+    const editSpending=(newSpending:spending)=>{
+        dispatch(EditSpending({element:spending,newElement:newSpending}))
+    }
 
     const Content=()=>{
         var Details:JSX.Element=(
         <View>
-            <Spending spending={spending}/>
-            <View>
-                    <Button title="Delete" onPress={deleteSpending}/>
-                    <Button title="Edit" onPress={()=>{}}/>
-            </View>
+            <Spending spending={spending} Delete={deleteSpending} Edit={()=>{}}/>
         </View>
             
         )
-        if (!spending){
+        if (!spending){//think about this
             Details=(
-                <View>
+                <View style={{flex:1}}>
                     <Text>Deleted Spending</Text>
                 </View>
             )
@@ -40,7 +47,10 @@ const SpendingDetailsComponent=({navigation,route}:any)=>{
     }
     
     return (
-        <Content/>
+        <View >
+            <Content/>
+        </View>
+        
     )
 
 };
