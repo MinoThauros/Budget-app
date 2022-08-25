@@ -27,7 +27,7 @@ const SpendingsDisplayer=({title,price,date,click}:any):JSX.Element=>{
 
         <Pressable 
             style={({pressed})=>(pressed ? styles.pressed:null)}
-            onPress={click}>
+            onLongPress={click}>
             <SingleSpendingDisplayer spendingInfo={{title,price,date}} />
         </Pressable>
         

@@ -17,6 +17,10 @@ const expensesSlice=createSlice({
         deleteSpending:(state,action)=>{
             state.expenses=state.expenses.filter(obj=>obj!==action.payload.element)//expects an object
         },
+        editSpending:(state,action)=>{
+            const index=state.expenses.indexOf(action.payload.element);
+            state.expenses[index]=action.payload.newElement;
+        }//takes two props: element and newElement
 
     }
 });
