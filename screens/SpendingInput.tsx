@@ -17,12 +17,13 @@ const SpendingInput=()=>{
   //this context needs to work in tandem with add button
 
   //fecthing the state
-  const spendings=useSelector((states:any)=>states.ExpenseReducer.expenses);
   const dispatch=useDispatch();
 
   const addSpending=(newSpending:spending)=>{
     dispatch(AddSpending({element:newSpending}))
-  }
+  };
+
+  const validator=()=>{}//write the validator here
 
 
 
@@ -39,11 +40,19 @@ const SpendingInput=()=>{
     //so keeping the states local
     
     const submitButton=()=>{
-        let enteredData:spending=new spending(amount,category,date,title)
-        addSpending(enteredData)
-        //addSpending(enteredData)
+        //check validation states here
 
-        pressed()
+        if (amount.trim().length!==0 && category.trim().length!==0 &&  date.trim().length!==0 &&  title.trim().length!==0){
+            console.log('all good')
+            //infinite loop
+            let enteredData:spending=new spending(amount,category,date,title)
+            addSpending(enteredData)
+            //addSpending(enteredData)
+            pressed()
+        }
+        else{
+            console.log('someone isnt reglo')
+        }
     } 
     return (
         <View style={styles.overallContainer}>
