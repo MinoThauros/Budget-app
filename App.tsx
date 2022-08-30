@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Modal, Alert, Button, SafeAreaView, ToastAndroid } from 'react-native';
+import { StyleSheet, Text, View, Modal, Alert, Button, SafeAreaView, ToastAndroid, KeyboardAvoidingView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AllExpenses from './screens/AllExpensesScreen';
@@ -33,7 +33,9 @@ export default function App() {
 
     <OverlayToggleContextProvider>
       <Provider store={store}>
-      <SpendingInput/>
+      <KeyboardAvoidingView>
+        <SpendingInput/>
+      </KeyboardAvoidingView>
         <NavigationContainer>
           <Tab.Navigator screenOptions={{
             headerRight:({color,size}:any)=> <HeaderButton size={30}/>
