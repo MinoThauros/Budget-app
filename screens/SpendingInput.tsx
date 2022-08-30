@@ -5,44 +5,34 @@ import { useContext } from "react";
 import { spending } from '../models/spending';
 import { useSelector,useDispatch } from "react-redux";
 import { AddSpending} from '../states/redux/expenses';
+import { Validator } from '../functions/validator';
 
 
 const SpendingInput=()=>{
-    //const [overlayVisibility,setOverlayVisiblity]=useState(true as boolean);
-    //lets hook the visibility of the modal to the global context
     const Overlay=useContext(OverlayContext);
-    const visible:boolean=Overlay.visible;//binding the state to local variables
+    const visible:boolean=Overlay.visible;
     const pressed=()=>{
       Overlay.toogleOverlay();};
-  //this context needs to work in tandem with add button
 
-  //fecthing the state
   const dispatch=useDispatch();
 
   const addSpending=(newSpending:spending)=>{
     dispatch(AddSpending({element:newSpending}))
   };
-
-  const validator=()=>{}//write the validator here
-
-
-
-  
-    
+ 
   const SpendingCard=({onPress}:any):JSX.Element=>{
-    const [amount,setAmount]=useState('');
+    const [amount,setAmount]=useState(Number);
     const [category,setCategory]=useState('');
     const [date, setDate]=useState('');
     const [title,setTitle]=useState('');
 
-    //keyboard was dismissed everytime due to state change
-    //we only allow the function to rerender so keyboard doesnt get dismissed
-    //so keeping the states local
+    const [warnings,setWarnings]=useState(null as null | JSX.Element)
     
     const submitButton=()=>{
         //check validation states here
+        const {wordValidator,numValidator}=new Validator()
 
-        if (amount.trim().length!==0 && category.trim().length!==0 &&  date.trim().length!==0 &&  title.trim().length!==0){
+        if (numValidator(amount) && wordValidator(category) &&  wordValidator(date) &&  wordValidator(title)){
             console.log('all good')
             //infinite loop
             let enteredData:spending=new spending(amount,category,date,title)
@@ -68,9 +58,11 @@ const SpendingInput=()=>{
                     <Text style={styles.titles}>Amount: </Text>
                     <TextInput 
                         style={styles.textInputA}
-                        onChangeText={newText=>setAmount(newText)}
-                        defaultValue={amount}
-                        keyboardType='numeric'/>
+                        onChangeText={newText=>setAmount(+newText)}
+                        defaultValue={amount.toString()}
+                        keyboardType='numeric'
+                        placeholder=''
+                        />
                 </View>
                 <View>
                     <Text style={styles.titles}>Category: </Text>

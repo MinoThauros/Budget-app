@@ -5,7 +5,7 @@ export class Validator{
     
     wordValidator=(word:string):boolean=>{
         var status:boolean=false;
-        if (word && !this.specialChars.test(word)){//as soon as there is a special character
+        if (word.trim().length!==0 && !this.specialChars.test(word)){//as soon as there is a special character
             status=true;
         }
         return status
