@@ -35,28 +35,23 @@ const SpendingInput=()=>{
     })
 
     const messages={
-        amountWarning: !numValidator(amount)? <Text>Invalid amount</Text>:<></>,
-        categoryWarning:!wordValidator(category)?<Text>Invalid Category</Text>:<></>,
-        dateWarning:!wordValidator(date)?<Text>Invalid date</Text>:<></>,
-        titleWarning:!wordValidator(title)?<Text>Invalid title</Text>:<></>
+        amountWarning: !numValidator(amount)? <Text style={styles.validationError}>Invalid amount</Text>:<></>,
+        categoryWarning:!wordValidator(category)?<Text style={styles.validationError}>Invalid Category</Text>:<></>,
+        dateWarning:!wordValidator(date)?<Text style={styles.validationError}>Invalid date</Text>:<></>,
+        titleWarning:!wordValidator(title)?<Text style={styles.validationError}>Invalid title</Text>:<></>
 
     }
     
-    //use this state to show warnings
     
     const submitButton=()=>{
-        //check validation states here
 
         if (numValidator(amount) && wordValidator(category) &&  wordValidator(date) &&  wordValidator(title)){
-            console.log('all good')
-            //infinite loop
+
             let enteredData:spending=new spending(amount,category,date,title)
-            addSpending(enteredData)//reassignment allowed by state change calls on submit button
-            
+            addSpending(enteredData)
             pressed()
         }
         else{
-            console.log('someone isnt reglo')
             setWarnings(messages)
         }
     } 
@@ -64,34 +59,35 @@ const SpendingInput=()=>{
         <View style={styles.overallContainer}>
             <View>
                 <View>
-                    {warnings.titleWarning}
                     <Text style={styles.titles}>Title: </Text>
+                    {warnings.titleWarning}
                     <TextInput 
                         style={styles.textInputA}
                         onChangeText={newText=>setTitle(newText)}
                         defaultValue={title}/>
                 </View>
                 <View>
-                {warnings.amountWarning}
                     <Text style={styles.titles}>Amount: </Text>
+                    {warnings.amountWarning}
                     <TextInput 
                         style={styles.textInputA}
                         onChangeText={newText=>setAmount(+newText)}
                         value={amount.toString()}
                         keyboardType='numeric'
+                        defaultValue=''
                         />
                 </View>
                 <View>
-                {warnings.categoryWarning}
                     <Text style={styles.titles}>Category: </Text>
+                    {warnings.categoryWarning}
                     <TextInput
                         onChangeText={setCategory} 
                         style={styles.textInputA}
                         value={category}/>
                 </View>
                 <View>
-                {warnings.dateWarning}
                     <Text style={styles.titles}>Date: </Text>
+                    {warnings.dateWarning}
                     <TextInput
                         onChangeText={setDate}
                         style={styles.textInputA}
@@ -162,5 +158,10 @@ const styles=StyleSheet.create({
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'center'
+    },
+    validationError:{
+        fontSize:12,
+        color:'red'
+
     }
 })
