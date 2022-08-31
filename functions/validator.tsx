@@ -13,7 +13,7 @@ export class Validator{
 
     numValidator=(num:number)=>{
         var status:boolean=false;
-        if (!isNaN(num)){
+        if (!isNaN(num) && num!=0){
             status=true
         }
         return status

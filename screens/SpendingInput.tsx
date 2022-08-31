@@ -9,6 +9,7 @@ import { Validator } from '../functions/validator';
 
 
 const SpendingInput=()=>{
+    const {wordValidator,numValidator}=new Validator()
     const Overlay=useContext(OverlayContext);
     const visible:boolean=Overlay.visible;
     const pressed=()=>{
@@ -34,10 +35,10 @@ const SpendingInput=()=>{
     })
 
     const messages={
-        amountWarning:<Text>Invalid amount</Text>,
-        categoryWarning:<Text>Invalid Category</Text>,
-        dateWarning:<Text>Invalid date</Text>,
-        titleWarning:<Text>Invalid title</Text>
+        amountWarning: !numValidator(amount)? <Text>Invalid amount</Text>:<></>,
+        categoryWarning:!wordValidator(category)?<Text>Invalid Category</Text>:<></>,
+        dateWarning:!wordValidator(date)?<Text>Invalid date</Text>:<></>,
+        titleWarning:!wordValidator(title)?<Text>Invalid title</Text>:<></>
 
     }
     
@@ -46,14 +47,12 @@ const SpendingInput=()=>{
     const submitButton=()=>{
         //check validation states here
 
-        const {wordValidator,numValidator}=new Validator()
-
         if (numValidator(amount) && wordValidator(category) &&  wordValidator(date) &&  wordValidator(title)){
             console.log('all good')
             //infinite loop
             let enteredData:spending=new spending(amount,category,date,title)
-            addSpending(enteredData)
-            //addSpending(enteredData)
+            addSpending(enteredData)//reassignment allowed by state change calls on submit button
+            
             pressed()
         }
         else{
@@ -78,9 +77,8 @@ const SpendingInput=()=>{
                     <TextInput 
                         style={styles.textInputA}
                         onChangeText={newText=>setAmount(+newText)}
-                        defaultValue={amount.toString()}
+                        value={amount.toString()}
                         keyboardType='numeric'
-                        placeholder=''
                         />
                 </View>
                 <View>
