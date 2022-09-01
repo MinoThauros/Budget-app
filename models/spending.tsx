@@ -11,6 +11,7 @@ export enum spendingsTypes {
 }
 
 export class spending {
+    readonly id?:string;
     readonly title:string;
     readonly price:any;
     readonly category:string;
@@ -18,10 +19,12 @@ export class spending {
     
     constructor(
 
+        
         price:any,
         category:string,
         date:string,
-        title:string
+        title:string,
+        id?:any,
 
     ){
 
@@ -29,6 +32,7 @@ export class spending {
         this.category=category
         this.date=date
         this.title=title
+        this.id=id;
     }
 
 }//only way to change the propriety of a spending is through constructor

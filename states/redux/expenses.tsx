@@ -1,18 +1,23 @@
 import {createSlice} from '@reduxjs/toolkit';
 import { spending } from '../../models/spending';
+import { HTTPInterface } from '../../functions/http';
 //a slice is made out of a name, an initial state and reducers
+
+const httpInterface=new HTTPInterface()
 
 const expensesSlice=createSlice({
 
     name:'spendings',
 
     initialState:{
-        expenses:[] as spending[]
+        expenses:([] as spending[])
     },
 
     reducers:{
         addSpending:(state,action)=>{
             state.expenses.unshift(action.payload.element)
+            httpInterface.storeExpense(action.payload.element) 
+
         },//stack-like behavior
         deleteSpending:(state,action)=>{
             state.expenses=state.expenses.filter(obj=>obj!==action.payload.element)//expects an object
