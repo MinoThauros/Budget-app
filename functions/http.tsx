@@ -8,7 +8,7 @@ export class HTTPInterface{
     storeExpense(spending:spending){
         axios.post(this.rootApi+this.expenseNode,spending)//
     };
-    async getExpenses(){
+    async getExpenses():Promise<spending[]>{
         const response= await axios.get(this.rootApi+this.expenseNode);
 
         const expenses=[] as spending[]
@@ -21,7 +21,7 @@ export class HTTPInterface{
                 category:response.data[key].category,
                 title:response.data[key].title
             };
-            expenses.unshift(expenseObj);
+            expenses.push(expenseObj);
         }
         return expenses
 

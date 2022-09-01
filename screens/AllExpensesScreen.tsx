@@ -1,7 +1,7 @@
 import {View } from "react-native";
 import { useSelector} from "react-redux";
 import DisplaySpendings from "../components/SpendingsList";
-import { useState,useLayoutEffect } from 'react';
+import { useState,useLayoutEffect,useEffect } from 'react';
 import { useContext } from "react";
 import { OverlayContext } from '../states/context/InputOverlayContext';
 
@@ -12,9 +12,9 @@ const AllExpenses=({navigation,route}:any)=>{
     const Overlay=useContext(OverlayContext);
     const visible:boolean=Overlay.visible;//binding the state to local variables
 
-    useLayoutEffect(()=>{
+    useEffect(()=>{
         setCurrenSpendings(spendings);
-    },[visible,navigation,route,spendings]);
+    },[visible,navigation,route,spendings]);//dinamically refresh spendings
 
     return (
         <View style={{flex:1}}>

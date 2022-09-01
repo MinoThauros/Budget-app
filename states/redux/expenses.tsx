@@ -16,7 +16,7 @@ const expensesSlice=createSlice({
     reducers:{
         addSpending:(state,action)=>{
             state.expenses.unshift(action.payload.element)
-            httpInterface.storeExpense(action.payload.element) 
+            //httpInterface.storeExpense(action.payload.element) 
 
         },//stack-like behavior
         deleteSpending:(state,action)=>{
@@ -25,7 +25,12 @@ const expensesSlice=createSlice({
         editSpending:(state,action)=>{
             const index=state.expenses.indexOf(action.payload.element);
             state.expenses[index]=action.payload.newElement;
-        }//takes two props: element and newElement
+        },//takes two props: element and newElement
+        setSpendings:(state,action)=>{
+            state.expenses=action.payload.IncomingElements
+
+        }
+
 
     }
 });

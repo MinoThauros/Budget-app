@@ -2,7 +2,7 @@ import {FlatList,View } from "react-native";
 import { spending } from '../models/spending';
 import { useSelector} from "react-redux";
 import SpendingsDisplayer from "../components/ SpendingsDisplayer";
-import {useLayoutEffect, useState } from 'react';
+import {useLayoutEffect, useState,useEffect } from 'react';
 import { useContext } from "react";
 import { OverlayContext } from '../states/context/InputOverlayContext';
 import LastDaysTotal from "../components/LastDays";
@@ -21,8 +21,8 @@ const RecentExpenses=({navigation,route}:any)=>{
         };
         return sum
     };
-    useLayoutEffect(()=>{
-        setTotal(()=>retrieveTotal())
+    useEffect(()=>{
+        setTotal(()=>retrieveTotal())//dynamically refreshes spendings
         },[spendings,visible]);
 
     return (
