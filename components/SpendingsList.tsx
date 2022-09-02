@@ -3,26 +3,28 @@ import { useNavigation } from "@react-navigation/native";
 import { FlatList,View } from "react-native";
 import SpendingsDisplayer from "./ SpendingsDisplayer";
 import { spending } from "../models/spending";
-import LastDaysTotal from "./LastDays";
 import { HTTPInterface } from "../functions/http";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
+import { useDispatch } from "react-redux";
+import { SetSpending } from "../states/redux/expenses";
 
 
 
 const DisplaySpendings=({spendings}:any)=>{
+    const dispatch=useDispatch()
     const navigation:any=useNavigation();
     async function getSpendings(){
         const {getExpenses}=new HTTPInterface()
         const expenses=await getExpenses()
         return expenses
     }
-    const [importedValues,setImportedValues]=useState([]as spending[])
+
     useEffect(()=>{
         getSpendings().then((spendings)=>{
-            setImportedValues(spendings)
+            dispatch(SetSpending({IncomingElements:spendings}))
         })},[]);
 
-    const allSpendings:spending[]=spendings.concat(importedValues)
+    //on first render, fetch all the spendings in the database
 
     const goToDetails=(id:number)=>{
         navigation.navigate('Details',{
@@ -42,9 +44,9 @@ const DisplaySpendings=({spendings}:any)=>{
     return (
         <View style={{flex:1}}>
             <FlatList 
-                data={allSpendings} 
-                keyExtractor={(element:spending)=>((allSpendings.indexOf(element)).toString())} 
-                renderItem={(singleSpending:any)=>SpendingInterface(singleSpending,allSpendings.indexOf(singleSpending.item))}
+                data={spendings} 
+                keyExtractor={(element:spending)=>((spendings.indexOf(element)).toString())} 
+                renderItem={(singleSpending:any)=>SpendingInterface(singleSpending,spendings.indexOf(singleSpending.item))}
                 />
         </View>
         
