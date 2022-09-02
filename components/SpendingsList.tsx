@@ -21,7 +21,7 @@ const DisplaySpendings=({spendings}:any)=>{
 
     useEffect(()=>{
         getSpendings().then((spendings)=>{
-            dispatch(SetSpending({IncomingElements:spendings}))
+            dispatch(SetSpending({IncomingElements:spendings.reverse()}))
         })},[]);
 
     //on first render, fetch all the spendings in the database

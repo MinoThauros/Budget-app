@@ -18,8 +18,9 @@ const expensesSlice=createSlice({
 
     reducers:{
         addSpending:(state,action)=>{
-            state.expenses.unshift(action.payload.element)
-            httpInterface.storeExpense(action.payload.element) 
+            const id=httpInterface.storeExpense(action.payload.element) 
+            state.expenses.unshift({...action.payload.element,id:id})//adding id prop to redux
+            
 
         },//stack-like behavior
         deleteSpending:(state,action)=>{
