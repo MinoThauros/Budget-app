@@ -39,7 +39,8 @@ export class HTTPInterface{
 
     async deleteExpense(id:string) {
         try{
-            const response=await axios.delete(this.rootApi+this.expenseNode+`/${id}.json`)
+            const response=await axios.delete(this.rootApi+'expenses'+`/${id}.json`)
+            console.log('deleting items')
             return response
 
         }
