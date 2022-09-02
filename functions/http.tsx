@@ -2,26 +2,35 @@ import axios from 'axios'
 import { spending } from '../models/spending';
 
 export class HTTPInterface{
-    readonly rootApi='https://bgetapp-default-rtdb.firebaseio.com/';
-    readonly expenseNode='expenses.json';
+    readonly rootApi:string='https://bgetapp-default-rtdb.firebaseio.com/';
+    readonly expenseNode:string='expenses.json';
+    readonly url:string='https://bgetapp-default-rtdb.firebaseio.com/expenses.json';
 
     storeExpense(spending:spending){
         axios.post(this.rootApi+this.expenseNode,spending)//
     };
     async getExpenses():Promise<spending[]>{
-        const response= await axios.get(this.rootApi+this.expenseNode);
-
+        //print(this.rootApi+this.expenseNode)
         const expenses=[] as spending[]
+        try {
 
-        for ( const key in response.data){
-            const expenseObj:spending={
-                id:key,
-                price:response.data[key].amount,
-                date:response.data[key].date,
-                category:response.data[key].category,
-                title:response.data[key].title
-            };
-            expenses.push(expenseObj);
+            let { data } = await axios.get('https://bgetapp-default-rtdb.firebaseio.com/expenses.json');
+
+            for ( const key in data){
+                const expenseObj:spending={
+                    id:key,
+                    price:data[key].price,
+                    date:data[key].date,
+                    category:data[key].category,
+                    title:data[key].title
+                };
+                console.log(expenseObj)
+                expenses.push(expenseObj);
+            }
+            
+        }
+        catch(err){
+            console.log(err)
         }
         return expenses
 

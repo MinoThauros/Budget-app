@@ -3,7 +3,10 @@ import { spending } from '../../models/spending';
 import { HTTPInterface } from '../../functions/http';
 //a slice is made out of a name, an initial state and reducers
 
+
 const httpInterface=new HTTPInterface()
+
+
 
 const expensesSlice=createSlice({
 
@@ -16,7 +19,7 @@ const expensesSlice=createSlice({
     reducers:{
         addSpending:(state,action)=>{
             state.expenses.unshift(action.payload.element)
-            //httpInterface.storeExpense(action.payload.element) 
+            httpInterface.storeExpense(action.payload.element) 
 
         },//stack-like behavior
         deleteSpending:(state,action)=>{
@@ -39,5 +42,6 @@ export default expensesSlice.reducer;
 export const AddSpending=expensesSlice.actions.addSpending;
 export const DeleteSpending=expensesSlice.actions.deleteSpending;
 export const EditSpending=expensesSlice.actions.editSpending;
+export const SetSpending=expensesSlice.actions.setSpendings;
 
 
