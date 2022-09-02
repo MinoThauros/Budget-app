@@ -35,6 +35,19 @@ export class HTTPInterface{
         }
         return expenses
 
+    };
+
+    async deleteExpense(id:string) {
+        try{
+            const response=await axios.delete(this.rootApi+this.expenseNode+`/${id}.json`)
+            return response
+
+        }
+        catch(err){
+            console.log(err)
+
+        }
+        
     }
 
 }

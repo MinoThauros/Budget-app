@@ -25,6 +25,7 @@ const expensesSlice=createSlice({
         },//stack-like behavior
         deleteSpending:(state,action)=>{
             state.expenses=state.expenses.filter(obj=>obj!==action.payload.element)//expects an object
+            //we could now filter by id here
         },
         editSpending:(state,action)=>{
             const index=state.expenses.indexOf(action.payload.element);
