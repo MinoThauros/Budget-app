@@ -6,7 +6,7 @@ import { spending } from "../models/spending";
 import { HTTPInterface } from "../functions/http";
 import { useEffect} from "react";
 import { useDispatch } from "react-redux";
-import { SetSpending } from "../states/redux/expenses";
+//import { SetSpending } from "../states/redux/expenses";
 
 
 
