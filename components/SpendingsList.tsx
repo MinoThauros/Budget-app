@@ -3,16 +3,36 @@ import { useNavigation } from "@react-navigation/native";
 import { FlatList,View } from "react-native";
 import SpendingsDisplayer from "./ SpendingsDisplayer";
 import { spending } from "../models/spending";
-import LastDaysTotal from "./LastDays";
+import { HTTPInterface } from "../functions/http";
+import { useEffect} from "react";
+import { useDispatch } from "react-redux";
+import { SetSpending } from "../states/redux/expenses";
 
 
 
 const DisplaySpendings=({spendings}:any)=>{
+    const dispatch=useDispatch()
     const navigation:any=useNavigation();
+    async function getSpendings(){
+        const {getExpenses}=new HTTPInterface()
+        const expenses=await getExpenses()
+        return expenses
+    }
+    /**
+     * useEffect(()=>{
+        getSpendings().then((spendings)=>{
+            dispatch(SetSpending({IncomingElements:spendings.reverse()}))
+        })},[]);//critical syntax
+     */
+    
+
+    //on first render, fetch all the spendings in the database
 
     const goToDetails=(id:number)=>{
         navigation.navigate('Details',{
-            Spendingid:id})};
+            Spendingid:id})};//adjust this so that we send the object instead of ID
+            //API call doesn't work cause we don't pass an ID which is the index of the spending within redux
+
     const SpendingInterface=(singleSpending:any,id:number):JSX.Element=>{
         const item:spending={...singleSpending.item};//object deconstruction
 

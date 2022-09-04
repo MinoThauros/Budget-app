@@ -12,15 +12,16 @@ export enum spendingsTypes {
 }
 
 export class spending {
+    readonly id?:string;
     readonly title:string;
     readonly price:any;
     readonly category:string;
     readonly date:string;
-    readonly id?:string
 
     
     constructor(
 
+        
         price:any,
         category:string,
         date:string,
