@@ -1,4 +1,5 @@
 export enum spendingsTypes {
+    id,
     Food,
     Clothes,
     housing,
@@ -15,14 +16,16 @@ export class spending {
     readonly price:any;
     readonly category:string;
     readonly date:string;
+    readonly id?:string
+
     
     constructor(
 
         price:any,
         category:string,
         date:string,
-        title:string
-
+        title:string,
+        
     ){
 
         this.price=price;
