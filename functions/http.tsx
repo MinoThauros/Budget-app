@@ -33,13 +33,13 @@ export class HTTPInterface{
         catch(err){
             console.log(err)
         }
-        return expenses
+        return expenses.reverse()
 
     };
 
     async deleteExpense(id:string) {
         try{
-            const response=await axios.delete(this.rootApi+'expenses'+`/${id}.json`)
+            const response=await axios.delete('https://bgetapp-default-rtdb.firebaseio.com/expenses'+`/${id}.json`)
             console.log('deleting items')
             return response
 

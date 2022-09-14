@@ -4,19 +4,21 @@ import { spending } from '../models/spending';
 import Spending from "../components/Spending";
 import { DeleteSpending,EditSpending } from "../states/redux/expenses";
 import { useState, useEffect } from 'react';
+import { HTTPInterface } from "../functions/http";
 
 
+const {deleteExpense}=new HTTPInterface()
 
 const SpendingDetailsComponent=({navigation,route}:any)=>{
     //handle deletion of spending; keep the deletion function here
     const dispatch=useDispatch();
     const [change,setChange]=useState(false);
-    const spendings:spending[]=useSelector((states:any)=>states.ExpenseReducer.expenses);
-    const spending:any=route.params.Spending;
-        //need to attribute a particular id to each spending in case two spendings are the same
+    const spending=route.params.Spending;
+    
         
-    const deleteSpending=()=>{
+    const deleteSpending=async ()=>{
         dispatch(DeleteSpending({element:spending}))
+        deleteExpense(spending.id)
         navigation.goBack()
     };
 
