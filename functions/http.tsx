@@ -7,7 +7,7 @@ export class HTTPInterface{
     readonly url:string='https://bgetapp-default-rtdb.firebaseio.com/expenses.json';
 
     async storeExpense(spending:spending){
-        const response=await axios.post(this.rootApi+this.expenseNode,spending)
+        const response=await axios.post('https://bgetapp-default-rtdb.firebaseio.com/expenses.json',spending)
         return response.data.name;//the id is hidden in the name prop of the response
     };
     async getExpenses():Promise<spending[]>{

@@ -6,7 +6,9 @@ import { spending } from '../models/spending';
 import { useSelector,useDispatch } from "react-redux";
 import { AddSpending} from '../states/redux/expenses';
 import { Validator } from '../functions/validator';
+import { HTTPInterface } from '../functions/http';
 
+const {storeExpense}=new HTTPInterface()
 
 const SpendingInput=()=>{
     const {wordValidator,numValidator}=new Validator()
@@ -17,8 +19,9 @@ const SpendingInput=()=>{
 
   const dispatch=useDispatch();
 
-  const addSpending=(newSpending:spending)=>{
-    dispatch(AddSpending({element:newSpending}))
+  const addSpending=async (newSpending:spending)=>{
+    const responseID=await storeExpense(newSpending)
+    dispatch(AddSpending({element:newSpending,id:responseID}))
   };
  
   const SpendingCard=({onPress}:any):JSX.Element=>{
