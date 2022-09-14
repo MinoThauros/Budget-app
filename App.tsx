@@ -100,13 +100,10 @@ const styles = StyleSheet.create({
 
 /**
  * todo: 
- * 
- * A) Add edit button for spending details screen
- * 
- * B) Style details page
- * 
- * 
- * G) think about a recap and insight page (optional)
- * 
+    //create a light wrapper which makes an API call and fetches data from firebase
+  +RECEIVING
+    //-->what we display is the response of the API call + redux content which should dynamically change
+  +SENDING:
+    //-->submit button should incorporate post API call as well: a) post api call will give id b)save item in context with id
 
  */
