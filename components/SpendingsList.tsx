@@ -18,15 +18,7 @@ const DisplaySpendings=({spendings}:any)=>{
         const expenses=await getExpenses()
         return expenses
     }
-    /**
-     * useEffect(()=>{
-        getSpendings().then((spendings)=>{
-            dispatch(SetSpending({IncomingElements:spendings.reverse()}))
-        })},[]);//critical syntax
-     */
     
-
-    //on first render, fetch all the spendings in the database
 
     const goToDetails=(id:number)=>{
         navigation.navigate('Details',{

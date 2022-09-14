@@ -20,13 +20,10 @@ export class spending {
 
     
     constructor(
-
-        
         price:any,
         category:string,
         date:string,
         title:string,
-        
     ){
 
         this.price=price;
