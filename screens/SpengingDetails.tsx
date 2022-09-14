@@ -12,8 +12,7 @@ const SpendingDetailsComponent=({navigation,route}:any)=>{
     const dispatch=useDispatch();
     const [change,setChange]=useState(false);
     const spendings:spending[]=useSelector((states:any)=>states.ExpenseReducer.expenses);
-    const spending:any=spendings.find(
-        (singleSpending:spending)=>spendings.indexOf(singleSpending)===route.params.Spendingid);
+    const spending:any=route.params.Spending;
         //need to attribute a particular id to each spending in case two spendings are the same
         
     const deleteSpending=()=>{

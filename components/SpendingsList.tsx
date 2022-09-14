@@ -20,27 +20,27 @@ const DisplaySpendings=({spendings}:any)=>{
     }
     
 
-    const goToDetails=(id:number)=>{
+    const goToDetails=(spending:spending)=>{
         navigation.navigate('Details',{
-            Spendingid:id})};//adjust this so that we send the object instead of ID
-            //API call doesn't work cause we don't pass an ID which is the index of the spending within redux
+            Spending:spending})};
+            
 
-    const SpendingInterface=(singleSpending:any,id:number):JSX.Element=>{
-        const item:spending={...singleSpending.item};//object deconstruction
+    const SpendingInterface=(singleSpending:any):JSX.Element=>{
+        const item:spending={...singleSpending};//object deconstruction
 
         return (
         <SpendingsDisplayer 
             price={item.price} 
             title={item.title} 
             date={item.date} 
-            click={()=>goToDetails(id)} />)//enables navigation with params
+            click={()=>goToDetails(singleSpending)} />)//enables navigation with params
     };
     return (
         <View style={{flex:1}}>
             <FlatList 
                 data={spendings} 
                 keyExtractor={(element:spending)=>((spendings.indexOf(element)).toString())} 
-                renderItem={(singleSpending:any)=>SpendingInterface(singleSpending,spendings.indexOf(singleSpending.item))}
+                renderItem={(singleSpending:any)=>SpendingInterface(singleSpending.item)}
                 />
         </View>
         
