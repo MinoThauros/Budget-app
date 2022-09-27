@@ -25,7 +25,6 @@ export class HTTPInterface{
                     category:data[key].category,
                     title:data[key].title
                 };
-                console.log(expenseObj)
                 expenses.push(expenseObj);
             }
             
@@ -40,7 +39,6 @@ export class HTTPInterface{
     async deleteExpense(id:string) {
         try{
             const response=await axios.delete('https://bgetapp-default-rtdb.firebaseio.com/expenses'+`/${id}.json`)
-            console.log('deleting items API level')
             return response
 
         }

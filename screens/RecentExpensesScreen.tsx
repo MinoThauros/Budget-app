@@ -16,7 +16,6 @@ const RecentExpenses=({navigation,route}:any)=>{
     const Overlay=useContext(OverlayContext);
     const visible:boolean=Overlay.visible;//binding the state to local variables
     const [total,setTotal]=useState(0 as number);
-    const [APIspending,setAPIspending]=useState([] as spending[])
     const tempSpending=spendings.slice(0,5);
     const retrieveTotal=()=>{
         let sum:number=0;//get the latest value of the state

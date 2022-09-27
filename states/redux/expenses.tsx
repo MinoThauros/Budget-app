@@ -16,11 +16,9 @@ const expensesSlice=createSlice({
         },
         addSpending:(state,action)=>{
             state.expenses.unshift(action.payload.element)
-            console.log('newly added element:',action.payload.element)
         },//stack-like behavior
         deleteSpending:(state,action)=>{
             state.expenses=state.expenses.filter(obj=>obj.id!=action.payload.element.id)
-            console.log('deleting REDUX level:',action.payload.element)
         },
         editSpending:(state,action)=>{
             const index=state.expenses.indexOf(action.payload.element);

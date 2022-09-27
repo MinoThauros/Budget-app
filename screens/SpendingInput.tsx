@@ -21,8 +21,8 @@ const SpendingInput=()=>{
 
   const addSpending=async (newSpending:spending)=>{
     const responseID:string=await storeExpense(newSpending)
+    //add spinner here as we're waiting for async operation to finish
     dispatch(AddSpending({element:{...newSpending,id:responseID}}))
-    console.log('tryna add',responseID)
     
   };
  
