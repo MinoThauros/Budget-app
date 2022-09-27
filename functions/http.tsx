@@ -40,7 +40,7 @@ export class HTTPInterface{
     async deleteExpense(id:string) {
         try{
             const response=await axios.delete('https://bgetapp-default-rtdb.firebaseio.com/expenses'+`/${id}.json`)
-            console.log('deleting items')
+            console.log('deleting items API level')
             return response
 
         }

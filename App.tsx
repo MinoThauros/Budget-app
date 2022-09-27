@@ -100,10 +100,7 @@ const styles = StyleSheet.create({
 
 /**
  * todo: 
-    //create a light wrapper which makes an API call and fetches data from firebase
-  +RECEIVING
-    //-->what we display is the response of the API call + redux content which should dynamically change
-  +SENDING:
-    //-->submit button should incorporate post API call as well: a) post api call will give id b)save item in context with id
+PROBLEM: when API call data and redux are competely separated, delete only deletes redux and then 
+API data but components interact with the copies of those, making the copies immutable
 
  */

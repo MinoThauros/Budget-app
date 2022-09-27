@@ -12,7 +12,6 @@ const {deleteExpense}=new HTTPInterface()
 const SpendingDetailsComponent=({navigation,route}:any)=>{
     //handle deletion of spending; keep the deletion function here
     const dispatch=useDispatch();
-    const [change,setChange]=useState(false);
     const spending=route.params.Spending;
     
         
@@ -21,10 +20,6 @@ const SpendingDetailsComponent=({navigation,route}:any)=>{
         deleteExpense(spending.id)
         navigation.goBack()
     };
-
-    useEffect(()=>{
-        setChange(true)
-    },[spending])
 
     const editSpending=(newSpending:spending)=>{
         dispatch(EditSpending({element:spending,newElement:newSpending}))

@@ -17,19 +17,7 @@ const RecentExpenses=({navigation,route}:any)=>{
     const visible:boolean=Overlay.visible;//binding the state to local variables
     const [total,setTotal]=useState(0 as number);
     const [APIspending,setAPIspending]=useState([] as spending[])
-
-    useEffect(()=>{
-        const APIspendings=async ()=>{
-            return await getExpenses()
-        };
-        APIspendings().then(
-            (spendings)=>setAPIspending(spendings)
-        )
-    },[])
-
-    const AllSpendings:spending[]=[...spendings,...APIspending]
-    const tempSpending=AllSpendings.slice(0,5);
-
+    const tempSpending=spendings.slice(0,5);
     const retrieveTotal=()=>{
         let sum:number=0;//get the latest value of the state
         for (var spending of tempSpending){//of returns the element; for...in the index

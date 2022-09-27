@@ -20,8 +20,10 @@ const SpendingInput=()=>{
   const dispatch=useDispatch();
 
   const addSpending=async (newSpending:spending)=>{
-    const responseID=await storeExpense(newSpending)
-    dispatch(AddSpending({element:newSpending,id:responseID}))
+    const responseID:string=await storeExpense(newSpending)
+    dispatch(AddSpending({element:{...newSpending,id:responseID}}))
+    console.log('tryna add',responseID)
+    
   };
  
   const SpendingCard=({onPress}:any):JSX.Element=>{
