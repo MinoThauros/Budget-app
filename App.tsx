@@ -93,10 +93,3 @@ const styles = StyleSheet.create({
     flexDirection:'column-reverse'
   }
 });
-
-/**
- * todo: 
-PROBLEM: when API call data and redux are competely separated, delete only deletes redux and then 
-API data but components interact with the copies of those, making the copies immutable
-
- */
