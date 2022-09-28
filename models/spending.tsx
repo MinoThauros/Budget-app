@@ -32,9 +32,4 @@ export class spending {
         this.title=title
     }
 
-}//only way to change the propriety of a spending is through constructor
-
-
-/**To-do:
- * -> create enum so that the 
- */
+}

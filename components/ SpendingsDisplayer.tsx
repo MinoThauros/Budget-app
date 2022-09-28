@@ -3,7 +3,6 @@ import { spending } from "../models/spending";
 
 
 const SpendingsDisplayer=({title,price,date,click}:any):JSX.Element=>{
-    //upgrade function so it can handle a list of spendings
     const SingleSpendingDisplayer=({spendingInfo}:any):JSX.Element=>{
         const {title, price, date}=spendingInfo;
         return (

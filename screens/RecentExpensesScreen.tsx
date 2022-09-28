@@ -11,15 +11,14 @@ import { HTTPInterface } from '../functions/http';
 
 const {storeExpense,getExpenses}= new HTTPInterface()
 const RecentExpenses=({navigation,route}:any)=>{
-    //initializing the store from within the component
     const spendings=useSelector((states:any)=>states.ExpenseReducer.expenses);
     const Overlay=useContext(OverlayContext);
-    const visible:boolean=Overlay.visible;//binding the state to local variables
+    const visible:boolean=Overlay.visible;
     const [total,setTotal]=useState(0 as number);
     const tempSpending=spendings.slice(0,5);
     const retrieveTotal=()=>{
-        let sum:number=0;//get the latest value of the state
-        for (var spending of tempSpending){//of returns the element; for...in the index
+        let sum:number=0;
+        for (var spending of tempSpending){
             sum=Number(sum)+Number(spending.price)
         };
         return sum
@@ -28,7 +27,7 @@ const RecentExpenses=({navigation,route}:any)=>{
 
 
     useEffect(()=>{
-        setTotal(()=>retrieveTotal())//dynamically refreshes spendings
+        setTotal(()=>retrieveTotal())
         },[spendings,visible]);
 
     return (

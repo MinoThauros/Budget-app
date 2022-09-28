@@ -13,27 +13,20 @@ import { useDispatch } from "react-redux";
 const DisplaySpendings=({spendings}:any)=>{
     const dispatch=useDispatch()
     const navigation:any=useNavigation();
-    async function getSpendings(){
-        const {getExpenses}=new HTTPInterface()
-        const expenses=await getExpenses()
-        return expenses
-    }
-    
-
-    const goToDetails=(spending:spending)=>{
+const goToDetails=(spending:spending)=>{
         navigation.navigate('Details',{
             Spending:spending})};
             
 
     const SpendingInterface=(singleSpending:any):JSX.Element=>{
-        const item:spending={...singleSpending};//object deconstruction
+        const item:spending={...singleSpending};
 
         return (
         <SpendingsDisplayer 
             price={item.price} 
             title={item.title} 
             date={item.date} 
-            click={()=>goToDetails(singleSpending)} />)//enables navigation with params
+            click={()=>goToDetails(singleSpending)} />)
     };
     return (
         <View style={{flex:1}}>

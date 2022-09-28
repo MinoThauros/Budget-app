@@ -24,11 +24,7 @@ export default function App() {
 
   
   const Overlay=useContext(OverlayContext);
-  const visible:boolean=Overlay.visible;//binding the state to local variables
 
-
-//this context needs to work in tandem with add button
-  
   return (
 
     <OverlayToggleContextProvider>

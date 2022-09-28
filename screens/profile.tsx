@@ -4,7 +4,6 @@ const Profile=({navigation,route}:any)=>{
 
     const button=()=>{
         navigation.navigate('Recent expenses');
-        
 
     }
 

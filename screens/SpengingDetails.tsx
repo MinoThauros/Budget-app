@@ -10,7 +10,6 @@ import { HTTPInterface } from "../functions/http";
 const {deleteExpense}=new HTTPInterface()
 
 const SpendingDetailsComponent=({navigation,route}:any)=>{
-    //handle deletion of spending; keep the deletion function here
     const dispatch=useDispatch();
     const spending=route.params.Spending;
     
@@ -32,7 +31,7 @@ const SpendingDetailsComponent=({navigation,route}:any)=>{
         </View>
             
         )
-        if (!spending){//think about this
+        if (!spending){
             Details=(
                 <View style={{flex:1}}>
                     <Text>Deleted Spending</Text>
