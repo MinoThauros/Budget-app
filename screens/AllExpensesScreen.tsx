@@ -14,9 +14,9 @@ import { useGetExpenses } from "../Hooks/ReactQ";
 const {storeExpense,getExpenses}= new HTTPInterface()
 
 const AllExpenses=({navigation,route}:any)=>{
-    //const [DoneLoading,setDoneLoading]=useState(false) no longer needed as we use react-query to sync query and states
+    const [DoneLoading,setDoneLoading]=useState(false) //no longer needed as we use react-query to sync query and states
     const dispatch=useDispatch()
-    /**
+    
     useEffect(()=>{
 
         const APIspendings=async ()=>{
@@ -29,24 +29,38 @@ const AllExpenses=({navigation,route}:any)=>{
                     dispatch(InitializeSpending({incomingElements:spendings}))})
             .catch((error)=>console.log(error))
     },[])
-     */
+     
+
+    
+    
 
     const onSuccess:({data}:{data:spending[]})=>void=()=>{
         //setDoneLoading(true)
-        dispatch(InitializeSpending({incomingElements:data}))
-    }
-    const {data,isLoading,error}=useGetExpenses({onSuccess})
 
-    const spendings=useSelector((states:any)=>states.ExpenseReducer.expenses);
+       // dispatch(InitializeSpending({incomingElements:data}))
+        
+    }
+    //const {data,isLoading,error}=useGetExpenses({onSuccess})
+
+    const spendings=useSelector((states:any)=>states.ExpenseReducer.expenses) as spending[];
+
+    /*
+    
+    */
 
     const ContentManager=()=>{
+        /*
+        if (error){
+            return (
+            <View><Text>Error at Content Manager</Text></View>)
+        }
         if (isLoading){
             return <LoadingOvelay/>
         }
-        if (error){
-            return (
-            <View><Text>{error}</Text></View>)
-        }
+        */
+        if(!DoneLoading)
+         {return <LoadingOvelay/>}
+        
         return <View style={{flex:1}}><DisplaySpendings spendings={spendings}/></View>
 
     }

@@ -27,7 +27,7 @@ export class HTTPInterface{
                 };
                 expenses.push(expenseObj);
             }
-            console.log('expenses are',[...expenses])
+            //console.log('expenses are',[...expenses])
             
         }
         catch(err:any){
