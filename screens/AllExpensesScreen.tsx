@@ -14,7 +14,7 @@ import { useGetExpenses } from "../Hooks/ReactQ";
 const {storeExpense,getExpenses}= new HTTPInterface()
 
 const AllExpenses=({navigation,route}:any)=>{
-    //const [DoneLoading,setDoneLoading]=useState(false)
+    //const [DoneLoading,setDoneLoading]=useState(false) no longer needed as we use react-query to sync query and states
     const dispatch=useDispatch()
     /**
     useEffect(()=>{
@@ -37,6 +37,8 @@ const AllExpenses=({navigation,route}:any)=>{
     }
     const {data,isLoading,error}=useGetExpenses({onSuccess})
 
+    const spendings=useSelector((states:any)=>states.ExpenseReducer.expenses);
+
     const ContentManager=()=>{
         if (isLoading){
             return <LoadingOvelay/>
@@ -45,12 +47,12 @@ const AllExpenses=({navigation,route}:any)=>{
             return (
             <View><Text>{error}</Text></View>)
         }
-        return <View style={{flex:1}}><DisplaySpendings spendings={data}/></View>
+        return <View style={{flex:1}}><DisplaySpendings spendings={spendings}/></View>
 
     }
     
 
-    const spendings=useSelector((states:any)=>states.ExpenseReducer.expenses);
+    
 
     return <ContentManager/>
 }

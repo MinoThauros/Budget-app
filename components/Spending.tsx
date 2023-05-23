@@ -1,6 +1,6 @@
 import { View,Text, StyleSheet,Button } from "react-native"
 import { spending } from '../models/spending';
-const Spending=({spending,Delete,Edit}:{spending:spending,Delete:any,Edit:any})=>{
+const Spending=({spending,Delete,Edit}:{spending:spending,Delete:()=>void,Edit:()=>void})=>{
     const {title,date,price,category}=spending;
     return(
         <View style={styles.overallContainer}>
