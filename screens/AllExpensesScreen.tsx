@@ -9,7 +9,6 @@ import { spending } from "../models/spending";
 import { InitializeSpending } from "../states/redux/expenses";
 import { useDispatch } from "react-redux";
 import LoadingOvelay from "../components/LoadingOverlay";
-import { useGetExpenses } from "../Hooks/ReactQ";
 
 const {storeExpense,getExpenses}= new HTTPInterface()
 
@@ -32,32 +31,12 @@ const AllExpenses=({navigation,route}:any)=>{
      
 
     
-    
 
-    const onSuccess:({data}:{data:spending[]})=>void=()=>{
-        //setDoneLoading(true)
-
-       // dispatch(InitializeSpending({incomingElements:data}))
-        
-    }
-    //const {data,isLoading,error}=useGetExpenses({onSuccess})
 
     const spendings=useSelector((states:any)=>states.ExpenseReducer.expenses) as spending[];
 
-    /*
-    
-    */
-
     const ContentManager=()=>{
-        /*
-        if (error){
-            return (
-            <View><Text>Error at Content Manager</Text></View>)
-        }
-        if (isLoading){
-            return <LoadingOvelay/>
-        }
-        */
+
         if(!DoneLoading)
          {return <LoadingOvelay/>}
         

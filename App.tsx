@@ -15,6 +15,7 @@ import { OverlayContext } from './states/context/InputOverlayContext';
 import SpendingInput from './screens/SpendingInput'; 
 import SpendingDetailsComponent from './screens/SpengingDetails';
 import { QueryClientProvider, QueryClient} from '@tanstack/react-query';
+import AllExpensesReactQuery from './screens/AllExpensesReactQuery';
 
 const queryClient = new QueryClient();
 const Tab = createBottomTabNavigator();
@@ -36,7 +37,9 @@ export default function App() {
         <SpendingInput/>
       </KeyboardAvoidingView>
         <NavigationContainer>
-          <Tab.Navigator screenOptions={{
+          <Tab.Navigator 
+          initialRouteName='AllExpensesReactQuery'
+          screenOptions={{
             headerRight:({color,size}:any)=> <HeaderButton size={30}/>
             }}>            
             <Tab.Screen 
@@ -44,10 +47,13 @@ export default function App() {
               component={AllExpenses}
               options={{
                 tabBarIcon: ({color,size}:any)=>(<Ionicons name="cash-outline" color={color} size={size}/>)
-              }}
-              
-              
-              />
+              }}/>
+            <Tab.Screen
+              name="AllExpensesReactQuery"
+              component={AllExpensesReactQuery}
+              options={{
+                tabBarIcon: ({color,size}:any)=>(<Ionicons name="stop" color={color} size={size}/>)
+              }}/>
             <Tab.Screen 
               name="Recent expenses" 
               component={RecentExpenses}
@@ -68,6 +74,8 @@ export default function App() {
               options={{
                 tabBarButton: () => null
               }}/>
+
+            
 
             
 
