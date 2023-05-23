@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import { FlatList,View } from "react-native";
 import SpendingsDisplayer from "./ SpendingsDisplayer";
 import { spending } from "../models/spending";
-import { HTTPInterface } from "../functions/http";
+import { HTTPInterface } from "../API/http";
 import { useEffect} from "react";
 import { useDispatch } from "react-redux";
 //import { SetSpending } from "../states/redux/expenses";
@@ -13,7 +13,7 @@ import { useDispatch } from "react-redux";
 const DisplaySpendings=({spendings}:any)=>{
     const dispatch=useDispatch()
     const navigation:any=useNavigation();
-const goToDetails=(spending:spending)=>{
+    const goToDetails=(spending:spending)=>{
         navigation.navigate('Details',{
             Spending:spending})};
             

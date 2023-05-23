@@ -4,13 +4,6 @@ import { StyleSheet } from 'react-native';
 
 
 const LastDaysTotal=({total}:{total:number}):JSX.Element=>{
-    //have a total and display it
-
-    
-
-
-    
-
     const LastDaysDisplay=():JSX.Element=>{
 
         return (

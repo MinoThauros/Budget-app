@@ -4,7 +4,7 @@ import { spending } from '../models/spending';
 import Spending from "../components/Spending";
 import { DeleteSpending,EditSpending } from "../states/redux/expenses";
 import { useState, useEffect } from 'react';
-import { HTTPInterface } from "../functions/http";
+import { HTTPInterface } from "../API/http";
 
 
 const {deleteExpense}=new HTTPInterface()

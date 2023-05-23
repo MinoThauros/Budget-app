@@ -5,8 +5,8 @@ import { useContext } from "react";
 import { spending } from '../models/spending';
 import { useSelector,useDispatch } from "react-redux";
 import { AddSpending} from '../states/redux/expenses';
-import { Validator } from '../functions/validator';
-import { HTTPInterface } from '../functions/http';
+import { Validator } from '../API/validator';
+import { HTTPInterface } from '../API/http';
 
 const {storeExpense}=new HTTPInterface()
 

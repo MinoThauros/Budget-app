@@ -14,8 +14,9 @@ import { useContext } from "react";
 import { OverlayContext } from './states/context/InputOverlayContext';
 import SpendingInput from './screens/SpendingInput'; 
 import SpendingDetailsComponent from './screens/SpengingDetails';
+import { QueryClientProvider, QueryClient} from '@tanstack/react-query';
 
-
+const queryClient = new QueryClient();
 const Tab = createBottomTabNavigator();
 
 
@@ -27,6 +28,8 @@ export default function App() {
 
   return (
 
+
+  <QueryClientProvider client={queryClient}>
     <OverlayToggleContextProvider>
       <Provider store={store}>
       <KeyboardAvoidingView>
@@ -75,7 +78,8 @@ export default function App() {
         </NavigationContainer>
       </Provider>
     </OverlayToggleContextProvider>
-  );
+  </QueryClientProvider>
+   );
 }
 
 const styles = StyleSheet.create({
