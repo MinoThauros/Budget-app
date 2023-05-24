@@ -1,6 +1,18 @@
 import axios from 'axios'
 import { spending } from '../models/spending';
 
+/*
+Firebase rules have to be:
+
+{
+  "rules": {
+    ".read": true,
+    ".write": true,
+  }
+}
+
+*/
+
 export class HTTPInterface{
     readonly rootApi:string='https://bgetapp-default-rtdb.firebaseio.com/';
     readonly expenseNode:string='expenses.json';

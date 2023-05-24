@@ -7,8 +7,7 @@ const {storeExpense, getExpenses} = new HTTPInterface();
 
 export const useGetExpenses = ({onSuccess}:{onSuccess:({data}:{data:spending[]})=>void}) => {
       return useQuery(['expenses'], getExpenses,{
-         onSuccess:(data)=>{
-            console.log('data is at on Success',data)            
+         onSuccess:(data)=>{           
             onSuccess({data})},//run provided callback
 
       });

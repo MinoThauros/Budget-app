@@ -15,7 +15,7 @@ import { OverlayContext } from './states/context/InputOverlayContext';
 import SpendingInput from './screens/SpendingInput'; 
 import SpendingDetailsComponent from './screens/SpengingDetails';
 import { QueryClientProvider, QueryClient} from '@tanstack/react-query';
-import AllExpensesReactQuery from './screens/AllExpensesReactQuery';
+import AllExpensesReactQuery from './ReactQ_screens/AllExpensesReactQuery';
 
 const queryClient = new QueryClient();
 const Tab = createBottomTabNavigator();
