@@ -58,18 +58,18 @@ export const useDeleteExpense = ({onSuccess,queryClient}:useMutationProps) => {
             onSuccess: (data) => onSuccess({data} as any),
             onMutate: async (id:string) => {
                         
-                        // Cancel any outgoing refetches
-                        // (so they don't overwrite our optimistic update)
-                        await queryClient.cancelQueries(['expenses']);
-      
-                        // Snapshot the previous value
-                        const previousSpendings = queryClient.getQueryData(['expenses']) as spending[];
-      
-                        // Optimistically update to the new value
-                        queryClient.setQueryData(['expenses'], (old? :spending[]) => old ? old.filter((expense:spending)=>expense.id!==id): []as spending[]);
-      
-                        // Return a context object with the snapshotted value
-                        return { previousSpendings };
+                  // Cancel any outgoing refetches
+                  // (so they don't overwrite our optimistic update)
+                  await queryClient.cancelQueries(['expenses']);
+
+                  // Snapshot the previous value
+                  const previousSpendings = queryClient.getQueryData(['expenses']) as spending[];
+
+                  // Optimistically update to the new value
+                  queryClient.setQueryData(['expenses'], (old? :spending[]) => old ? old.filter((expense:spending)=>expense.id!==id): []as spending[]);
+
+                  // Return a context object with the snapshotted value
+                  return { previousSpendings };
             },
             onError(error, variables, context) {
                   // Rollback the optimistic update
@@ -79,6 +79,36 @@ export const useDeleteExpense = ({onSuccess,queryClient}:useMutationProps) => {
                   queryClient.invalidateQueries(['expenses'])
             }
       })
+}
+
+export const useUpdateExpense = ({onSuccess,queryClient}:useMutationProps) => {
+      return useMutation(updateExpense,{
+            onSuccess: (data) => onSuccess({data} as {data:spending[]}),
+            onMutate: async ({id,updatedExpense}:{id:string,updatedExpense:spending}) => {
+                  // Cancel any outgoing refetches
+                  // (so they don't overwrite our optimistic update)
+                  await queryClient.cancelQueries(['expenses']);
+
+                  // Snapshot the previous value
+                  const previousSpendings = queryClient.getQueryData(['expenses']) as spending[];
+
+                  // Optimistically update to the new value
+                  queryClient.setQueryData(['expenses'], (old? :spending[]) => old ? old.map((expense:spending)=>expense.id===id?updatedExpense:expense): []as spending[]);
+
+                  // Return a context object with the snapshotted value 
+                  return { previousSpendings };
+            },
+            onError(error, variables, context) {
+                  // Rollback the optimistic update
+                  queryClient.setQueryData(['expenses'], context?.previousSpendings??[] as spending[]);
+                  
+
+            },onSettled: () => {
+                  queryClient.invalidateQueries(['expenses'])
+
+            }  
+      })
+
 }
 
 

@@ -66,7 +66,7 @@ export class HTTPInterface{
         
     }
 
-    async updateExpense(id:string,updatedExpense:spending){
+    async updateExpense({id,updatedExpense}:{id:string,updatedExpense:spending}){
         try{
             const response=await axios.put('https://bgetapp-default-rtdb.firebaseio.com/expenses'+`/${id}.json`,updatedExpense)
             return response

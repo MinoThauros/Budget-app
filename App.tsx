@@ -16,6 +16,7 @@ import SpendingInput from './screens/SpendingInput';
 import SpendingDetailsComponent from './screens/SpengingDetails';
 import { QueryClientProvider, QueryClient} from '@tanstack/react-query';
 import AllExpensesReactQuery from './ReactQ_screens/AllExpensesReactQuery';
+import EditItem from './screens/EditItem';
 
 const queryClient = new QueryClient();
 const Tab = createBottomTabNavigator();
@@ -74,7 +75,13 @@ export default function App() {
               options={{
                 tabBarButton: () => null
               }}/>
-
+            
+            <Tab.Screen
+              name="EditItem"
+              component={EditItem}
+              options={{
+                tabBarButton: () => null
+              }}/>
             
 
             

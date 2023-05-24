@@ -16,6 +16,7 @@ const DisplaySpendings=({spendings}:any)=>{
     const goToDetails=(spending:spending)=>{
         navigation.navigate('Details',{
             Spending:spending})};
+            //we'll use this function to navigate to the details screen
             
 
     const SpendingInterface=(singleSpending:any):JSX.Element=>{
