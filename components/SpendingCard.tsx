@@ -18,10 +18,10 @@ const SpendingCard = ({initialValues,confirm,optionalButton,id}:SpendingCardProp
     const {wordValidator,numValidator}=new Validator()
 
     const ValidativeForm=():JSX.Element=>{
-        const [amount,setAmount]=useState(Number);
-        const [category,setCategory]=useState('');
-        const [date, setDate]=useState('');
-        const [title,setTitle]=useState('');
+        const [amount,setAmount]=useState(initialValues?.price??Number);
+        const [category,setCategory]=useState(initialValues?.category??'');
+        const [date, setDate]=useState(initialValues?.date??'');
+        const [title,setTitle]=useState(initialValues?.title??'');
 
         const [warnings,setWarnings]=useState({
             amountWarning:<></>,
@@ -56,15 +56,15 @@ const SpendingCard = ({initialValues,confirm,optionalButton,id}:SpendingCardProp
                         {warnings.titleWarning}
                         <TextInput 
                             style={styles.textInputA}
-                            onChangeText={newText=>newText ? setTitle(newText):setTitle(initialValues?.title??'')}
-                            defaultValue={initialValues?.title??''}/>
+                            onChangeText={setTitle}
+                            defaultValue={initialValues?.title}/>
                     </View>
                     <View>
                         <Text style={styles.titles}>Amount: </Text>
                         {warnings.amountWarning}
                         <TextInput 
                             style={styles.textInputA}
-                            onChangeText={newText=>newText ? setAmount(parseInt(newText)):setAmount(initialValues?.price??'')}
+                            onChangeText={newText=>setAmount(parseInt(newText))}
                             value={amount.toString()}
                             keyboardType='numeric'
                             defaultValue={initialValues?.price??''}
@@ -74,7 +74,7 @@ const SpendingCard = ({initialValues,confirm,optionalButton,id}:SpendingCardProp
                         <Text style={styles.titles}>Category: </Text>
                         {warnings.categoryWarning}
                         <TextInput
-                            onChangeText={newText=>newText ? setCategory(newText):setCategory(initialValues?.category??'')} 
+                            onChangeText={setCategory} 
                             style={styles.textInputA}
                             value={category}
                             defaultValue={initialValues?.category??''}
@@ -84,7 +84,7 @@ const SpendingCard = ({initialValues,confirm,optionalButton,id}:SpendingCardProp
                         <Text style={styles.titles}>Date: </Text>
                         {warnings.dateWarning}
                         <TextInput
-                            onChangeText={newText=>newText ? setDate(newText):setDate(initialValues?.date??'')}
+                            onChangeText={setDate}
                             style={styles.textInputA}
                             value={date}
                             autoCorrect={false}

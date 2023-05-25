@@ -17,6 +17,7 @@ import SpendingDetailsComponent from './screens/SpengingDetails';
 import { QueryClientProvider, QueryClient} from '@tanstack/react-query';
 import AllExpensesReactQuery from './ReactQ_screens/AllExpensesReactQuery';
 import EditItem from './screens/EditItem';
+import SpendingInputReactQ from './ReactQ_screens/SpendingInputReactQ';
 
 const queryClient = new QueryClient();
 const Tab = createBottomTabNavigator();
@@ -36,6 +37,7 @@ export default function App() {
       <Provider store={store}>
       <KeyboardAvoidingView>
         <SpendingInput/>
+        <SpendingInputReactQ/>
       </KeyboardAvoidingView>
         <NavigationContainer>
           <Tab.Navigator 
