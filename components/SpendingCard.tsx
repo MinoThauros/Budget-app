@@ -11,7 +11,12 @@ type SpendingCardProps={
 
 }
 
-
+/**
+ * Function which creates a multi-input form for editing or creating a spending
+ * Passes fields to the confirm function
+ * @param param0 
+ * @returns 
+ */
 const SpendingCard = ({initialValues,confirm,optionalButton,id}:SpendingCardProps) => {
 
   
@@ -67,7 +72,7 @@ const SpendingCard = ({initialValues,confirm,optionalButton,id}:SpendingCardProp
                             onChangeText={newText=>setAmount(parseInt(newText))}
                             value={amount.toString()}
                             keyboardType='numeric'
-                            defaultValue={initialValues?.price??''}
+                            defaultValue={initialValues?.price??{}as number}
                             />
                     </View>
                     <View>

@@ -12,7 +12,15 @@ import { useGetExpenses } from "../Hooks/ReactQ";
 
 const {storeExpense,getExpenses}= new HTTPInterface()
 const RecentExpenses=({navigation,route}:any)=>{
-    const spendings=useSelector((states:any)=>states.ExpenseReducer.expenses) as spending[] | undefined;
+    //const spendings=useSelector((states:any)=>states.ExpenseReducer.expenses) as spending[] | undefined;
+    //the redux store used to be the source of truth for the expenses, but now we'll use react-query (see above)
+    const {isLoading,error,data:spendings}=useGetExpenses({
+        onSuccess:({data})=>{
+            //bind the query to the redux store
+            //dispatch(InitializeSpending({incomingElements:data}))
+            console.log(data)
+        }
+    });
     const Overlay=useContext(OverlayContext);
     const visible:boolean=Overlay.visible;
     const [total,setTotal]=useState(0 as number);
@@ -31,12 +39,6 @@ const RecentExpenses=({navigation,route}:any)=>{
         return sum
     };
     
-    /////
-  
-
-    
-
-
     useEffect(()=>{
         setTotal(tempSpending.length ? ()=>retrieveTotal(): 0)//if tempSpending is empty, set total to 0
         },[spendings,visible]);

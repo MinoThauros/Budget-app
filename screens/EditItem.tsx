@@ -18,7 +18,7 @@ const EditItem = () => {
     }
     return (
         <View>
-            <SpendingCard confirm={editItem} optionalButton={cancelSubmit}/>
+            <Text>Edit Item</Text>
         </View>
         
     )

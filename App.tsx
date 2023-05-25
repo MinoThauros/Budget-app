@@ -84,7 +84,7 @@ export default function App() {
               }}/>
             
             <Tab.Screen
-              name="EditItem"
+              name="EditSpending"
               component={EditItem}
               options={{
                 tabBarButton: () => null
