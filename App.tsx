@@ -44,13 +44,17 @@ export default function App() {
           initialRouteName='AllExpensesReactQuery'
           screenOptions={{
             headerRight:({color,size}:any)=> <HeaderButton size={30}/>
-            }}>            
+            }}>
+            {/*
+            
             <Tab.Screen 
               name="All Expenses" 
               component={AllExpenses}
               options={{
                 tabBarIcon: ({color,size}:any)=>(<Ionicons name="cash-outline" color={color} size={size}/>)
               }}/>
+            */}            
+            
             <Tab.Screen
               name="AllExpensesReactQuery"
               component={AllExpensesReactQuery}

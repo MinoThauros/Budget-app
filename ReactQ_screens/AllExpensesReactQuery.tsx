@@ -30,7 +30,7 @@ import LoadingOvelay from '../components/LoadingOverlay';
 //*And finally an EditItem component that uses react query mutations for update actions*
 const AllExpensesReactQuery = () => {
     const dispatch=useDispatch();
-    const {isLoading,error}=useGetExpenses({
+    const {isLoading,error,data}=useGetExpenses({
         onSuccess:({data})=>{
             //bind the query to the redux store
             dispatch(InitializeSpending({incomingElements:data}))
@@ -44,7 +44,7 @@ const AllExpensesReactQuery = () => {
         if(error){
             return <Text>{{...error} as any}</Text>
         }
-        return <DisplaySpendings spendings={expenses}/>
+        return <DisplaySpendings spendings={data}/>
 
     }
 

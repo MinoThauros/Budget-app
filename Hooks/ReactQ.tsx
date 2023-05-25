@@ -26,16 +26,12 @@ export const useStoreExpense = ({onSuccess,queryClient}:useMutationProps) => {
                   console.log(data)
                   onSuccess({data})},
             onMutate: async (newSpending:spending) => {
-
-                  console.log('new spending is',newSpending)
-
                   // Cancel any outgoing refetches
                   // (so they don't overwrite our optimistic update)
                   await queryClient.cancelQueries({queryKey: ['expenses']});
 
                   // Snapshot the previous value
                   const previousSpendings = queryClient.getQueryData(['expenses']) as spending[];
-                  console.log('previous spendings are',previousSpendings)
 
                   // Optimistically update to the new value
                   queryClient.setQueryData(['expenses'], (old:any) => [...old, newSpending] as spending[]);

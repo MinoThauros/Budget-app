@@ -17,8 +17,6 @@ const SpendingDetailsReactQ = ({navigation,route}:any) => {
     const queryClient = useQueryClient();
 
     const {mutate:deleteItem,error:deleteError,isSuccess:deleteSuccess}=useDeleteExpense({onSuccess,queryClient});
-     
-    const {mutate:updateItem,error:putError,isSuccess:putSuccess}=useUpdateExpense({onSuccess,queryClient});
 
 
     const deleteSpending= ()=>{
