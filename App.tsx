@@ -15,7 +15,10 @@ import { OverlayContext } from './states/context/InputOverlayContext';
 import SpendingInput from './screens/SpendingInput'; 
 import SpendingDetailsComponent from './screens/SpengingDetails';
 import { QueryClientProvider, QueryClient} from '@tanstack/react-query';
-import AllExpensesReactQuery from './screens/AllExpensesReactQuery';
+import AllExpensesReactQuery from './ReactQ_screens/AllExpensesReactQuery';
+import EditItem from './screens/EditItem';
+import SpendingInputReactQ from './ReactQ_screens/SpendingInputReactQ';
+import SpendingDetailsReactQ from './ReactQ_screens/SpendingDetailsReactQ';
 
 const queryClient = new QueryClient();
 const Tab = createBottomTabNavigator();
@@ -35,19 +38,24 @@ export default function App() {
       <Provider store={store}>
       <KeyboardAvoidingView>
         <SpendingInput/>
+        <SpendingInputReactQ/>
       </KeyboardAvoidingView>
         <NavigationContainer>
           <Tab.Navigator 
           initialRouteName='AllExpensesReactQuery'
           screenOptions={{
             headerRight:({color,size}:any)=> <HeaderButton size={30}/>
-            }}>            
+            }}>
+            {/*
+            
             <Tab.Screen 
               name="All Expenses" 
               component={AllExpenses}
               options={{
                 tabBarIcon: ({color,size}:any)=>(<Ionicons name="cash-outline" color={color} size={size}/>)
               }}/>
+            */}            
+            
             <Tab.Screen
               name="AllExpensesReactQuery"
               component={AllExpensesReactQuery}
@@ -74,7 +82,22 @@ export default function App() {
               options={{
                 tabBarButton: () => null
               }}/>
+            
+            <Tab.Screen
+              name="EditSpending"
+              component={EditItem}
+              options={{
+                tabBarButton: () => null
+              }}/>
 
+            <Tab.Screen
+              name="SpendingDetailsReactQ"
+              component={SpendingDetailsReactQ}
+              options={{
+                tabBarButton: () => null
+              }}/>
+
+            
             
 
             

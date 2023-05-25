@@ -1,6 +1,18 @@
 import axios from 'axios'
 import { spending } from '../models/spending';
 
+/*
+Firebase rules have to be:
+
+{
+  "rules": {
+    ".read": true,
+    ".write": true,
+  }
+}
+
+*/
+
 export class HTTPInterface{
     readonly rootApi:string='https://bgetapp-default-rtdb.firebaseio.com/';
     readonly expenseNode:string='expenses.json';
@@ -48,9 +60,20 @@ export class HTTPInterface{
         }
         catch(err){
             console.log(err)
+            return err
 
         }
         
+    }
+
+    async updateExpense({id,updatedExpense}:{id:string,updatedExpense:spending}){
+        try{
+            const response=await axios.put('https://bgetapp-default-rtdb.firebaseio.com/expenses'+`/${id}.json`,updatedExpense)
+            return response
+        }catch(err){
+            console.log(err)
+            return err
+        }
     }
 
 }

@@ -115,7 +115,7 @@ const SpendingInput=()=>{
         <Modal 
             
             style={styles.overallView} 
-            visible={visible} 
+            visible={false} 
             animationType={'fade'}
             transparent={true}
             >

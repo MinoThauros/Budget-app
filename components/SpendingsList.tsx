@@ -11,14 +11,14 @@ import { useDispatch } from "react-redux";
 
 
 const DisplaySpendings=({spendings}:any)=>{
-    const dispatch=useDispatch()
     const navigation:any=useNavigation();
     const goToDetails=(spending:spending)=>{
-        navigation.navigate('Details',{
+        navigation.navigate('SpendingDetailsReactQ',{
             Spending:spending})};
+            //we'll use this function to navigate to the details screen
             
 
-    const SpendingInterface=(singleSpending:any):JSX.Element=>{
+    const SpendingDisplayerWrapper=(singleSpending:any):JSX.Element=>{
         const item:spending={...singleSpending};
 
         return (
@@ -33,7 +33,7 @@ const DisplaySpendings=({spendings}:any)=>{
             <FlatList 
                 data={spendings} 
                 keyExtractor={(element:spending)=>((spendings.indexOf(element)).toString())} 
-                renderItem={(singleSpending:any)=>SpendingInterface(singleSpending.item)}
+                renderItem={(singleSpending:any)=>SpendingDisplayerWrapper(singleSpending.item)}
                 />
         </View>
         
