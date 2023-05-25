@@ -18,6 +18,7 @@ import { QueryClientProvider, QueryClient} from '@tanstack/react-query';
 import AllExpensesReactQuery from './ReactQ_screens/AllExpensesReactQuery';
 import EditItem from './screens/EditItem';
 import SpendingInputReactQ from './ReactQ_screens/SpendingInputReactQ';
+import SpendingDetailsReactQ from './ReactQ_screens/SpendingDetailsReactQ';
 
 const queryClient = new QueryClient();
 const Tab = createBottomTabNavigator();
@@ -88,6 +89,15 @@ export default function App() {
               options={{
                 tabBarButton: () => null
               }}/>
+
+            <Tab.Screen
+              name="SpendingDetailsReactQ"
+              component={SpendingDetailsReactQ}
+              options={{
+                tabBarButton: () => null
+              }}/>
+
+            
             
 
             

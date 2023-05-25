@@ -6,70 +6,58 @@ import Spending from '../components/Spending';
 import { useNavigation } from '@react-navigation/native';
 
 const SpendingDetailsReactQ = ({navigation,route}:any) => {
-    const {spending}=route.params
-
-    const onSuccess=({data}:{data:spending[]})=>{
-        console.log(data)
-        navigation.goBack()
-
-    };
-
-    const queryClient = useQueryClient();
-
-    const {mutate:deleteItem,error:deleteError,isSuccess:deleteSuccess}=useDeleteExpense({onSuccess,queryClient});
-
-
-    const deleteSpending= ()=>{
-        return deleteItem(spending.id)
-    }
-    //will receive the item.id from this component
-    const EditSpending= ()=>{
-        //navigate to the other component while passing the item.id
-        //display that item in the other component
-        //update that item in the other component
-        //--> that component handles the update
-        navigation.navigate('EditItem',{
-            spending,
-        })
-
-
+        //useQueryClient  returns the same instance of queryClient
+        const queryClient = useQueryClient()
+        const spending=route.params.Spending;
+    
+        const deleteHandler=({data}:any)=>{
+            console.log(data)
+            navigation.goBack()
+    
+        }
+    
+        const {mutate:deleteItem,error:deleteError,isSuccess:deleteSuccess}=useDeleteExpense({onSuccess:deleteHandler,queryClient});
+    
         
-    }
+            
+        const deleteSpending=async ()=>{
+            /**
+            dispatch(DeleteSpending({element:spending}))
+            deleteExpense(spending.id)
+             */
+            console.log('deleting item#',spending.id)
+            return deleteItem(spending.id)
+        };
     
-
+        const editSpending=(newSpending:spending)=>{
+            //dispatch(EditSpending({element:spending,newElement:newSpending}))
+        }
     
-    const Content=()=>{
-        var Details:JSX.Element=(
-        <View>
-            <Spending spending={spending} Delete={deleteSpending} Edit={EditSpending}/>
-        </View>
+        const Content=()=>{
+            var Details:JSX.Element=(
+            <View>
+                <Spending spending={spending} Delete={deleteSpending} Edit={()=>{}}/>
+            </View>
+                
+            )
+            if (!spending){
+                Details=(
+                    <View style={{flex:1}}>
+                        <Text>Deleted Spending</Text>
+                    </View>
+                )
+            }
+            return Details
+        }
+        
+        return (
+            <View >
+                <Content/>
+            </View>
             
         )
-        if (deleteSuccess){
-            Details=(
-                <View style={{flex:1}}>
-                    <Text>Deleted Spending</Text>
-                </View>
-            )
-        }
-        if (deleteError){
-            Details=(
-                <View style={{flex:1}}>
-                    <Text>Deletion failed</Text>
-                </View>
-            )
-        }
-        
-        return Details
-    }
-
-    return (
-        <View >
-            <Content/>
-        </View>
-        
-    )
-}
+    
+    };
 
 
 export default SpendingDetailsReactQ

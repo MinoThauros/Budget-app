@@ -13,7 +13,7 @@ import { useDispatch } from "react-redux";
 const DisplaySpendings=({spendings}:any)=>{
     const navigation:any=useNavigation();
     const goToDetails=(spending:spending)=>{
-        navigation.navigate('Details',{
+        navigation.navigate('SpendingDetailsReactQ',{
             Spending:spending})};
             //we'll use this function to navigate to the details screen
             
