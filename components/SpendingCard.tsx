@@ -23,7 +23,7 @@ const SpendingCard = ({initialValues,confirm,optionalButton,id}:SpendingCardProp
     const {wordValidator,numValidator}=new Validator()
 
     const ValidativeForm=():JSX.Element=>{
-        const [amount,setAmount]=useState(initialValues?.price??Number);
+        const [amount,setAmount]=useState(initialValues?.price??'' as unknown as  number);
         const [category,setCategory]=useState(initialValues?.category??'');
         const [date, setDate]=useState(initialValues?.date??'');
         const [title,setTitle]=useState(initialValues?.title??'');
@@ -72,7 +72,7 @@ const SpendingCard = ({initialValues,confirm,optionalButton,id}:SpendingCardProp
                             onChangeText={newText=>setAmount(parseInt(newText))}
                             value={amount.toString()}
                             keyboardType='numeric'
-                            defaultValue={initialValues?.price??{}as number}
+                            defaultValue={initialValues?.price.toString()?? undefined}
                             />
                     </View>
                     <View>

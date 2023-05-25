@@ -23,7 +23,6 @@ export const useGetExpenses = ({onSuccess}:{onSuccess:({data}:{data:spending[]})
 export const useStoreExpense = ({onSuccess,queryClient}:useMutationProps) => {
       return useMutation(storeExpense,{
             onSuccess: (data) => {
-                  console.log(data)
                   onSuccess({data})},
             onMutate: async (newSpending:spending) => {
                   // Cancel any outgoing refetches
