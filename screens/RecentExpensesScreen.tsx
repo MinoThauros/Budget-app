@@ -1,4 +1,4 @@
-import {FlatList,View } from "react-native";
+import {FlatList,View, } from "react-native";
 import { spending } from '../models/spending';
 import { useSelector} from "react-redux";
 import SpendingsDisplayer from "../components/ SpendingsDisplayer";
@@ -18,7 +18,7 @@ const RecentExpenses=({navigation,route}:any)=>{
         onSuccess:({data})=>{
             //bind the query to the redux store
             //dispatch(InitializeSpending({incomingElements:data}))
-            console.log(data)
+            //console.log(data)
         }
     });
     const Overlay=useContext(OverlayContext);

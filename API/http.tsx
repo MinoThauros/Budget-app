@@ -75,5 +75,30 @@ export class HTTPInterface{
             return err
         }
     }
+}
+
+export class AuthInterface{
+    private readonly  API_KEY:string=process.env.REACT_APP_FIREBASE_API_KEY as string;
+    readonly generateUrl=({mode}:{mode:'login'|'signup'})=>{
+        return `https://identitytoolkit.googleapis.com/v1/accounts:${mode}?key=${this.API_KEY}`
+    }
+    async login({email,password}:{email:string,password:string}){
+        const response=await axios.post(this.generateUrl({mode:'login'}),{
+            email,
+            password,
+            returnSecureToken:true
+            //ask backend to return token; if token is returned, we know that the login was successful
+        })
+        return response.data
+    }
+
+    async signup({email,password}:{email:string,password:string}){
+        const response=await axios.post(this.generateUrl({mode:'signup'}),{
+            email,
+            password,
+            returnSecureToken:true
+        })
+        return response.data
+    }
 
 }
