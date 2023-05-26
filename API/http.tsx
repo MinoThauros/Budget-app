@@ -99,6 +99,7 @@ export class AuthInterface{
             returnSecureToken:true
         })
         return response.data
+        //
     }
 
 }
