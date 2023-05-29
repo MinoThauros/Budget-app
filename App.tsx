@@ -16,7 +16,6 @@ import SpendingInput from './screens/SpendingInput';
 import SpendingDetailsComponent from './screens/SpengingDetails';
 import { QueryClientProvider, QueryClient} from '@tanstack/react-query';
 import AllExpensesReactQuery from './ReactQ_screens/AllExpensesReactQuery';
-import EditItem from './screens/EditItem';
 import SpendingInputReactQ from './ReactQ_screens/SpendingInputReactQ';
 import SpendingDetailsReactQ from './ReactQ_screens/SpendingDetailsReactQ';
 
@@ -81,14 +80,7 @@ export default function App() {
               component={SpendingDetailsComponent}
               options={{
                 tabBarButton: () => null
-              }}/>
-            
-            <Tab.Screen
-              name="EditSpending"
-              component={EditItem}
-              options={{
-                tabBarButton: () => null
-              }}/>
+              }}/>  
 
             <Tab.Screen
               name="SpendingDetailsReactQ"

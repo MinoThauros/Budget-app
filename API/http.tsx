@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { spending } from '../models/spending';
+import {AuthRequestPayloadArgs,SignUpResponsePayload,SignInResponsePayload} from './httpUtils'
 
 /*
 Firebase rules have to be:
@@ -79,27 +80,35 @@ export class HTTPInterface{
 
 export class AuthInterface{
     private readonly  API_KEY:string=process.env.REACT_APP_FIREBASE_API_KEY as string;
-    readonly generateUrl=({mode}:{mode:'login'|'signup'})=>{
+    private readonly  generateUrl=({mode}:{mode:'login'|'signup'})=>{
         return `https://identitytoolkit.googleapis.com/v1/accounts:${mode}?key=${this.API_KEY}`
     }
-    async login({email,password}:{email:string,password:string}){
-        const response=await axios.post(this.generateUrl({mode:'login'}),{
+    login=async ({email,password}:{email:string,password:string}):Promise<any> =>{
+
+        try{
+            const response=await axios.post(this.generateUrl({mode:'login'}),{
             email,
             password,
             returnSecureToken:true
             //ask backend to return token; if token is returned, we know that the login was successful
-        })
-        return response.data
+            }as AuthRequestPayloadArgs)
+            return response.data as SignInResponsePayload
+        }catch(err){
+            console.log(err)
+            return err
+        }
+        
+        
     }
 
-    async signup({email,password}:{email:string,password:string}){
+    signup=async ({email,password}:{email:string,password:string}): Promise<SignUpResponsePayload>=>{
         const response=await axios.post(this.generateUrl({mode:'signup'}),{
             email,
             password,
             returnSecureToken:true
-        })
-        return response.data
-        //
+        } as AuthRequestPayloadArgs)
+        return response.data as SignUpResponsePayload
+
     }
 
 }
