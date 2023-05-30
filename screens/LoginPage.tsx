@@ -1,20 +1,29 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { useState } from 'react'
+import { useState,useContext } from 'react'
 import CustomTextInput from '../components/CustomTextInput'
 import { AuthPagesProps } from './AuthPages'
 import { Stack, Button } from "@react-native-material/core";
-import Colors from '../constants/colors'
+import Colors from '../constants/colors';
 import { useLogin } from '../Hooks/AuthReactQ'
 import { Validator } from '../API/validator'
+import { useQueryClient } from '@tanstack/react-query';
+import { AuthContext } from '../states/context/CredentialsContext';
 
 const LoginPage = ({setLogin}:AuthPagesProps) => {
     const [email,setEmail]=useState('')
     const {wordValidator,emailValidator}=new Validator()
     const [password,setPassword]=useState('')
-    //call the sign up hooks
-    //call the sign up hooks
-    const {mutate:signup,isSuccess,data}=useLogin()
+    const {authenticate}=useContext(AuthContext)
+
+
+
+    const onLogin=({idToken}:{idToken:string})=>{
+        authenticate({token:idToken})
+    }
+    const {mutate:signup,isSuccess,data}=useLogin({onSuccess:onLogin})
+    const queryClient = useQueryClient();
+    
     const errMessages={
         emailWarning:!emailValidator(email)? <Text style={styles.validationError}>Invalid Email</Text>:<></>,
         passwordValidity:!wordValidator(password)?<Text style={styles.validationError}>Re-enter password</Text>:<></>,
@@ -81,7 +90,7 @@ const styles = StyleSheet.create({
     },
     validationError:{
         fontSize:12,
-        color:'red'
+        color:Colors.Youth_Green
 
     }
 })

@@ -8,21 +8,23 @@ import { SignInResponsePayload, SignUpResponsePayload } from '../API/httpUtils';
 
 //CUD action so either we post a new item
 type useMutationProps = {
-    onSuccess: (param:any) => void;
+    onSuccess: ({idToken}:{idToken:string}) => void;
     queryClient: QueryClient;
 }
 
 const {login,signup}= new AuthInterface();
 
-export const useLogin = () => {
+export const useLogin = ({onSuccess}:{onSuccess: ({idToken}:{idToken:string}) => void}) => {
     return useMutation(['login'], login,{
+        onSuccess:({idToken})=>onSuccess({idToken}),
         retry:3,
         cacheTime: 15 * (60 * 1000), // 15 mins 
         //for errors, simply notify the user
 })}
 
-export const useSignup = () => {
+export const useSignup = ({onSuccess}:{onSuccess: ({idToken}:{idToken:string}) => void}) => {
     return useMutation(['signup'], signup,{
+        onSuccess:({idToken})=>onSuccess({idToken}),
         retry:3,
         cacheTime: 15 * (60 * 1000), // 15 mins 
     })

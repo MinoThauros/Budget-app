@@ -83,7 +83,7 @@ export class AuthInterface{
     private readonly  generateUrl=({mode}:{mode:'signInWithPassword'|'signUp'})=>{
         return `https://identitytoolkit.googleapis.com/v1/accounts:${mode}?key=${this.API_KEY}`
     }
-    login=async ({email,password}:{email:string,password:string}):Promise<any> =>{
+    login=async ({email,password}:{email:string,password:string}):Promise<SignInResponsePayload> =>{
 
         try{
             const response=await axios.post(this.generateUrl({mode:'signInWithPassword'}),{
@@ -118,9 +118,8 @@ export class AuthInterface{
             return error.message
 
         }
-        
-        
-
     }
+
+
 
 }
