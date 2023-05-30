@@ -14,17 +14,15 @@ type useMutationProps = {
 
 const {login,signup}= new AuthInterface();
 
-export const useLogin = ({onSuccess}:{onSuccess: (param:SignInResponsePayload) => void}) => {
+export const useLogin = () => {
     return useMutation(['login'], login,{
-        onSuccess: (data) => onSuccess(data),
         retry:3,
         cacheTime: 15 * (60 * 1000), // 15 mins 
         //for errors, simply notify the user
 })}
 
-export const useSignup = ({onSuccess}:useMutationProps) => {
+export const useSignup = () => {
     return useMutation(['signup'], signup,{
-        onSuccess: (data) => onSuccess(data),
         retry:3,
         cacheTime: 15 * (60 * 1000), // 15 mins 
     })

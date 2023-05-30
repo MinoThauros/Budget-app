@@ -79,14 +79,14 @@ export class HTTPInterface{
 }
 
 export class AuthInterface{
-    private readonly  API_KEY:string=process.env.REACT_APP_FIREBASE_API_KEY as string;
-    private readonly  generateUrl=({mode}:{mode:'login'|'signup'})=>{
+    private readonly  API_KEY:string='AIzaSyDWZcx9JHwZSj2fam2grs4bAL0reJBuIzE';
+    private readonly  generateUrl=({mode}:{mode:'signInWithPassword'|'signUp'})=>{
         return `https://identitytoolkit.googleapis.com/v1/accounts:${mode}?key=${this.API_KEY}`
     }
     login=async ({email,password}:{email:string,password:string}):Promise<any> =>{
 
         try{
-            const response=await axios.post(this.generateUrl({mode:'login'}),{
+            const response=await axios.post(this.generateUrl({mode:'signInWithPassword'}),{
             email,
             password,
             returnSecureToken:true
@@ -94,20 +94,32 @@ export class AuthInterface{
             }as AuthRequestPayloadArgs)
             return response.data as SignInResponsePayload
         }catch(err){
-            console.log(err)
-            return err
+            const error=err as any
+            console.log(error.message)
+            return error.message
         }
         
         
     }
 
     signup=async ({email,password}:{email:string,password:string}): Promise<SignUpResponsePayload>=>{
-        const response=await axios.post(this.generateUrl({mode:'signup'}),{
+
+        try{
+            const response=await axios.post(this.generateUrl({mode:'signUp'}),{
             email,
             password,
             returnSecureToken:true
         } as AuthRequestPayloadArgs)
         return response.data as SignUpResponsePayload
+
+        }catch(err){
+            const error=err as any
+            console.log('error in signup with',error.message)
+            return error.message
+
+        }
+        
+        
 
     }
 

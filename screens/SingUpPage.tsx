@@ -5,6 +5,7 @@ import { AuthPagesProps } from './AuthPages'
 import { Stack, Button } from "@react-native-material/core";
 import Colors from '../constants/colors';
 import {Validator}from '../API/validator'
+import { useSignup } from '../Hooks/AuthReactQ';
 
 const SingUpPage = ({setLogin}:AuthPagesProps) => {
     const {wordValidator,emailValidator}=new Validator()
@@ -12,6 +13,7 @@ const SingUpPage = ({setLogin}:AuthPagesProps) => {
     const [password,setPassword]=useState('')
     const [confirmPassword,setConfirmPassword]=useState('')
     //call the sign up hooks
+    const {mutate:signup,isSuccess,data}=useSignup()
     const errMessages={
         emailWarning:!emailValidator(email)? <Text style={styles.validationError}>Invalid Email</Text>:<></>,
         passwordMatchWarning:!wordValidator(password)?<Text style={styles.validationError}>Re-enter password</Text>:<></>,
@@ -26,12 +28,13 @@ const SingUpPage = ({setLogin}:AuthPagesProps) => {
 
     const submitButton=()=>{
         if (emailValidator(email) && wordValidator(password) && password===confirmPassword){
-            //call the signup function
+            console.log('submitting',{email,password})
+            return signup({email,password})
 
         }
-        else{
-            setWarnings(errMessages)
-        }
+        return setWarnings(errMessages)
+            
+ 
 
     }
     
