@@ -25,7 +25,7 @@ const CustomTextInput = ({
     title}:CustomTextInputProps) => {
 
     return (
-        <View>
+        <View style={styles.overallView}>
             {title && <Text style={styles.titles}>{title} </Text>}
                 {validationErr}
                 <TextInput 
@@ -40,10 +40,10 @@ export default CustomTextInput
 
 const styles=StyleSheet.create({
     overallView:{
-        flex:1,
-        backgroundColor: 'rgba(0,0,0,0.7)',
-        justifyContent:'center',
-        alignItems:'center',
+        margin:10,
+        //alignItems:'flex-start',
+        flexDirection:'column',
+        
     },
     overallContainer:{
         backgroundColor:"#521e87",
@@ -56,7 +56,7 @@ const styles=StyleSheet.create({
 
     textInputA:{
         height: 40,
-        margin: 12,
+        marginVertical: 10,
         borderWidth: 1,
         padding: 10,
         backgroundColor:'white',

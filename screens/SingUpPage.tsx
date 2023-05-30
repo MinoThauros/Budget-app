@@ -1,44 +1,72 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { useState } from 'react'
 import CustomTextInput from '../components/CustomTextInput'
 import { AuthPagesProps } from './AuthPages'
 import { Stack, Button } from "@react-native-material/core";
+import Colors from '../constants/colors';
+import {Validator}from '../API/validator'
 
 const SingUpPage = ({setLogin}:AuthPagesProps) => {
-    const [username,setUsername]=useState('')
+    const {wordValidator,emailValidator}=new Validator()
+    const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
     const [confirmPassword,setConfirmPassword]=useState('')
     //call the sign up hooks
+    const errMessages={
+        emailWarning:!emailValidator(email)? <Text style={styles.validationError}>Invalid Email</Text>:<></>,
+        passwordMatchWarning:!wordValidator(password)?<Text style={styles.validationError}>Re-enter password</Text>:<></>,
+        passwordValidityWarning:password!==confirmPassword?<Text style={styles.validationError}>Invalid Password</Text>:<></>
+    }
+
+    const [warnings,setWarnings]=useState({
+        emailWarning:<></>,
+        passwordMatchWarning:<></>,
+        passwordValidityWarning:<></>
+    })
+
+    const submitButton=()=>{
+        if (emailValidator(email) && wordValidator(password) && password===confirmPassword){
+            //call the signup function
+
+        }
+        else{
+            setWarnings(errMessages)
+        }
+
+    }
+    
     return (
     <View>
         <View>
             <CustomTextInput
             title="Email"
-            nextValue={setUsername}
-            validationErr={<></>}/>
+            nextValue={setEmail}
+            validationErr={warnings.emailWarning}/>
 
             <CustomTextInput
                 title="Password"
                 nextValue={setPassword}
-                validationErr={<></>}/>
+                validationErr={warnings.passwordValidityWarning}/>
 
             <CustomTextInput
                 title="Confirm Password"
                 nextValue={setConfirmPassword}//create a handler for this
-                validationErr={<></>}/>
+                validationErr={warnings.passwordMatchWarning}/>
             <View>
-                <Button title="Signup" variant="text" onPress={()=>setLogin(true)}/>
+                <Button     
+                    title="Signup" 
+                    variant="text" 
+                    onPress={submitButton}  
+                    color={Colors.Orange}/>
                 <View style={styles.buttonStack}>
                     <Text>Have an account? </Text>
-                    <Button 
-                        title='Sign in' 
-                        onPress={()=>setLogin(true)}
-                        variant='text'
-                        uppercase={false} 
-                        />
+                    <Pressable onPress={()=>setLogin(true)}>
+                        <Text 
+                        style={{color:Colors.Orange,fontWeight: 'bold'}}>
+                            Log in</Text>
+                    </Pressable>
                 </View>
             </View>
-           
         </View>
     </View>
   )
@@ -51,5 +79,10 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'center'
+    },
+    validationError:{
+        fontSize:12,
+        color:'red'
+
     }
 })

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Button } from '@react-native-material/core'
 import LoginPage from './LoginPage'
 import SignupPage from './SingUpPage'
+import Colors from '../constants/colors'
 
 export type AuthPagesProps={
     setLogin:(value: React.SetStateAction<boolean>) => void,
@@ -13,7 +14,7 @@ export type AuthPagesProps={
 const AuthPages = () => {
     const [login,setLogin]=useState(true)
         return(
-            <View>
+            <View style={styles.overallView}>
                 {login && <LoginPage setLogin={setLogin}/>}
                 {!login && <SignupPage setLogin={setLogin}/>}
             </View>
@@ -24,9 +25,9 @@ export default AuthPages
 const styles = StyleSheet.create({
     overallView:{
         flex:1,
-        backgroundColor: 'rgba(0,0,0,0.7)',
         justifyContent:'center',
-        alignItems:'center',
-        display:'flex',
+        width:'100%',
+        backgroundColor:Colors.Royal_Purple,
+        padding:10,
     },
 })
