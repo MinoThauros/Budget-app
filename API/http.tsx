@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { spending } from '../models/spending';
+import {AuthRequestPayloadArgs,SignUpResponsePayload,SignInResponsePayload} from './httpUtils'
 
 /*
 Firebase rules have to be:
@@ -75,5 +76,72 @@ export class HTTPInterface{
             return err
         }
     }
+
+    getBudget=async ()=>{
+        try{
+            const response=await axios.get('https://bgetapp-default-rtdb.firebaseio.com/budget.json')
+            return response
+        }catch(err){
+            console.log(err)
+            return err
+        }
+    }
+
+    updateBudget=async (newBudget:spending)=>{
+        try{
+            const response=await axios.put('https://bgetapp-default-rtdb.firebaseio.com/budget.json',newBudget)
+            return response
+        }catch(err){
+            console.log(err)
+            return err
+        }
+
+    }
+}
+
+export class AuthInterface{
+    private readonly  API_KEY:string='AIzaSyDWZcx9JHwZSj2fam2grs4bAL0reJBuIzE';
+    private readonly  generateUrl=({mode}:{mode:'signInWithPassword'|'signUp'})=>{
+        return `https://identitytoolkit.googleapis.com/v1/accounts:${mode}?key=${this.API_KEY}`
+
+    }
+    login=async ({email,password}:{email:string,password:string}):Promise<SignInResponsePayload> =>{
+
+        try{
+            const {data}=await axios.post(this.generateUrl({mode:'signInWithPassword'}),{
+            email,
+            password,
+            returnSecureToken:true
+            //ask backend to return token; if token is returned, we know that the login was successful
+            }as AuthRequestPayloadArgs)
+            return data as SignInResponsePayload
+        }catch(err){
+            const error=err as any
+            console.log('error in login with',{...error})
+            return error.message
+        }
+        
+        
+    }
+
+    signup=async ({email,password}:{email:string,password:string}): Promise<SignInResponsePayload>=>{
+
+        try{
+            const {data}=await axios.post(this.generateUrl({mode:'signUp'}),{
+                email,
+                password,
+                returnSecureToken:true
+                //ask backend to return token; if token is returned, we know that the login was successful
+                }as AuthRequestPayloadArgs)
+                return data as SignInResponsePayload
+        }catch(err){
+            const error=err as any
+            console.log('error in signup with',error.message)
+            return error.message
+
+        }
+    }
+
+
 
 }

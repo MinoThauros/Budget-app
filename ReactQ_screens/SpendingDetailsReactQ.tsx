@@ -15,7 +15,7 @@ const SpendingDetailsReactQ = ({navigation,route}:any) => {
     
         const deleteHandler=({data}:any)=>{
             console.log(data)
-            navigation.goBack()
+            //navigation.goBack()
     
         }
         const {mutate:deleteItem,error:deleteError,isSuccess:deleteSuccess}=useDeleteExpense({onSuccess:deleteHandler,queryClient});
@@ -28,7 +28,8 @@ const SpendingDetailsReactQ = ({navigation,route}:any) => {
             deleteExpense(spending.id)
              */
             console.log('deleting item#',spending.id)
-            return deleteItem(spending.id)
+            deleteItem(spending.id)
+            navigation.goBack()
         };
     
         const editSpending=()=>{
@@ -39,10 +40,12 @@ const SpendingDetailsReactQ = ({navigation,route}:any) => {
         const confirmEdit=({data,id}:{data: spending,id?: string})=>{
             if(!id){
                 console.log('no id')
-                return
+                return setEditWindow(false)
             }
+            console.log('editing item#',{...data})
             editItem({updatedExpense:data,id})
-            return setEditWindow(false)
+            setEditWindow(false)
+            return 
         }
 
         

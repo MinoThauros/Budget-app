@@ -2,6 +2,7 @@ import { View, Text, Button, Modal, TextInput, StyleSheet } from 'react-native'
 import { useState } from 'react'
 import { Validator } from '../API/validator';
 import { spending } from '../models/spending';
+import CustomTextInput from './CustomTextInput';
 
 type SpendingCardProps={
     initialValues?:spending,
@@ -44,6 +45,7 @@ const SpendingCard = ({initialValues,confirm,optionalButton,id}:SpendingCardProp
         
         
         const submitButton=()=>{
+            //check if all fields are valid
 
             if (numValidator(amount) && wordValidator(category) &&  wordValidator(date) &&  wordValidator(title)){
                 let enteredData:spending=new spending(amount,category,date,title)
@@ -51,56 +53,38 @@ const SpendingCard = ({initialValues,confirm,optionalButton,id}:SpendingCardProp
             }
             else{
                 setWarnings(messages)
+                //controlls the warning messages dynamically
             }
         } 
         return (
             <View style={styles.overallContainer}>
-                <View>
-                    <View>
-                        <Text style={styles.titles}>Title: </Text>
-                        {warnings.titleWarning}
-                        <TextInput 
-                            style={styles.textInputA}
-                            onChangeText={setTitle}
-                            defaultValue={initialValues?.title}/>
-                    </View>
-                    <View>
-                        <Text style={styles.titles}>Amount: </Text>
-                        {warnings.amountWarning}
-                        <TextInput 
-                            style={styles.textInputA}
-                            onChangeText={newText=>setAmount(parseInt(newText))}
-                            value={amount.toString()}
-                            keyboardType='numeric'
-                            defaultValue={initialValues?.price.toString()?? undefined}
-                            />
-                    </View>
-                    <View>
-                        <Text style={styles.titles}>Category: </Text>
-                        {warnings.categoryWarning}
-                        <TextInput
-                            onChangeText={setCategory} 
-                            style={styles.textInputA}
-                            value={category}
-                            defaultValue={initialValues?.category??''}
-                            />
-                    </View>
-                    <View>
-                        <Text style={styles.titles}>Date: </Text>
-                        {warnings.dateWarning}
-                        <TextInput
-                            onChangeText={setDate}
-                            style={styles.textInputA}
-                            value={date}
-                            autoCorrect={false}
-                            defaultValue={initialValues?.date??''}
-                            />
-                    </View>
+                    <CustomTextInput 
+                        nextValue={setTitle} 
+                        title={'Title'}
+                        validationErr={warnings.titleWarning}
+                        defaultValue={initialValues?.title}/>
+
+                    <CustomTextInput
+                        nextValue={(newText:any)=>setAmount(parseInt(newText))}
+                        title={'Amount'}
+                        validationErr={warnings.amountWarning}
+                        defaultValue={initialValues?.price.toString()?? undefined}/>
+
+                    <CustomTextInput
+                        nextValue={setCategory}
+                        title={'Category'}
+                        validationErr={warnings.categoryWarning}
+                        defaultValue={initialValues?.category??''}/>
+
+                    <CustomTextInput
+                        nextValue={setDate}
+                        title={'Date'}
+                        validationErr={warnings.dateWarning}
+                        defaultValue={initialValues?.date??''}/>
                     <View style={styles.buttonStack}>
                         <Button title='Go back' onPress={optionalButton}/>
                         <Button title="Submit" onPress={submitButton}/>
                     </View>
-                </View>
             </View>)
         
         };
