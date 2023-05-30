@@ -18,6 +18,7 @@ import { QueryClientProvider, QueryClient} from '@tanstack/react-query';
 import AllExpensesReactQuery from './ReactQ_screens/AllExpensesReactQuery';
 import SpendingInputReactQ from './ReactQ_screens/SpendingInputReactQ';
 import SpendingDetailsReactQ from './ReactQ_screens/SpendingDetailsReactQ';
+import AuthPages from './screens/AuthPages';
 
 const queryClient = new QueryClient();
 const Tab = createBottomTabNavigator();
@@ -41,7 +42,7 @@ export default function App() {
       </KeyboardAvoidingView>
         <NavigationContainer>
           <Tab.Navigator 
-          initialRouteName='AllExpensesReactQuery'
+          initialRouteName='AuthPages'
           screenOptions={{
             headerRight:({color,size}:any)=> <HeaderButton size={30}/>
             }}>
@@ -53,7 +54,15 @@ export default function App() {
               options={{
                 tabBarIcon: ({color,size}:any)=>(<Ionicons name="cash-outline" color={color} size={size}/>)
               }}/>
-            */}            
+            */}
+
+            <Tab.Screen
+              name="AuthPages"
+              component={AuthPages}
+              options={{
+                tabBarButton: () => null
+              }}
+              />           
             
             <Tab.Screen
               name="AllExpensesReactQuery"
