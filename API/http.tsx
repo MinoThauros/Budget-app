@@ -76,6 +76,27 @@ export class HTTPInterface{
             return err
         }
     }
+
+    getBudget=async ()=>{
+        try{
+            const response=await axios.get('https://bgetapp-default-rtdb.firebaseio.com/budget.json')
+            return response
+        }catch(err){
+            console.log(err)
+            return err
+        }
+    }
+
+    updateBudget=async (newBudget:spending)=>{
+        try{
+            const response=await axios.put('https://bgetapp-default-rtdb.firebaseio.com/budget.json',newBudget)
+            return response
+        }catch(err){
+            console.log(err)
+            return err
+        }
+
+    }
 }
 
 export class AuthInterface{
