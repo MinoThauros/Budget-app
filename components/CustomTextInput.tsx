@@ -40,7 +40,7 @@ export default CustomTextInput
 
 const styles=StyleSheet.create({
     overallView:{
-        margin:10,
+        marginHorizontal:10,
         //alignItems:'flex-start',
         flexDirection:'column',
         

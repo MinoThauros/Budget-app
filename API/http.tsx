@@ -82,36 +82,37 @@ export class AuthInterface{
     private readonly  API_KEY:string='AIzaSyDWZcx9JHwZSj2fam2grs4bAL0reJBuIzE';
     private readonly  generateUrl=({mode}:{mode:'signInWithPassword'|'signUp'})=>{
         return `https://identitytoolkit.googleapis.com/v1/accounts:${mode}?key=${this.API_KEY}`
+
     }
     login=async ({email,password}:{email:string,password:string}):Promise<SignInResponsePayload> =>{
 
         try{
-            const response=await axios.post(this.generateUrl({mode:'signInWithPassword'}),{
+            const {data}=await axios.post(this.generateUrl({mode:'signInWithPassword'}),{
             email,
             password,
             returnSecureToken:true
             //ask backend to return token; if token is returned, we know that the login was successful
             }as AuthRequestPayloadArgs)
-            return response.data as SignInResponsePayload
+            return data as SignInResponsePayload
         }catch(err){
             const error=err as any
-            console.log(error.message)
+            console.log('error in login with',{...error})
             return error.message
         }
         
         
     }
 
-    signup=async ({email,password}:{email:string,password:string}): Promise<SignUpResponsePayload>=>{
+    signup=async ({email,password}:{email:string,password:string}): Promise<SignInResponsePayload>=>{
 
         try{
-            const response=await axios.post(this.generateUrl({mode:'signUp'}),{
-            email,
-            password,
-            returnSecureToken:true
-        } as AuthRequestPayloadArgs)
-        return response.data as SignUpResponsePayload
-
+            const {data}=await axios.post(this.generateUrl({mode:'signUp'}),{
+                email,
+                password,
+                returnSecureToken:true
+                //ask backend to return token; if token is returned, we know that the login was successful
+                }as AuthRequestPayloadArgs)
+                return data as SignInResponsePayload
         }catch(err){
             const error=err as any
             console.log('error in signup with',error.message)

@@ -1,11 +1,12 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import CustomTextInput from '../components/CustomTextInput'
 import { AuthPagesProps } from './AuthPages'
 import { Stack, Button } from "@react-native-material/core";
 import Colors from '../constants/colors';
 import {Validator}from '../API/validator'
 import { useSignup } from '../Hooks/AuthReactQ';
+import { AuthContext } from '../states/context/CredentialsContext';
 
 const SingUpPage = ({setLogin}:AuthPagesProps) => {
     const {wordValidator,emailValidator}=new Validator()
@@ -13,7 +14,15 @@ const SingUpPage = ({setLogin}:AuthPagesProps) => {
     const [password,setPassword]=useState('')
     const [confirmPassword,setConfirmPassword]=useState('')
     //call the sign up hooks
-    const {mutate:signup,isSuccess,data}=useSignup()
+    const {authenticate}=useContext(AuthContext)
+
+
+
+    const onLogin=({idToken}:{idToken:string})=>{
+        authenticate({token:idToken})
+    }
+
+    const {mutate:signup,isSuccess,data}=useSignup({onSuccess:onLogin})
     const errMessages={
         emailWarning:!emailValidator(email)? <Text style={styles.validationError}>Invalid Email</Text>:<></>,
         passwordMatchWarning:!wordValidator(password)?<Text style={styles.validationError}>Re-enter password</Text>:<></>,

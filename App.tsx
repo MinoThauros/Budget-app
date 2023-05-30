@@ -5,7 +5,7 @@ import AuthPages from './screens/AuthPages';
 import { AuthContext, AuthContextProvider } from './states/context/CredentialsContext';
 import { useContext } from 'react';
 
-const AuthControl=()=>{
+const Pages=()=>{
     const {isAuthenticated}=useContext(AuthContext)
     return(
     <>
@@ -22,7 +22,7 @@ export default function App() {
   return (
   <QueryClientProvider client={queryClient}>
     <AuthContextProvider>
-      <AuthControl/>
+      <Pages/>
     </AuthContextProvider>
   </QueryClientProvider>
    );
