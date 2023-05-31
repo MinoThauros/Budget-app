@@ -62,13 +62,13 @@ const LoginPage = ({setLogin}:AuthPagesProps) => {
                     variant="text" 
                     title="Sign in" 
                     onPress={submitButton}
-                    color={Colors.Orange}
+                    color={Colors.Tangerine}
                     />
                 <View style={styles.buttonStack}>
                     <Text>New Here ? </Text>
                     <Pressable onPress={()=>setLogin(false)}>
                         <Text 
-                        style={{color:Colors.Orange,fontWeight: 'bold'}}>
+                        style={{color:Colors.Tangerine,fontWeight: 'bold'}}>
                             Create an account</Text>
                     </Pressable>
                 </View>
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     },
     validationError:{
         fontSize:12,
-        color:Colors.Youth_Green
+        color:Colors.Skobeloff
 
     }
 })

@@ -69,12 +69,12 @@ const SingUpPage = ({setLogin}:AuthPagesProps) => {
                     title="Signup" 
                     variant="text" 
                     onPress={submitButton}  
-                    color={Colors.Orange}/>
+                    color={Colors.Tangerine}/>
                 <View style={styles.buttonStack}>
                     <Text>Have an account? </Text>
                     <Pressable onPress={()=>setLogin(true)}>
                         <Text 
-                        style={{color:Colors.Orange,fontWeight: 'bold'}}>
+                        style={{color:Colors.Tangerine,fontWeight: 'bold'}}>
                             Log in</Text>
                     </Pressable>
                 </View>
