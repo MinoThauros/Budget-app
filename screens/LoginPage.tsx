@@ -3,7 +3,7 @@ import React from 'react'
 import { useState,useContext } from 'react'
 import CustomTextInput from '../components/CustomTextInput'
 import { AuthPagesProps } from './AuthPages'
-import { Stack, Button } from "@react-native-material/core";
+import { Stack, Button,Snackbar } from "@react-native-material/core";
 import Colors from '../constants/colors';
 import { useLogin } from '../Hooks/AuthReactQ'
 import { Validator } from '../API/validator'
@@ -19,9 +19,10 @@ const LoginPage = ({setLogin}:AuthPagesProps) => {
 
 
     const onLogin=({idToken}:{idToken:string})=>{
+        console.log('login success ;)')
         authenticate({token:idToken})
     }
-    const {mutate:signup,isSuccess,data}=useLogin({onSuccess:onLogin})
+    const {mutate:signup,isSuccess,data,isError}=useLogin({onSuccess:onLogin})
     const queryClient = useQueryClient();
     
     const errMessages={

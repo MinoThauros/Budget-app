@@ -13,19 +13,28 @@ const Profile=({navigation,route}:any)=>{
 
     return (
         <View style={styles.overallContainer}>
-            <ScrollView>
+            
                 <View style={styles.bioZone}>
                     <ProfileHeader/>
                 </View>
-                <View>
+                <ScrollView>
+                <View style={{minWidth:'100%'}}>
                     <PieChartComponent/>
                 </View>
+                <Stack style={{margin:'5%'}}>
+                    <Pressable>
+                        <Text>More</Text>
+                    </Pressable>
+
+
+                </Stack>
                 
                 <Button 
                     title="Log out"  
                     variant="outlined"  
                     onPress={button}
                     style={styles.button}
+                    loading={true}
                     />
 
             </ScrollView>
@@ -39,7 +48,7 @@ const styles = StyleSheet.create({
     overallContainer:{
         flex:1,
         alignItems:'center',
-        backgroundColor:Colors.Grey,
+        backgroundColor:Colors.Slate_blue,
     },
     bioZone:{
         alignItems:'flex-start',
