@@ -2,7 +2,7 @@ import { KeyboardAvoidingView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import RecentExpenses from './screens/RecentExpensesScreen';
-import Profile from './screens/profile';
+import Profile from './screens/Profile';
 import {Ionicons} from '@expo/vector-icons';
 import { Provider } from 'react-redux';
 import { store } from './states/redux/store';
