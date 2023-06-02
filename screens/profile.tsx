@@ -7,6 +7,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../states/context/CredentialsContext";
 import { AntDesign } from '@expo/vector-icons';
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
+import ProfileDetailInstance from "../components/ProfileLink";
 
 
 const Profile=({navigation,route}:any)=>{
@@ -20,24 +21,18 @@ const Profile=({navigation,route}:any)=>{
 
     }
 
-    const HiddenDetails=()=>{
+    const Details=()=>{
         return(
             <View>
-                <Button variant="text" onPress={()=>{}} title="Change password" style={{alignSelf:'flex-start'}}/>
-                <Divider style={{ marginTop:10 }} />
-                <Button variant="text" onPress={()=>{}} title="Delete account" style={{alignSelf:'flex-start'}}/>
-                <Divider style={{ marginTop:10 }} />
-                <Button variant="text" onPress={()=>{}} title="Terms and conditions" style={{alignSelf:'flex-start'}}/>
-                <Divider style={{ marginTop:10 }} />
-                <Button variant="text" onPress={()=>{}} title="Privacy policy" style={{alignSelf:'flex-start'}}/>
-                <Divider style={{ marginTop:10 }} />
-                <Button variant="text" onPress={()=>{}} title="About" style={{alignSelf:'flex-start'}}/>
-                <Divider style={{ marginTop:10 }} />
-                <Button variant="text" onPress={()=>{}} title="Contact us" style={{alignSelf:'flex-start'}}/>
-                <Divider style={{ marginTop:10 }} />
-                <Button variant="text" onPress={()=>{}} title="Help" style={{alignSelf:'flex-start'}}/>
-                <Divider style={{ marginTop:10 }} />
-            </View>        
+                <ProfileDetailInstance ButtonTitle="Change password"/>
+                <ProfileDetailInstance ButtonTitle="Delete account"/>
+                <ProfileDetailInstance ButtonTitle="Terms and conditions"/>
+                <ProfileDetailInstance ButtonTitle="Privacy policy"/>
+                <ProfileDetailInstance ButtonTitle="About"/>
+                <ProfileDetailInstance ButtonTitle="Contact us"/>
+                <ProfileDetailInstance ButtonTitle="Help"/>
+            </View>
+                   
         )}
 
     return (
@@ -62,7 +57,7 @@ const Profile=({navigation,route}:any)=>{
                         loadingIndicatorPosition="trailing"
                         onPress={()=>{setHideMore(!hideMore)}}
                     />
-                    {hideMore&&<HiddenDetails/>}
+                    {hideMore&&<Details/>}
                 </Stack>
                 
                 <Button 
