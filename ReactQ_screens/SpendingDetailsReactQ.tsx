@@ -7,10 +7,15 @@ import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 import SpendingCard from '../components/SpendingCard';
 
-const SpendingDetailsReactQ = ({navigation,route}:any) => {
+/**
+ * Receives a spending object though navigation
+ * @param param0 
+ * @returns 
+ */
+const SpendingDetailsReactQ = ({spending,optional}:{spending:spending,optional?:()=>void}) => {
         //useQueryClient  returns the same instance of queryClient
         const queryClient = useQueryClient()
-        const spending=route.params.Spending;
+        //const spending=route.params.Spending;
         const [editWindow,setEditWindow]=useState(false);
     
         const deleteHandler=({data}:any)=>{
@@ -28,8 +33,8 @@ const SpendingDetailsReactQ = ({navigation,route}:any) => {
             deleteExpense(spending.id)
              */
             console.log('deleting item#',spending.id)
-            deleteItem(spending.id)
-            navigation.goBack()
+            deleteItem(spending.id??'')
+            //navigation.goBack()
         };
     
         const editSpending=()=>{
@@ -53,7 +58,7 @@ const SpendingDetailsReactQ = ({navigation,route}:any) => {
         const Content=()=>{
             var Details:JSX.Element=(
             <View>
-                <Spending spending={spending} Delete={deleteSpending} Edit={editSpending}/>
+                <Spending spending={spending} Delete={deleteSpending} Edit={editSpending} optional={optional}/>
             </View>
                 
             )

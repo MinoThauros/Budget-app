@@ -4,7 +4,7 @@ import { Stack, IconButton, HStack } from "@react-native-material/core";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 
 
-const Spending=({spending,Delete,Edit}:{spending:spending,Delete:()=>void,Edit:()=>void})=>{
+const Spending=({spending,Delete,Edit,optional}:{spending:spending,Delete:()=>void,Edit:()=>void,optional?:()=>void})=>{
     const {title,date,price,category}=spending;
     return(
         <View style={styles.overallContainer}>
@@ -29,6 +29,7 @@ const Spending=({spending,Delete,Edit}:{spending:spending,Delete:()=>void,Edit:(
                     </View>
                 </View>
             </View>
+            <Button title="Hide" onPress={optional}/>
         </View>
     )
 };

@@ -2,7 +2,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { FlatList,View } from "react-native";
 import SpendingsDisplayer from "./ SpendingsDisplayer";
-import { spending } from "../models/spending";
+import { spending } from '../models/spending';
 import { HTTPInterface } from "../API/http";
 import { useEffect} from "react";
 import { useDispatch } from "react-redux";
@@ -23,10 +23,7 @@ const DisplaySpendings=({spendings}:any)=>{
 
         return (
         <SpendingsDisplayer 
-            price={item.price} 
-            title={item.title} 
-            date={item.date} 
-            click={()=>goToDetails(singleSpending)} />)
+            spending={item}/>)
     };
     return (
         <View style={{flex:1}}>

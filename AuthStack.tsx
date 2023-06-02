@@ -66,16 +66,7 @@ const AuthStack = () => {
               component={SpendingDetailsComponent}
               options={{
                 tabBarButton: () => null
-              }}/>  
-
-            <Tab.Screen
-              name="SpendingDetailsReactQ"
-              component={SpendingDetailsReactQ}
-              options={{
-                tabBarButton: () => null
               }}/>
-
-            
           </Tab.Navigator>
         </NavigationContainer>
       </Provider>

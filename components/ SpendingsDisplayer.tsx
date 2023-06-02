@@ -1,11 +1,18 @@
 import { Button, Text, View, StyleSheet, Pressable } from "react-native";
-import { spending } from "../models/spending";
+import { spending } from '../models/spending';
+import { useState } from "react";
+import SpendingDetailsReactQ from "../ReactQ_screens/SpendingDetailsReactQ";
 
 
-const SpendingsDisplayer=({title,price,date,click}:any):JSX.Element=>{
+const SpendingsDisplayer=({spending}:{spending:spending}):JSX.Element=>{
+    const {title,price,date}=spending;
+    const [details,setDetails]=useState(false);
     const SingleSpendingDisplayer=({spendingInfo}:any):JSX.Element=>{
         const {title, price, date}=spendingInfo;
         return (
+            <Pressable 
+            style={({pressed})=>(pressed ? styles.pressed:null)}
+            onLongPress={()=>setDetails(!details)}>
             <View style={styles.overallContainer}>
                 <View style={styles.DetailsContainer} >
                     <View style={styles.DetailsColumn}>
@@ -19,16 +26,18 @@ const SpendingsDisplayer=({title,price,date,click}:any):JSX.Element=>{
                     </View>
                 </View>
             </View>
+             </Pressable>
         )
     }
     
     return (
+        <>
+            {!details && <SingleSpendingDisplayer spendingInfo={{title,price,date}} />}
+            {details && <SpendingDetailsReactQ spending={spending} optional={()=>setDetails(!details)}/>} 
+        </>
 
-        <Pressable 
-            style={({pressed})=>(pressed ? styles.pressed:null)}
-            onLongPress={click}>
-            <SingleSpendingDisplayer spendingInfo={{title,price,date}} />
-        </Pressable>
+
+            
         
     )};
 
