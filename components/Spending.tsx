@@ -18,11 +18,11 @@ const Spending=({spending,Delete,Edit,optional}:{spending:spending,Delete:()=>vo
             <View style={styles.DetailsBox}>
                 <View style={styles.DetailsBoxLeft}>
                     <Text style={styles.price}>${price}</Text>
-                    <Text  style={styles.category}>Category</Text>
+                    <Text  style={styles.category}>{category}</Text>
                 </View>
                 <View style={styles.DetailsBoxRight}>
                     <View style={styles.dateBox}>
-                        <Text style={styles.date}>THU</Text>
+                        <Text style={styles.date}>{date}</Text>
                     </View>
                     <View style={styles.CircleContainer2}>
                         <IconButton icon={<Icon name="pen" size={20} color="black"/>} onPress={Edit}/>

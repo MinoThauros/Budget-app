@@ -33,3 +33,4 @@ export class spending {
     }
 
 }
+export const Categories=['Food','Clothes','Housing','Transportation','Utilities','Insurance','Health','Personal']

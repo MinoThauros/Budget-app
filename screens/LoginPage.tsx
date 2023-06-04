@@ -47,8 +47,7 @@ const LoginPage = ({setLogin}:AuthPagesProps) => {
 
     }
     return (
-    <View >
-        <View>
+        <View style={{minHeight:'40%',  marginTop:'5%'}}>
             <CustomTextInput
             title="Email"
             nextValue={setEmail}
@@ -75,7 +74,6 @@ const LoginPage = ({setLogin}:AuthPagesProps) => {
                 </View>
             </View>
         </View>
-    </View>
   )
 }
 

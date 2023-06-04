@@ -49,7 +49,7 @@ const SingUpPage = ({setLogin}:AuthPagesProps) => {
     
     return (
     <View>
-        <View>
+        <View style={{minHeight:'40%', marginTop:'5%'}}>
             <CustomTextInput
             title="Email"
             nextValue={setEmail}

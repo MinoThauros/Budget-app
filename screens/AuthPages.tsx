@@ -5,6 +5,7 @@ import { Button } from '@react-native-material/core'
 import LoginPage from './LoginPage'
 import SignupPage from './SingUpPage'
 import Colors from '../constants/colors'
+import LogoDisplayer from '../components/LogoDisplayer'
 
 export type AuthPagesProps={
     setLogin:(value: React.SetStateAction<boolean>) => void,
@@ -15,6 +16,7 @@ const AuthPages = () => {
     const [login,setLogin]=useState(true)
         return(
             <View style={styles.overallView}>
+                <LogoDisplayer/>
                 {login && <LoginPage setLogin={setLogin}/>}
                 {!login && <SignupPage setLogin={setLogin}/>}
             </View>

@@ -9,6 +9,9 @@ const PieChartComponent = () => {
     //need to interact with react query
     //we need to get the data from the server
     //we need to restrict the categories
+
+    //fetch total for each category using a getCategoryTotal function
+    //return an object with the total for each category, and the category name, and the color
     const widthAndHeight = 250
     const series = [25, 20, 5, 33, 17,12,22]//total for each category
     const sliceColor = ['#fbd203', '#ffb300', '#ff9100', '#ff6c00', '#ff3c00',Colors.Skobeloff,Colors.Columbia_blue]
