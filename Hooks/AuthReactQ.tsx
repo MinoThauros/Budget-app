@@ -16,16 +16,18 @@ const {login,signup}= new AuthInterface();
 
 export const useLogin = ({onSuccess}:{onSuccess: ({idToken}:{idToken:string}) => void}) => {
     return useMutation(['login'], login,{
-        onSuccess:({idToken})=>onSuccess({idToken}),
-        retry:3,
+        onSuccess:({data})=>onSuccess({idToken:data.idToken}),
+        onError:({response})=>console.log('response is',response.data.error.message,response.data.error.code),
+        //axios returns a .response prop when there is an error
         cacheTime: 15 * (60 * 1000), // 15 mins 
         //for errors, simply notify the user
 })}
 
 export const useSignup = ({onSuccess}:{onSuccess: ({idToken}:{idToken:string}) => void}) => {
     return useMutation(['signup'], signup,{
-        onSuccess:({idToken})=>onSuccess({idToken}),
-        retry:3,
-        cacheTime: 15 * (60 * 1000), // 15 mins 
+        onSuccess:({data})=>onSuccess({idToken:data.idToken}),
+        //axios returns a .response prop when there is an error
+        //there is no data on error, only response
+        onError:({response})=>console.log(response.data.error.message,response.data.error.code),
     })
 }

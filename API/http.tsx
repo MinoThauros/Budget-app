@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosError, AxiosResponse } from 'axios'
 import { spending } from '../models/spending';
 import {AuthRequestPayloadArgs,SignUpResponsePayload,SignInResponsePayload} from './httpUtils'
 
@@ -105,42 +105,28 @@ export class AuthInterface{
         return `https://identitytoolkit.googleapis.com/v1/accounts:${mode}?key=${this.API_KEY}`
 
     }
-    login=async ({email,password}:{email:string,password:string}):Promise<SignInResponsePayload> =>{
+    login=async ({email,password}:{email:string,password:string}):Promise<AxiosResponse<SignInResponsePayload, AxiosError>> =>{
 
-        try{
-            const {data}=await axios.post(this.generateUrl({mode: 'signInWithPassword'}),{
-                email,
-                password,
-                returnSecureToken:true
-                //ask backend to return token; if token is returned, we know that the login was successful
-                }as AuthRequestPayloadArgs)
-            return data as SignInResponsePayload
-        }catch(err){
-            const error=err as any
-            console.log('error in login with',{...error})
-            new Error('error in login with'+error.message)
-            return error.message
-        }
+        return await axios.post(this.generateUrl({mode: 'signInWithPassword'}),{
+            email,
+            password,
+            returnSecureToken:true
+            //ask backend to return token; if token is returned, we know that the login was successful
+            }as AuthRequestPayloadArgs)
+        
+
         
         
     }
 
-    signup=async ({email,password}:{email:string,password:string}): Promise<SignInResponsePayload>=>{
-
-        try{
-            const {data}=await axios.post(this.generateUrl({mode:'signUp'}),{
-                email,
-                password,
-                returnSecureToken:true
-                //ask backend to return token; if token is returned, we know that the login was successful
-                }as AuthRequestPayloadArgs)
-                return data as SignInResponsePayload
-        }catch(err){
-            const error=err as any
-            console.log('error in signup with',error.message)
-            return error.message
-
-        }
+    signup=async ({email,password}:{email:string,password:string})=>{
+        return await axios.post(this.generateUrl({mode:'signUp'}),{
+            email,
+            password,
+            returnSecureToken:true
+            //ask backend to return token; if token is returned, we know that the login was successful
+            }as AuthRequestPayloadArgs)
+            
     }
 
 

@@ -22,8 +22,7 @@ const LoginPage = ({setLogin}:AuthPagesProps) => {
         console.log('login success ;)')
         authenticate({token:idToken})
     }
-    const {mutate:signup,isSuccess,data,isError}=useLogin({onSuccess:onLogin})
-    const queryClient = useQueryClient();
+    const {mutate:signup,isSuccess,data,isError,status}=useLogin({onSuccess:onLogin})
     
     const errMessages={
         emailWarning:!emailValidator(email)? <Text style={styles.validationError}>Invalid Email</Text>:<></>,
@@ -43,8 +42,12 @@ const LoginPage = ({setLogin}:AuthPagesProps) => {
         }
         return setWarnings(errMessages)
             
- 
+        
 
+    }
+
+    if(status){
+        console.log('status',status)
     }
     return (
         <View style={{minHeight:'40%',  marginTop:'5%'}}>
