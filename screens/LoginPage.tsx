@@ -3,7 +3,7 @@ import React from 'react'
 import { useState,useContext } from 'react'
 import CustomTextInput from '../components/CustomTextInput'
 import { AuthPagesProps } from './AuthPages'
-import { Stack, Button } from "@react-native-material/core";
+import { Stack, Button,Snackbar } from "@react-native-material/core";
 import Colors from '../constants/colors';
 import { useLogin } from '../Hooks/AuthReactQ'
 import { Validator } from '../API/validator'
@@ -19,9 +19,10 @@ const LoginPage = ({setLogin}:AuthPagesProps) => {
 
 
     const onLogin=({idToken}:{idToken:string})=>{
+        console.log('login success ;)')
         authenticate({token:idToken})
     }
-    const {mutate:signup,isSuccess,data}=useLogin({onSuccess:onLogin})
+    const {mutate:signup,isSuccess,data,isError}=useLogin({onSuccess:onLogin})
     const queryClient = useQueryClient();
     
     const errMessages={
@@ -46,8 +47,7 @@ const LoginPage = ({setLogin}:AuthPagesProps) => {
 
     }
     return (
-    <View >
-        <View>
+        <View style={{minHeight:'40%',  marginTop:'5%'}}>
             <CustomTextInput
             title="Email"
             nextValue={setEmail}
@@ -62,19 +62,18 @@ const LoginPage = ({setLogin}:AuthPagesProps) => {
                     variant="text" 
                     title="Sign in" 
                     onPress={submitButton}
-                    color={Colors.Orange}
+                    color={Colors.Tangerine}
                     />
                 <View style={styles.buttonStack}>
                     <Text>New Here ? </Text>
                     <Pressable onPress={()=>setLogin(false)}>
                         <Text 
-                        style={{color:Colors.Orange,fontWeight: 'bold'}}>
+                        style={{color:Colors.Tangerine,fontWeight: 'bold'}}>
                             Create an account</Text>
                     </Pressable>
                 </View>
             </View>
         </View>
-    </View>
   )
 }
 
@@ -90,7 +89,7 @@ const styles = StyleSheet.create({
     },
     validationError:{
         fontSize:12,
-        color:Colors.Youth_Green
+        color:Colors.Skobeloff
 
     }
 })

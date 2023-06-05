@@ -19,6 +19,7 @@ type SpendingCardProps={
  * @returns 
  */
 const SpendingCard = ({initialValues,confirm,optionalButton,id}:SpendingCardProps) => {
+    const categories=['Food','Clothes','Housing','Transportation','Utilities','Insurance','Health','Personal']
 
   
     const {wordValidator,numValidator}=new Validator()
@@ -38,7 +39,7 @@ const SpendingCard = ({initialValues,confirm,optionalButton,id}:SpendingCardProp
 
         const messages={
             amountWarning: !numValidator(amount)? <Text style={styles.validationError}>Invalid amount</Text>:<></>,
-            categoryWarning:!wordValidator(category)?<Text style={styles.validationError}>Invalid Category</Text>:<></>,
+            categoryWarning:!wordValidator(category) || !categories.includes(category) ?<Text style={styles.validationError}>Invalid Category</Text>:<></>,
             dateWarning:!wordValidator(date)?<Text style={styles.validationError}>Invalid date</Text>:<></>,
             titleWarning:!wordValidator(title)?<Text style={styles.validationError}>Invalid title</Text>:<></>
         }
@@ -46,14 +47,18 @@ const SpendingCard = ({initialValues,confirm,optionalButton,id}:SpendingCardProp
         
         const submitButton=()=>{
             //check if all fields are valid
+            console.log('submitting with category being valid',categories.includes(category))
 
-            if (numValidator(amount) && wordValidator(category) &&  wordValidator(date) &&  wordValidator(title)){
-                let enteredData:spending=new spending(amount,category,date,title)
-                confirm ? confirm({data:enteredData,id}):null
+            if (numValidator(amount) && wordValidator(category) &&  wordValidator(date) &&  wordValidator(title) && categories.includes(category)){
+                if (categories.includes(category)){
+                    let enteredData:spending=new spending(amount,category,date,title)
+                    confirm ? confirm({data:enteredData,id}):null
+                }
             }
             else{
                 setWarnings(messages)
                 //controlls the warning messages dynamically
+                console.log('warnings',messages.categoryWarning)
             }
         } 
         return (

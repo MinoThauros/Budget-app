@@ -108,16 +108,17 @@ export class AuthInterface{
     login=async ({email,password}:{email:string,password:string}):Promise<SignInResponsePayload> =>{
 
         try{
-            const {data}=await axios.post(this.generateUrl({mode:'signInWithPassword'}),{
-            email,
-            password,
-            returnSecureToken:true
-            //ask backend to return token; if token is returned, we know that the login was successful
-            }as AuthRequestPayloadArgs)
+            const {data}=await axios.post(this.generateUrl({mode: 'signInWithPassword'}),{
+                email,
+                password,
+                returnSecureToken:true
+                //ask backend to return token; if token is returned, we know that the login was successful
+                }as AuthRequestPayloadArgs)
             return data as SignInResponsePayload
         }catch(err){
             const error=err as any
             console.log('error in login with',{...error})
+            new Error('error in login with'+error.message)
             return error.message
         }
         

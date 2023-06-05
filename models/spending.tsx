@@ -14,13 +14,13 @@ export enum spendingsTypes {
 export class spending {
     readonly id?:string;
     readonly title:string;
-    readonly price:any;
+    readonly price:number;
     readonly category:string;
     readonly date:string;
 
     
     constructor(
-        price:any,
+        price:number,
         category:string,
         date:string,
         title:string,
@@ -33,3 +33,6 @@ export class spending {
     }
 
 }
+export const Categories:['Food','Clothes','Housing','Transportation','Utilities','Insurance','Health','Personal']=[
+    'Food','Clothes','Housing','Transportation','Utilities','Insurance','Health','Personal'
+]
