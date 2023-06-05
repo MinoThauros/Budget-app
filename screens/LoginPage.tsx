@@ -20,14 +20,10 @@ const LoginPage = ({setLogin}:AuthPagesProps) => {
     const {setSnackBar}=useContext(SnackBarContext)
 
     const onError=({response}:{response:any})=>{
-        console.log('error',response.data.error.message)
         setSnackBar({message:response.data.error.message})
     }
-
-
-
+    
     const onLogin=({idToken}:{idToken:string})=>{
-        console.log('login success ;)')
         authenticate({token:idToken})
     }
     const {mutate:signup,isSuccess,data,error,isError,status}=useLogin({onSuccess:onLogin,onError:onError})

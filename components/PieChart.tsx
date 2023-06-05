@@ -6,8 +6,9 @@ import { useGetExpenses } from '../Hooks/ReactQ';
 import { Categories, spending } from '../models/spending';
 import GetChartObj, {sliceColor} from '../utils/ChartUtils';
 
+export type CategoryTypes=typeof Categories[number]
 const PieChartComponent = () => {
-  type CategoryTypes=typeof Categories[number]
+  
   const [chartData,setChartData]=useState<{category:CategoryTypes,total:number,catColor: typeof sliceColor[number] }[]>([
     {category:'Food',total:0,catColor:sliceColor[0]},
     {category:'Clothes',total:1,catColor:sliceColor[1]},
