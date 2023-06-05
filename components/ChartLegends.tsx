@@ -11,7 +11,8 @@ const ChartLegends = ({sliceColor}:{sliceColor:string[]}) => {
             <ColorCategory CatLabel="Transportation" BoxColor={sliceColor[3]}/>
             <ColorCategory CatLabel="Healthcare" BoxColor={sliceColor[4]}/>
             <ColorCategory CatLabel="Entertainment" BoxColor={sliceColor[5]}/>
-            <ColorCategory CatLabel="Personal Insurance and Pensions" BoxColor={sliceColor[6]}/>
+            <ColorCategory CatLabel="Personal" BoxColor={sliceColor[6]}/>
+            <ColorCategory CatLabel="Insurance and Pensions" BoxColor={sliceColor[7]}/>
 
         </View>
   )
