@@ -9,12 +9,20 @@ import { useLogin } from '../Hooks/AuthReactQ'
 import { Validator } from '../API/validator'
 import { useQueryClient } from '@tanstack/react-query';
 import { AuthContext } from '../states/context/CredentialsContext';
+import SnackBar from '../components/SnackBar'
+import { SnackBarContext } from '../states/context/SnackBarContext'
 
 const LoginPage = ({setLogin}:AuthPagesProps) => {
     const [email,setEmail]=useState('')
     const {wordValidator,emailValidator}=new Validator()
     const [password,setPassword]=useState('')
     const {authenticate}=useContext(AuthContext)
+    const {setSnackBar}=useContext(SnackBarContext)
+
+    const onError=({response}:{response:any})=>{
+        console.log('error',response.data.error.message)
+        setSnackBar({message:response.data.error.message})
+    }
 
 
 
@@ -22,7 +30,7 @@ const LoginPage = ({setLogin}:AuthPagesProps) => {
         console.log('login success ;)')
         authenticate({token:idToken})
     }
-    const {mutate:signup,isSuccess,data,isError,status}=useLogin({onSuccess:onLogin})
+    const {mutate:signup,isSuccess,data,error,isError,status}=useLogin({onSuccess:onLogin,onError:onError})
     
     const errMessages={
         emailWarning:!emailValidator(email)? <Text style={styles.validationError}>Invalid Email</Text>:<></>,
@@ -41,13 +49,10 @@ const LoginPage = ({setLogin}:AuthPagesProps) => {
 
         }
         return setWarnings(errMessages)
-            
-        
-
     }
 
-    if(status){
-        console.log('status',status)
+    if(isError){
+        console.log('error',error.response.data.error.message)
     }
     return (
         <View style={{minHeight:'40%',  marginTop:'5%'}}>
@@ -77,6 +82,7 @@ const LoginPage = ({setLogin}:AuthPagesProps) => {
                 </View>
             </View>
         </View>
+
   )
 }
 
