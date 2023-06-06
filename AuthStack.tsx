@@ -14,6 +14,7 @@ import AllExpensesReactQuery from './ReactQ_screens/AllExpensesReactQuery';
 import SpendingInputReactQ from './ReactQ_screens/SpendingInputReactQ';
 import SpendingDetailsReactQ from './ReactQ_screens/SpendingDetailsReactQ';
 import AuthPages from './screens/AuthPages';
+import Colors from './constants/colors';
 
 const Tab = createBottomTabNavigator();
 
@@ -29,7 +30,18 @@ const AuthStack = () => {
           <Tab.Navigator 
           initialRouteName='AllExpensesReactQuery'
           screenOptions={{
-            headerRight:({color,size}:any)=> <HeaderButton size={30}/>
+            headerRight:({color,size}:any)=> <HeaderButton size={30}/>,
+            headerStyle:{
+              backgroundColor:Colors.Dark_Purple,
+            },
+            tabBarStyle:{
+              backgroundColor:Colors.Dark_Purple,
+              borderTopColor:Colors.Dark_Purple,
+            },
+            tabBarActiveTintColor:Colors.Tangerine,
+            
+            //tabBarInactiveTintColor:Colors.Columbia_blue,
+            
             }}>
             {/*
             
@@ -45,20 +57,31 @@ const AuthStack = () => {
               name="AllExpensesReactQuery"
               component={AllExpensesReactQuery}
               options={{
-                tabBarIcon: ({color,size}:any)=>(<Ionicons name="stop" color={color} size={size}/>)
+                tabBarIcon: ({color,size}:any)=>(<Ionicons name="receipt" color={color} size={size}/>),
+                title:'All Expenses',
+                headerTitleStyle:{
+                  color:Colors.Tangerine,
+                }
               }}/>
             <Tab.Screen 
               name="Recent expenses" 
               component={RecentExpenses}
               options={{
-                tabBarIcon: ({color,size}:any)=>(<Ionicons name="receipt-outline" color={color} size={size}/>)
+                tabBarIcon: ({color,size}:any)=>(<Ionicons name="wallet" color={color} size={size}/>),
+                headerTitleStyle:{
+                  color:Colors.Tangerine,
+                }
               }}
               />
             <Tab.Screen 
               name="Profile"
               component={Profile}
               options={{
-                tabBarIcon: ({color,size}:any)=>(<Ionicons name="person-outline" color={color} size={size}/>)
+                tabBarIcon: ({color,size}:any)=>(<Ionicons name="person-outline" color={color} size={size}/>),
+                headerTitleStyle:{
+                  color:Colors.Tangerine,
+                },
+                title:'My Profile'
               }}/>
 
             <Tab.Screen 

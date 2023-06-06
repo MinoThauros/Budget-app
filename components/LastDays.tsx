@@ -1,6 +1,7 @@
 import { spending } from '../models/spending';
 import { View,Text } from "react-native"
 import { StyleSheet } from 'react-native';
+import Colors from '../constants/colors';
 
 
 const LastDaysTotal=({total}:{total:number}):JSX.Element=>{
@@ -9,7 +10,7 @@ const LastDaysTotal=({total}:{total:number}):JSX.Element=>{
         return (
             <View style={styles.recapBox}>
                 <Text  style={styles.textColor}>Last 7 days</Text>
-                <Text style={{...styles.textColor, fontStyle:'italic',fontWeight:'bold'}}> ${total}</Text>
+                <Text style={{...styles.totalColor, fontStyle:'italic',fontWeight:'bold', fontSize:18}}> ${total}</Text>
             </View>
         
         )
@@ -55,6 +56,10 @@ const styles=StyleSheet.create({
     recapBox:{
         flexDirection:'row',
         justifyContent:'space-between',
+    },
+    totalColor:{
+        color:Colors.Tangerine,
+        textAlign:'center'
     }
 
 

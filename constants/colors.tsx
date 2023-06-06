@@ -5,7 +5,9 @@ const Colors = {
     Skobeloff:"#007c77",
     Tangerine:"#f18701",
     Light_Blue:'#00E5E8',
-    Grey:'#CCDBDC'
+    Grey:'#CCDBDC',
+    Ultra_Violet:'#820263',
+    Dark_Purple:'#372554'
 }
 
 export default Colors;
