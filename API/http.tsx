@@ -54,27 +54,12 @@ export class HTTPInterface{
     };
 
     async deleteExpense(id:string) {
-        try{
-            const response=await axios.delete('https://bgetapp-default-rtdb.firebaseio.com/expenses'+`/${id}.json`)
-            return response
-
-        }
-        catch(err){
-            console.log(err)
-            return err
-
-        }
+        return await axios.delete('https://bgetapp-default-rtdb.firebaseio.com/expenses'+`/${id}.json`)
         
     }
 
     async updateExpense({id,updatedExpense}:{id:string,updatedExpense:spending}){
-        try{
-            const response=await axios.put('https://bgetapp-default-rtdb.firebaseio.com/expenses'+`/${id}.json`,updatedExpense)
-            return response
-        }catch(err){
-            console.log(err)
-            return err
-        }
+        return await axios.put('https://bgetapp-default-rtdb.firebaseio.com/expenses'+`/${id}.json`,updatedExpense)
     }
 
     getBudget=async ()=>{

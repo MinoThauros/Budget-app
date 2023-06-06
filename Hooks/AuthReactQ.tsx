@@ -7,7 +7,7 @@ import { SignInResponsePayload, SignUpResponsePayload } from '../API/httpUtils';
 
 
 //CUD action so either we post a new item
-type useMutationProps = {
+export type useMutationProps = {
     onSuccess: ({idToken}:{idToken:string}) => void;
     onError?: ({response}:{response:any}) => void;
 }

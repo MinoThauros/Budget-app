@@ -4,8 +4,9 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useDeleteExpense,useUpdateExpense} from '../Hooks/ReactQ';
 import Spending from '../components/Spending';
 import { useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import SpendingCard from '../components/SpendingCard';
+import { SnackBarContext } from '../states/context/SnackBarContext';
 
 /**
  * Receives a spending object though navigation
@@ -17,15 +18,28 @@ const SpendingDetailsReactQ = ({spending,optional}:{spending:spending,optional?:
         const queryClient = useQueryClient()
         //const spending=route.params.Spending;
         const [editWindow,setEditWindow]=useState(false);
+        const {setSnackBar}=useContext(SnackBarContext)
+
+        const onError=({response}:{response:any})=>{
+            console.log(response.data.error)
+            setSnackBar({message:response.data.error})
+        }
     
         const deleteHandler=({data}:any)=>{
             console.log(data)
             //navigation.goBack()
     
         }
-        const {mutate:deleteItem,error:deleteError,isSuccess:deleteSuccess}=useDeleteExpense({onSuccess:deleteHandler,queryClient});
+        const {mutate:deleteItem,error:deleteError,isSuccess:deleteSuccess}=useDeleteExpense({
+            onSuccess:deleteHandler,
+            queryClient,
+            onError
+        });
 
-        const {mutate:editItem,error:updateErr,isSuccess:updateSuccess}=useUpdateExpense({onSuccess:deleteHandler,queryClient});
+        const {mutate:editItem,error:updateErr,isSuccess:updateSuccess}=useUpdateExpense({
+            onSuccess:deleteHandler,
+            queryClient,
+            onError});
 
         const deleteSpending=async ()=>{
             /** We no longer need to seaprately modify local cache and remote server

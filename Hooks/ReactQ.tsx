@@ -3,11 +3,11 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { HTTPInterface } from '../API/http';
 import { spending } from '../models/spending';
 import { QueryClient } from '@tanstack/react-query';
-
 //CUD action so either we post a new item
 type useMutationProps = {
       onSuccess: (param:any) => void;
       queryClient: QueryClient;
+      onError: ({response}:{response:any}) => void;
 }
 
 const {storeExpense, getExpenses, deleteExpense,updateExpense} = new HTTPInterface();
@@ -20,7 +20,7 @@ export const useGetExpenses = ({onSuccess}:{onSuccess:({data}:{data:spending[]})
       });
 }
 
-export const useStoreExpense = ({onSuccess,queryClient}:useMutationProps) => {
+export const useStoreExpense = ({onSuccess,queryClient,onError}:useMutationProps) => {
       return useMutation(storeExpense,{
             onSuccess: (data) => {
                   onSuccess({data})},
@@ -43,6 +43,8 @@ export const useStoreExpense = ({onSuccess,queryClient}:useMutationProps) => {
             // use the context returned from onMutate to roll back
             onError: (err, newTodo, context) => {
                   queryClient.setQueryData(['expenses'], context?.previousSpendings as spending[])
+                  const error=err as any;
+                  onError({response:error.response})
             },
 
             // Always refetch after error or success: invalidate cache
@@ -53,7 +55,7 @@ export const useStoreExpense = ({onSuccess,queryClient}:useMutationProps) => {
 
 }
 
-export const useDeleteExpense = ({onSuccess,queryClient}:useMutationProps) => {
+export const useDeleteExpense = ({onSuccess,queryClient,onError}:useMutationProps) => {
       return useMutation(deleteExpense,{
             onSuccess: (data) => onSuccess({data} as any),
             onMutate: async (id:string) => {
@@ -71,9 +73,12 @@ export const useDeleteExpense = ({onSuccess,queryClient}:useMutationProps) => {
                   // Return a context object with the snapshotted value
                   return { previousSpendings };
             },
-            onError(error, variables, context) {
+            onError(err, variables, context) {
                   // Rollback the optimistic update
                   queryClient.setQueryData(['expenses'], context?.previousSpendings??[] as spending[]);
+                  const error=err as any;
+                  onError({response:error.response})
+                  
             },
             onSettled: () => {
                   queryClient.invalidateQueries(['expenses'])
@@ -81,9 +86,9 @@ export const useDeleteExpense = ({onSuccess,queryClient}:useMutationProps) => {
       })
 }
 
-export const useUpdateExpense = ({onSuccess,queryClient}:useMutationProps) => {
+export const useUpdateExpense = ({onSuccess,queryClient,onError}:useMutationProps) => {
       return useMutation(updateExpense,{
-            onSuccess: (data) => onSuccess({data} as {data:spending[]}),
+            onSuccess: (data) => onSuccess({data}),
             onMutate: async ({id,updatedExpense}:{id:string,updatedExpense:spending}) => {
                   // Cancel any outgoing refetches
                   // (so they don't overwrite our optimistic update)
@@ -98,9 +103,11 @@ export const useUpdateExpense = ({onSuccess,queryClient}:useMutationProps) => {
                   // Return a context object with the snapshotted value 
                   return { previousSpendings };
             },
-            onError(error, variables, context) {
+            onError(err, variables, context) {
                   // Rollback the optimistic update
                   queryClient.setQueryData(['expenses'], context?.previousSpendings??[] as spending[]);
+                  const error=err as any;
+                  onError({response:error.response})
                   
 
             },onSettled: () => {
