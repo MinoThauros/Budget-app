@@ -2,6 +2,7 @@ import { View, StyleSheet,Pressable } from "react-native";
 import {Ionicons} from '@expo/vector-icons';
 import { useContext } from "react";
 import { OverlayContext } from '../states/context/InputOverlayContext';
+import Colors from "../constants/colors";
 
 export const HeaderButton=({size}:any):JSX.Element=>{
 
@@ -16,7 +17,7 @@ export const HeaderButton=({size}:any):JSX.Element=>{
         <Pressable style={({pressed})=>(pressed ? styles.pressed:null)} onPress={pressed}>
               <View style={styles.container}>
         <View style={styles.iconTainer}>
-            <Ionicons name="add" size={size}/>
+            <Ionicons name="add" size={size} color={Colors.Tangerine}/>
         </View>
         
     </View>  

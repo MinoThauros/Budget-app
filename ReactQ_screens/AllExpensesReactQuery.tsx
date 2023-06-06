@@ -1,11 +1,12 @@
 //create anoter spendings component where we use react query
 import { View, Text } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 import { useGetExpenses } from '../Hooks/ReactQ'
 import { InitializeSpending } from '../states/redux/expenses';
 import { useDispatch, useSelector } from "react-redux";
 import DisplaySpendings from '../components/SpendingsList';
 import LoadingOvelay from '../components/LoadingOverlay';
+import { SnackBarContext } from '../states/context/SnackBarContext';
 //*dispatch action to initialize the store*
 
 //*we are still mixing react query and redux*
@@ -29,20 +30,23 @@ import LoadingOvelay from '../components/LoadingOverlay';
 //*We'll also implement a new version of the SpendingDetails component that uses react query mutations for delete actions*
 //*And finally an EditItem component that uses react query mutations for update actions*
 const AllExpensesReactQuery = () => {
+    const {setSnackBar}=useContext(SnackBarContext)
     const dispatch=useDispatch();
     const {isLoading,error,data}=useGetExpenses({
         onSuccess:({data})=>{
             //bind the query to the redux store
             dispatch(InitializeSpending({incomingElements:data}))
-        }
+        },
+        onError:({response})=>{
+            setSnackBar({message:'Failed to fetch your spendings'})}
     });
 
     const {expenses}=useSelector((state:any)=>state.ExpenseReducer);
 
     //after loading is done, it's ether error or expenses
     const ErrorHandler=()=>{
-        if(error){
-            return <Text>{{...error} as any}</Text>
+        if (error){
+            return <></>
         }
         return <DisplaySpendings spendings={data}/>
 

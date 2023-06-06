@@ -7,17 +7,21 @@ import { SignInResponsePayload, SignUpResponsePayload } from '../API/httpUtils';
 
 
 //CUD action so either we post a new item
-type useMutationProps = {
+export type useMutationProps = {
     onSuccess: ({idToken}:{idToken:string}) => void;
-    queryClient: QueryClient;
+    onError?: ({response}:{response:any}) => void;
 }
 
 const {login,signup}= new AuthInterface();
 
-export const useLogin = ({onSuccess}:{onSuccess: ({idToken}:{idToken:string}) => void}) => {
+export const useLogin = ({onSuccess,onError}:useMutationProps) => {
     return useMutation(['login'], login,{
         onSuccess:({data})=>onSuccess({idToken:data.idToken}),
-        onError:({response})=>console.log('response is',response.data.error.message,response.data.error.code),
+        onError:({response})=>{
+            console.log('response is',response.data.error.message,response.data.error.code);
+            onError?onError({response}):console.log('no error handler')
+        
+        },
         //axios returns a .response prop when there is an error
         cacheTime: 15 * (60 * 1000), // 15 mins 
         //for errors, simply notify the user

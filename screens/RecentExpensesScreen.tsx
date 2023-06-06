@@ -1,4 +1,4 @@
-import {FlatList,View, } from "react-native";
+import {FlatList,View, Text} from "react-native";
 import { spending } from '../models/spending';
 import { useSelector} from "react-redux";
 import SpendingsDisplayer from "../components/ SpendingsDisplayer";
@@ -9,9 +9,11 @@ import LastDaysTotal from "../components/LastDays";
 import DisplaySpendings from "../components/SpendingsList";
 import { HTTPInterface } from '../API/http';
 import { useGetExpenses } from "../Hooks/ReactQ";
+import { SnackBarContext } from "../states/context/SnackBarContext";
 
-const {storeExpense,getExpenses}= new HTTPInterface()
 const RecentExpenses=({navigation,route}:any)=>{
+    const {setSnackBar}=useContext(SnackBarContext)
+    const [temp,setTemp]=useState({} as spending);
     //const spendings=useSelector((states:any)=>states.ExpenseReducer.expenses) as spending[] | undefined;
     //the redux store used to be the source of truth for the expenses, but now we'll use react-query (see above)
     const {isLoading,error,data:spendings}=useGetExpenses({
@@ -19,7 +21,10 @@ const RecentExpenses=({navigation,route}:any)=>{
             //bind the query to the redux store
             //dispatch(InitializeSpending({incomingElements:data}))
             //console.log(data)
-        }
+            setTemp
+        },
+        onError:({response})=>{
+            setSnackBar({message:'Failed to fetch your spendings'})}
     });
     const Overlay=useContext(OverlayContext);
     const visible:boolean=Overlay.visible;
@@ -42,6 +47,11 @@ const RecentExpenses=({navigation,route}:any)=>{
     useEffect(()=>{
         setTotal(tempSpending.length ? ()=>retrieveTotal(): 0)//if tempSpending is empty, set total to 0
         },[spendings,visible]);
+
+
+    if (error){
+        return <></>
+    }
 
     return (
         <View style={{flex:1}}>
