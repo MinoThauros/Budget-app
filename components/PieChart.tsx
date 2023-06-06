@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 import PieChart  from 'react-native-pie-chart' //https://www.npmjs.com/package/react-native-pie-chart
 import ChartLegends from './ChartLegends';
 import { useGetExpenses } from '../Hooks/ReactQ';
 import { Categories, spending } from '../models/spending';
 import GetChartObj, {sliceColor} from '../utils/ChartUtils';
+import { SnackBarContext } from '../states/context/SnackBarContext';
 
 export type CategoryTypes=typeof Categories[number]
 const PieChartComponent = () => {
+  const {setSnackBar}=useContext(SnackBarContext)
   
   const [chartData,setChartData]=useState<{category:CategoryTypes,total:number,catColor: typeof sliceColor[number] }[]>([
     {category:'Food',total:0,catColor:sliceColor[0]},
@@ -19,14 +21,10 @@ const PieChartComponent = () => {
     {category:'Health',total:0,catColor:sliceColor[6]},
     {category:'Personal',total:0,catColor:sliceColor[7]},
   ])
-    const {data,isError}=useGetExpenses({
-      onSuccess:({data})=>setChartData(GetChartObj({spendings:data}))})
-    
-
-    //fetch total for each category using a getCategoryTotal function
-    //return an object with the total for each category, and the category name, and the color
-    const widthAndHeight = 250
-    const series = [25, 20, 5, 33, 17,12,22]//total for each category
+    useGetExpenses({
+      onSuccess:({data})=>setChartData(GetChartObj({spendings:data})),
+      onError:({response})=>{
+        setSnackBar({message:'Failed to fetch your spendings'})}})
     
 
     return (
@@ -36,7 +34,7 @@ const PieChartComponent = () => {
              <Text>Spending overview:</Text>
         </View>
           <PieChart
-            widthAndHeight={widthAndHeight}
+            widthAndHeight={250}
             series={chartData.map((item)=>item['total'])}
             sliceColor={chartData.map((item)=>item['catColor'])}
             coverRadius={0.45}

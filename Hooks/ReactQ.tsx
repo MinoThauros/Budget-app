@@ -12,10 +12,15 @@ type useMutationProps = {
 
 const {storeExpense, getExpenses, deleteExpense,updateExpense} = new HTTPInterface();
 
-export const useGetExpenses = ({onSuccess}:{onSuccess:({data}:{data:spending[]})=>void}) => {
+export const useGetExpenses = ({onSuccess,onError}:{onSuccess:({data}:{data:spending[]})=>void,onError: ({response}:{response:any}) => void;}) => {
       return useQuery(['expenses'], getExpenses,{
-         onSuccess:(data)=>{           
+         onSuccess:(data:spending[])=>{           
             onSuccess({data})},//run provided callback
+            onError:(err)=>{
+                  console.log(err)
+                  const error=err as any;
+                  onError({response:error.response})
+            },
 
       });
 }

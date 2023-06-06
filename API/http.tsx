@@ -23,34 +23,30 @@ export class HTTPInterface{
         const response=await axios.post('https://bgetapp-default-rtdb.firebaseio.com/expenses.json',spending)
         return response.data.name;
     };
-    async getExpenses():Promise<spending[]>{
+    async getExpenses(){
         const expenses=[] as spending[]
-        try {
 
-            let { data } = await axios.get('https://bgetapp-default-rtdb.firebaseio.com/expenses.json');
-            //need to handle promise rejection here
+        const response =await await axios.get('https://bgetapp-default-rtdb.firebaseio.com/expenses.json');
+        return new Promise((resolve,reject)=>{
+            if(response.status===200){
+                const {data}=response
+                for ( let key in data){
+                    const expenseObj:spending={
+                        id:key,//firebase id
+                        price:data[key].price,
+                        date:data[key].date,
+                        category:data[key].category,
+                        title:data[key].title
+                    };
+                    expenses.push(expenseObj);
+                }
 
-            for ( let key in data){
-                const expenseObj:spending={
-                    id:key,//firebase id
-                    price:data[key].price,
-                    date:data[key].date,
-                    category:data[key].category,
-                    title:data[key].title
-                };
-                expenses.push(expenseObj);
+                resolve(expenses as spending[])
+            }else{
+                reject(response as  AxiosResponse<any, any>)
             }
-            //console.log('expenses are',[...expenses])
-            
-        }
-        catch(err:any){
-            //console.log(err.toJson())
-            console.log('error in getExpenses',{...err})
-            return err 
-            
-        }
-        return expenses.reverse() //return either em
-
+        })
+    
     };
 
     async deleteExpense(id:string) {
