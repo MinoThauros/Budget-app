@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import DisplaySpendings from '../components/SpendingsList';
 import LoadingOvelay from '../components/LoadingOverlay';
 import { SnackBarContext } from '../states/context/SnackBarContext';
+import Colors from '../constants/colors';
 //*dispatch action to initialize the store*
 
 //*we are still mixing react query and redux*
@@ -53,7 +54,7 @@ const AllExpensesReactQuery = () => {
     }
 
   return (
-    <View style={{flex:1}}>
+    <View style={{flex:1,  backgroundColor:Colors.Slate_blue}}>
         {isLoading ?  <LoadingOvelay/> : <ErrorHandler/>}
     </View>
   )
