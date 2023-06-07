@@ -3,9 +3,6 @@ import { useNavigation } from "@react-navigation/native";
 import { FlatList,View } from "react-native";
 import SpendingsDisplayer from "./ SpendingsDisplayer";
 import { spending } from '../models/spending';
-import { HTTPInterface } from "../API/http";
-import { useEffect} from "react";
-import { useDispatch } from "react-redux";
 //import { SetSpending } from "../states/redux/expenses";
 
 

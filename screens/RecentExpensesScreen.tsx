@@ -10,6 +10,7 @@ import DisplaySpendings from "../components/SpendingsList";
 import { HTTPInterface } from '../API/http';
 import { useGetExpenses } from "../Hooks/ReactQ";
 import { SnackBarContext } from "../states/context/SnackBarContext";
+import Colors from "../constants/colors";
 
 const RecentExpenses=({navigation,route}:any)=>{
     const {setSnackBar}=useContext(SnackBarContext)
@@ -54,7 +55,7 @@ const RecentExpenses=({navigation,route}:any)=>{
     }
 
     return (
-        <View style={{flex:1}}>
+        <View style={{flex:1,  backgroundColor:Colors.Slate_blue}}>
             <View>
                 <LastDaysTotal total={total}/>
             </View>

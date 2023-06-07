@@ -40,7 +40,7 @@ const LastDaysTotal=({total}:{total:number}):JSX.Element=>{
 
 const styles=StyleSheet.create({
     overallContainer:{
-        backgroundColor:"#8f34eb",
+        backgroundColor:Colors.Skobeloff,
         borderRadius:5,
         padding:10,//marge dans l'element
         marginHorizontal:8,
