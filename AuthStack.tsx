@@ -30,7 +30,7 @@ const AuthStack = () => {
           <Tab.Navigator 
           initialRouteName='AllExpensesReactQuery'
           screenOptions={{
-            headerRight:({color,size}:any)=> <HeaderButton size={30}/>,
+            headerRight:({color,size}:any)=> <HeaderButton size={40}/>,
             headerStyle:{
               backgroundColor:Colors.Dark_Purple,
             },

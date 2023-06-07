@@ -17,7 +17,7 @@ export const HeaderButton=({size}:any):JSX.Element=>{
         <Pressable style={({pressed})=>(pressed ? styles.pressed:null)} onPress={pressed}>
               <View style={styles.container}>
         <View style={styles.iconTainer}>
-            <Ionicons name="add" size={size} color={Colors.Tangerine}/>
+            <Ionicons name="add-circle-outline" size={size} color={Colors.Tangerine}/>
         </View>
         
     </View>  
