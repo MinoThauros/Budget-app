@@ -88,7 +88,9 @@ const SpendingDetailsReactQ = ({spending,optional}:{spending:spending,optional?:
         
         return (
             <View >
-                <Modal visible={editWindow} animationType='slide'>
+                <Modal visible={editWindow} 
+                animationType={'fade'}
+                transparent={true}>
                     <SpendingCard initialValues={spending} confirm={confirmEdit} id={spending.id} optionalButton={()=>setEditWindow(false)}/>
                 </Modal>
                 <Content/>
