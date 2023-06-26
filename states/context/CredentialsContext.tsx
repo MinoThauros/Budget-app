@@ -13,7 +13,7 @@ export const AuthContextProvider=({children}:any):JSX.Element=>{
 
     const Logout=():void=>{
         setToken(null);
-        setIsAuthenticated(!!token)
+        setIsAuthenticated(!!token)//!!converts to boolean
     }
 
     const Authenticate=({token}:{token:string}):void=>{

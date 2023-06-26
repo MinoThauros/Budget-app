@@ -47,9 +47,7 @@ const LoginPage = ({setLogin}:AuthPagesProps) => {
         return setWarnings(errMessages)
     }
 
-    if(isError){
-        console.log('error',error.response.data.error.message)
-    }
+
     return (
         <View style={{minHeight:'40%',  marginTop:'5%'}}>
             <CustomTextInput

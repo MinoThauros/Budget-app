@@ -25,6 +25,7 @@ export const useLogin = ({onSuccess,onError}:useMutationProps) => {
         //axios returns a .response prop when there is an error
         cacheTime: 15 * (60 * 1000), // 15 mins 
         //for errors, simply notify the user
+        retry: 3,
 })}
 
 export const useSignup = ({onSuccess}:{onSuccess: ({idToken}:{idToken:string}) => void}) => {
